@@ -8,13 +8,19 @@ export default function HeroSP() {
   const canvasRef = useRef(null);
 
   /* ============================================================
-      Copy Animation
+      Copy Animation（SP専用：レイアウトを壊さない安全版）
   ============================================================ */
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // 共通初期セット
+      gsap.set(".sp-hero-title, .sp-hero-copy > *", {
+        willChange: "opacity, transform, filter",
+      });
+
+      // Label & Sub
       gsap.from(".sp-hero-copy > :not(.sp-hero-title)", {
         opacity: 0,
-        y: 18,
+        y: 16,
         filter: "blur(4px)",
         duration: 1.1,
         ease: "power2.out",
@@ -22,28 +28,30 @@ export default function HeroSP() {
         stagger: 0.12,
       });
 
+      // ★ Title（SP専用：letterSpacingを動かさない）
       gsap.fromTo(
         ".sp-hero-title",
         {
           opacity: 0,
-          y: 12,
-          filter: "blur(7px)",
-          letterSpacing: "0.18em",
+          y: 10,
+          scale: 0.96,
+          filter: "blur(6px)",
         },
         {
           opacity: 1,
           y: 0,
+          scale: 1,
           filter: "blur(0px)",
-          letterSpacing: "0.12em",
-          duration: 1.35,
+          duration: 1.28,
           ease: "power2.out",
-          delay: 0.14,
+          delay: 0.10,
         }
       );
 
+      // Luxury / Scent の呼吸
       gsap.to(".sp-word-luxury, .sp-word-scent", {
         opacity: 0.95,
-        duration: 3.2,
+        duration: 3.4,
         yoyo: true,
         repeat: -1,
         ease: "sine.inOut",
@@ -54,7 +62,7 @@ export default function HeroSP() {
   }, []);
 
   /* ============================================================
-      Particle Canvas
+      Particle Canvas（下層ミスト：最終版）
   ============================================================ */
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -70,28 +78,41 @@ export default function HeroSP() {
     let W = canvas.width;
     let H = canvas.height;
 
-    const particles = Array.from({ length: 12 }).map(() => ({
-      x: W * 0.5 + (Math.random() * 80 - 40),
-      y: H * 0.45 + (Math.random() * 40 - 20),
-      r: Math.random() * 1.4 + 0.6,
-      alpha: Math.random() * 0.16 + 0.10,
-      dx: (Math.random() - 0.5) * 0.06,
-      dy: (Math.random() - 0.5) * 0.05,
+    const particles = Array.from({ length: 14 }).map(() => ({
+      // 左寄せ（黄金比）
+      x: W * 0.37 + (Math.random() * 50 - 25),
+
+      // 下層（92〜96%）
+      y: H * (0.92 + Math.random() * 0.04),
+
+      // 極小粒
+      r: Math.random() * 0.7 + 0.7,
+
+      // 香りの膜色
+      alpha: Math.random() * 0.10 + 0.06,
+
+      dx: (Math.random() - 0.5) * 0.02,
+      dy: (Math.random() - 0.5) * 0.015,
+
+      phase: Math.random() * Math.PI * 2,
     }));
 
-    function draw() {
+    function draw(t = 0) {
       ctx.clearRect(0, 0, W, H);
 
       particles.forEach((p) => {
+        const breath = Math.sin(t * 0.00035 + p.phase) * 0.35;
+
         ctx.beginPath();
-        ctx.fillStyle = `rgba(255, 220, 240, ${p.alpha})`;
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 225, 238, ${p.alpha})`;
+        ctx.arc(p.x, p.y + breath, p.r, 0, Math.PI * 2);
         ctx.fill();
 
         p.x += p.dx;
-        p.y += p.dy * 0.6;
-        p.dx += (Math.random() - 0.5) * 0.003;
-        p.dy += (Math.random() - 0.5) * 0.003;
+        p.y += p.dy;
+
+        p.dx += (Math.random() - 0.5) * 0.001;
+        p.dy += (Math.random() - 0.5) * 0.001;
       });
 
       requestAnimationFrame(draw);
@@ -103,8 +124,7 @@ export default function HeroSP() {
 
   return (
     <section id="hero" ref={heroRef} className="sp-hero-section">
-
-      {/* 背景・光膜・影 */}
+      {/* 背景 */}
       <div className="sp-hero-bg" />
       <div className="sp-hero-shadow" />
       <div className="sp-hero-veil" />
@@ -117,7 +137,9 @@ export default function HeroSP() {
       <div className="sp-hero-copy">
         <p className="sp-hero-label">ROSE VEIL — FRAGRANCE SHAMPOO</p>
 
-        <h1 className="sp-hero-title">THREE COLORS OF LUXURY</h1>
+        <h1 className="sp-hero-title">
+          THREE COLORS OF LUXURY
+        </h1>
 
         <p className="sp-hero-sub">
           三色の“<span className="sp-word-luxury">贅沢</span>”が、

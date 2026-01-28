@@ -1,11 +1,13 @@
-// src/sections/ProductOverlayWide_sp.jsx
+// ================================
+// ProductOverlayWide_sp.jsx（最適化版）
+// ================================
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { ShoppingBag } from "lucide-react";
 import "../styles/movie-hover_sp.css";
 
-/* ============================================================
-   UI TOKENS（Dior/CHANEL寄せ：黒×白×0.18線）
-============================================================ */
+/* ------------------------------------------------------------
+   UI TOKENS（黒×薄膜×上質UI）
+------------------------------------------------------------ */
 const UI = {
   // line
   line18: "border border-white/18",
@@ -17,8 +19,8 @@ const UI = {
   // text
   t95: "text-white/95",
   t85: "text-white/85",
-  t70: "text-white/70",
-  t55: "text-white/55",
+  t75: "text-white/75",
+  t60: "text-white/60",
   t45: "text-white/45",
   // tracking
   trackHi: "tracking-[0.22em]",
@@ -35,6 +37,9 @@ const titleColor = {
   blue: "text-[#c8e2ff]",
 };
 
+/* ------------------------------------------------------------
+   商品データ
+------------------------------------------------------------ */
 const products = [
   {
     key: "white",
@@ -58,7 +63,7 @@ const products = [
   {
     key: "veil",
     title: "ROSE VEIL",
-    metaCopy: "体温でふわりと開く深紅の甘さ。しっとり艶が続き、夜まで上品に香る",
+    metaCopy: "体温でふわりと開く深紅の甘さ。しっとり艶が続き、夜まで上品に香る。",
     sub: "深紅の甘さ × しっとり上品",
     image: "rose-veil.png",
     detail: `ローズアブソリュートとホホバで
@@ -95,23 +100,21 @@ const products = [
   },
 ];
 
-/* ============================================================
-   ◆ 右側の縦グラデ — 商品別
-============================================================ */
+/* ------------------------------------------------------------
+   商品別「右縦グラデ膜」
+------------------------------------------------------------ */
 const rightGrad = {
-  blue: `linear-gradient(to bottom, rgba(10,20,40,0.30), rgba(10,20,40,0.14), rgba(10,20,40,0.00))`,
+  blue: `linear-gradient(to bottom, rgba(10,20,40,0.30), rgba(10,20,40,0.12), rgba(10,20,40,0.00))`,
   veil: `linear-gradient(to bottom, rgba(80,0,20,0.34), rgba(80,0,20,0.16), rgba(80,0,20,0.00))`,
-  white: `linear-gradient(to bottom, rgba(0,0,0,0.32), rgba(0,0,0,0.22), rgba(0,0,0,0.10))`,
+  white: `linear-gradient(to bottom, rgba(0,0,0,0.30), rgba(0,0,0,0.18), rgba(0,0,0,0.04))`,
 };
 
-function yen(n) {
-  return `¥${Number(n || 0).toLocaleString("ja-JP")}`;
-}
+const yen = (n) => `¥${Number(n || 0).toLocaleString("ja-JP")}`;
 
-/* ============================================================
-   Reveal（上質フェード：呼吸）
-============================================================ */
-function useInViewOnce({ rootMargin = "0px 0px -12% 0px" } = {}) {
+/* ------------------------------------------------------------
+   高級フェード（呼吸）
+------------------------------------------------------------ */
+function useInViewOnce({ rootMargin = "0px 0px -15% 0px" } = {}) {
   const ref = useRef(null);
   const [shown, setShown] = useState(false);
 
@@ -142,7 +145,7 @@ function Reveal({ children, className = "", delayMs = 0 }) {
       ref={ref}
       className={[
         "transition-all duration-[1100ms] ease-out will-change-transform",
-        shown ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-[14px] blur-[6px]",
+        shown ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-[12px] blur-[5px]",
         className,
       ].join(" ")}
       style={{ transitionDelay: `${delayMs}ms` }}
@@ -152,9 +155,9 @@ function Reveal({ children, className = "", delayMs = 0 }) {
   );
 }
 
-/* ============================================================
-   Premium Underline Button（横ライン伸び：Dior寄せ）
-============================================================ */
+/* ------------------------------------------------------------
+   Premium Underline Button
+------------------------------------------------------------ */
 function UnderlineAction({ children, onClick, className = "" }) {
   return (
     <button
@@ -162,9 +165,8 @@ function UnderlineAction({ children, onClick, className = "" }) {
       className={[
         "group relative inline-flex items-center",
         UI.trackHi,
-        "text-[0.92rem] font-light",
-        "text-white/90 hover:text-white",
-        "transition-colors",
+        "text-[0.92rem] font-light text-white/85 hover:text-white",
+        "transition-all",
         className,
       ].join(" ")}
     >
@@ -175,20 +177,20 @@ function UnderlineAction({ children, onClick, className = "" }) {
           className="
             absolute left-0 -bottom-[10px]
             h-[1px] w-[26px]
-            bg-white/40
+            bg-white/35
             transition-all duration-500 ease-out
-            group-hover:w-[132px]
-            group-hover:bg-white/70
+            group-hover:w-[128px]
+            group-hover:bg-white/65
           "
         />
       </span>
+
       <span
         aria-hidden="true"
         className="
           ml-4 text-white/55
-          transition-transform duration-500 ease-out
-          group-hover:translate-x-[6px]
-          group-hover:text-white/80
+          transition-all duration-500 ease-out
+          group-hover:translate-x-[5px] group-hover:text-white/80
         "
       >
         →
@@ -197,103 +199,71 @@ function UnderlineAction({ children, onClick, className = "" }) {
   );
 }
 
-/* ============================================================
-   CART MODAL（スライド＋余白呼吸）
-============================================================ */
+/* ------------------------------------------------------------
+   カートモーダル
+------------------------------------------------------------ */
 function CartModal({ open, onClose, cart, cartCount, cartTotal, changeQty, removeItem }) {
   useEffect(() => {
     if (!open) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+
+    const onKey = (e) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+
     return () => {
       document.body.style.overflow = prev;
+      window.removeEventListener("keydown", onKey);
     };
-  }, [open]);
+  }, [open, onClose]);
 
   return (
-    <div
-      className={["fixed inset-0 z-[90]", open ? "pointer-events-auto" : "pointer-events-none"].join(" ")}
-      role="dialog"
-      aria-modal="true"
-    >
+    <div className={`fixed inset-0 z-[200] ${open ? "pointer-events-auto" : "pointer-events-none"}`}>
       {/* Backdrop */}
       <div
         onClick={onClose}
-        className={[
-          "absolute inset-0",
-          "transition-all duration-700 ease-out",
-          open ? "opacity-100" : "opacity-0",
-          "bg-black/55 backdrop-blur-[6px]",
-        ].join(" ")}
+        className={`
+          absolute inset-0 bg-black/55 backdrop-blur-[4px]
+          transition-all duration-700 ease-out
+          ${open ? "opacity-100" : "opacity-0"}
+        `}
       />
 
       {/* Panel */}
       <div
-        className={[
-          "absolute right-0 top-0 h-full",
-          "w-[92vw] sm:w-[460px]",
-          UI.panel,
-          "border-l border-white/18",
-          "shadow-[0_0_70px_rgba(0,0,0,0.55)]",
-          "transition-transform duration-700 ease-out",
-          open ? "translate-x-0" : "translate-x-full",
-        ].join(" ")}
+        onClick={(e) => e.stopPropagation()}
+        className={`
+          absolute right-0 top-0 h-full w-[92vw] sm:w-[460px]
+          ${UI.panel} border-l border-white/18 shadow-[0_0_70px_rgba(0,0,0,0.55)]
+          transition-transform duration-700 ease-out
+          ${open ? "translate-x-0" : "translate-x-full"}
+        `}
       >
         <div className="h-full flex flex-col">
           {/* Header */}
-          <div className="px-7 pt-7 pb-5 border-b border-white/18">
-            <div className="flex items-center justify-between">
-              <Reveal delayMs={40}>
-                <div className={[UI.t85, UI.trackHi, "text-[0.92rem]"].join(" ")}>CART</div>
-              </Reveal>
-
-              <button
-                onClick={onClose}
-                aria-label="Close cart"
-                className="
-                  group relative w-[34px] h-[34px]
-                  flex items-center justify-center
-                  rounded-full
-                  border border-white/12
-                  bg-white/3 backdrop-blur-[3px]
-                  text-white/65
-                  transition-all duration-500 ease-out
-                  hover:border-white/25 hover:bg-white/8 hover:text-white
-                "
-              >
-                <span
-                  className="
-                    block text-[1rem]
-                    leading-none
-                    transition-transform duration-500
-                    group-hover:scale-[1.15]
-                  "
-                >
-                  ✕
-                </span>
-                <span
-                  aria-hidden="true"
-                  className="
-                    absolute inset-0 rounded-full
-                    bg-white/0
-                    group-hover:bg-white/5
-                    transition-all duration-500 ease-out
-                  "
-                />
-              </button>
-            </div>
-
-            <Reveal delayMs={110}>
-              <div className={[UI.t45, UI.trackMd, "text-[0.78rem] mt-2"].join(" ")}>
-                {cartCount > 0 ? `${cartCount} ITEMS` : `EMPTY`}
-              </div>
+          <div className="px-7 pt-7 pb-5 border-b border-white/18 flex items-center justify-between">
+            <Reveal delayMs={40}>
+              <div className={`${UI.t85} ${UI.trackHi} text-[0.92rem]`}>CART</div>
             </Reveal>
+
+            <button
+              onClick={onClose}
+              aria-label="Close"
+              className="
+                z-[3] w-[34px] h-[34px] flex items-center justify-center rounded-full
+                border border-white/12 bg-white/3 backdrop-blur-[3px]
+                text-white/65 hover:text-white hover:border-white/25 hover:bg-white/6
+                transition-all duration-500
+              "
+            >
+              ✕
+            </button>
           </div>
 
           {/* Items */}
           <div className="flex-1 overflow-auto px-7 py-6">
             {cart.length === 0 ? (
-              <Reveal delayMs={120}>
+              <Reveal delayMs={140}>
                 <div className="pt-10 text-white/55 text-[0.92rem] leading-relaxed">
                   カートは空です。<br />
                   気になる香りを追加してください。
@@ -302,23 +272,21 @@ function CartModal({ open, onClose, cart, cartCount, cartTotal, changeQty, remov
             ) : (
               <div className="space-y-5">
                 {cart.map((it, idx) => (
-                  <Reveal key={it.key} delayMs={120 + idx * 60}>
-                    <div className={[UI.r14, "p-4", UI.line18, "bg-white/5"].join(" ")}>
+                  <Reveal key={it.key} delayMs={120 + idx * 70}>
+                    <div className={`${UI.r14} p-4 ${UI.line18} ${UI.glass5}`}>
                       <div className="flex gap-4 items-start">
-                        <div className={[UI.r12, "w-[70px] h-[70px] overflow-hidden shrink-0", UI.line18].join(" ")}>
+                        <div className={`w-[70px] h-[70px] shrink-0 overflow-hidden ${UI.r12} ${UI.line18}`}>
                           <img src={it.image} alt={it.title} className="w-full h-full object-cover" />
                         </div>
 
                         <div className="flex-1 min-w-0">
-                          <div className={[UI.t85, "text-[0.95rem] tracking-[0.08em] truncate"].join(" ")}>
+                          <div className={`${UI.t85} text-[0.95rem] tracking-[0.06em] truncate`}>
                             {it.title}
                           </div>
-                          <div className="mt-1 text-white/45 text-[0.78rem] tracking-[0.10em] leading-snug">
-                            {it.sub}
-                          </div>
+                          <div className="mt-1 text-white/45 text-[0.78rem] tracking-[0.10em] leading-snug">{it.sub}</div>
 
                           <div className="mt-3 flex items-center justify-between">
-                            <div className="text-white/80 text-[0.9rem] tracking-[0.06em]">{yen(it.price)}</div>
+                            <div className="text-white/80 text-[0.9rem] tracking-[0.04em]">{yen(it.price)}</div>
                             <button
                               onClick={() => removeItem(it.key)}
                               className="text-white/35 hover:text-white/75 transition text-[0.78rem] tracking-[0.16em]"
@@ -327,12 +295,11 @@ function CartModal({ open, onClose, cart, cartCount, cartTotal, changeQty, remov
                             </button>
                           </div>
 
-                          {/* Qty */}
+                          {/* QTY */}
                           <div className="mt-4 flex items-center gap-3">
                             <button
                               onClick={() => changeQty(it.key, -1)}
-                              className={["w-9 h-9", UI.r10, UI.line18, "bg-white/5", "text-white/70 hover:text-white", "hover:border-white/28 transition"].join(" ")}
-                              aria-label="Decrease quantity"
+                              className={`w-9 h-9 ${UI.r10} ${UI.line18} bg-white/5 text-white/70 hover:text-white hover:border-white/28 transition`}
                             >
                               −
                             </button>
@@ -341,15 +308,12 @@ function CartModal({ open, onClose, cart, cartCount, cartTotal, changeQty, remov
 
                             <button
                               onClick={() => changeQty(it.key, +1)}
-                              className={["w-9 h-9", UI.r10, UI.line18, "bg-white/5", "text-white/70 hover:text-white", "hover:border-white/28 transition"].join(" ")}
-                              aria-label="Increase quantity"
+                              className={`w-9 h-9 ${UI.r10} ${UI.line18} bg-white/5 text-white/70 hover:text-white hover:border-white/28 transition`}
                             >
                               +
                             </button>
 
-                            <div className="ml-auto text-white/65 text-[0.86rem] tracking-[0.08em]">
-                              {yen(it.price * it.qty)}
-                            </div>
+                            <div className="ml-auto text-white/70 text-[0.86rem] tracking-[0.08em]">{yen(it.price * it.qty)}</div>
                           </div>
                         </div>
                       </div>
@@ -364,7 +328,7 @@ function CartModal({ open, onClose, cart, cartCount, cartTotal, changeQty, remov
           <div className="px-7 py-6 border-t border-white/18">
             <Reveal delayMs={120}>
               <div className="flex items-center justify-between">
-                <div className={[UI.t55, UI.trackHi, "text-[0.82rem]"].join(" ")}>TOTAL</div>
+                <div className={`${UI.t55} ${UI.trackHi} text-[0.82rem]`}>TOTAL</div>
                 <div className="text-white/92 text-[1.06rem] tracking-[0.10em] font-light">{yen(cartTotal)}</div>
               </div>
             </Reveal>
@@ -372,27 +336,27 @@ function CartModal({ open, onClose, cart, cartCount, cartTotal, changeQty, remov
             <Reveal delayMs={200}>
               <button
                 disabled={cart.length === 0}
-                className={[
-                  "group relative mt-5 w-full py-3",
-                  UI.r14,
-                  UI.trackHi,
-                  "text-[0.9rem] font-light",
-                  UI.line18,
-                  "transition-all duration-500 ease-out",
-                  cart.length === 0 ? "text-white/25 bg-white/5 cursor-not-allowed" : "text-white/90 bg-white/7 hover:bg-white/9 hover:border-white/28",
-                ].join(" ")}
+                className={`
+                  group relative mt-5 w-full py-3
+                  ${UI.r14} ${UI.line18}
+                  text-[0.9rem] tracking-[0.22em] font-light
+                  transition-all duration-500
+                  ${cart.length === 0
+                    ? "bg-white/5 text-white/25 cursor-not-allowed"
+                    : "bg-white/6 text-white/85 hover:bg-white/10 hover:border-white/25"}
+                `}
               >
                 <span className="relative inline-block">
                   CHECKOUT
                   <span
                     aria-hidden="true"
-                    className={[
-                      "absolute left-1/2 -translate-x-1/2 -bottom-[6px]",
-                      "h-[1px] w-[56px]",
-                      "bg-white/30",
-                      "transition-all duration-500 ease-out",
-                      cart.length === 0 ? "" : "group-hover:w-[120px] group-hover:bg-white/60",
-                    ].join(" ")}
+                    className={`
+                      absolute left-1/2 -translate-x-1/2 -bottom-[7px]
+                      h-[1px] w-[60px]
+                      bg-white/30
+                      transition-all duration-500
+                      ${cart.length === 0 ? "" : "group-hover:w-[120px] group-hover:bg-white/55"}
+                    `}
                   />
                 </span>
               </button>
@@ -400,7 +364,7 @@ function CartModal({ open, onClose, cart, cartCount, cartTotal, changeQty, remov
 
             <Reveal delayMs={260}>
               <div className="mt-4 text-white/30 text-[0.74rem] tracking-[0.10em] leading-relaxed">
-                ※ 決済導線は後でStripe等に接続できます
+                ※ Stripe等の決済導線は後で追加できます
               </div>
             </Reveal>
           </div>
@@ -410,217 +374,166 @@ function CartModal({ open, onClose, cart, cartCount, cartTotal, changeQty, remov
   );
 }
 
-/* ============================================================
-   MAIN（SP最適化）
-   - SPは白背景をやめて、PCと同じ「黒×膜×余白」へ統一
-   - SPタイトルは titleColor を反映（世界観の一貫）
-   - SPにも metaCopy（物語の核）を入れてUXを上げる
-============================================================ */
+/* ------------------------------------------------------------
+   MAIN（PC/SP 共通・高級設計）
+------------------------------------------------------------ */
 export default function ProductOverlayWide_sp() {
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [cart, setCart] = useState([]); // {key,title,price,qty,image,sub}
+  const [cart, setCart] = useState([]);
 
-  const cartCount = useMemo(() => cart.reduce((sum, it) => sum + it.qty, 0), [cart]);
-  const cartTotal = useMemo(() => cart.reduce((sum, it) => sum + it.price * it.qty, 0), [cart]);
+  const cartCount = useMemo(() => cart.reduce((s, it) => s + it.qty, 0), [cart]);
+  const cartTotal = useMemo(() => cart.reduce((s, it) => s + it.price * it.qty, 0), [cart]);
 
-  function addToCart(p) {
+  const addToCart = (p) => {
     setCart((prev) => {
       const idx = prev.findIndex((x) => x.key === p.key);
       if (idx >= 0) {
         const next = [...prev];
-        next[idx] = { ...next[idx], qty: next[idx].qty + 1 };
+        next[idx].qty++;
         return next;
       }
-      return [...prev, { key: p.key, title: p.title, sub: p.sub, price: p.price, image: p.image, qty: 1 }];
+      return [...prev, { ...p, qty: 1 }];
     });
     setIsCartOpen(true);
-  }
+  };
 
-  function changeQty(key, delta) {
+  const changeQty = (key, delta) => {
     setCart((prev) =>
       prev
         .map((it) => (it.key === key ? { ...it, qty: it.qty + delta } : it))
         .filter((it) => it.qty > 0)
     );
-  }
+  };
 
-  function removeItem(key) {
+  const removeItem = (key) => {
     setCart((prev) => prev.filter((it) => it.key !== key));
-  }
+  };
 
   return (
-    <section id="products" className="w-full relative overflow-hidden bg-black">
-      {/* ===== Top-right Cart Trigger（SPも同一思想） ===== */}
-      <div className="pointer-events-auto fixed top-3.5 right-5 z-[100]">
+    <section id="product" className="w-full relative bg-black overflow-hidden">
+      {/* CART TRIGGER */}
+      <div
+        className={`
+          fixed top-3 right-3 sm:top-4 sm:right-6 z-[120]
+          transition-all duration-500
+          ${isCartOpen ? "opacity-0 pointer-events-none -translate-y-1" : "opacity-100"}
+        `}
+      >
         <button
           onClick={() => setIsCartOpen(true)}
           className="
-            group relative px-5 py-3
-            flex items-center gap-3
+            group px-5 py-3 flex items-center gap-3
             rounded-[12px]
             bg-white/3 backdrop-blur-[4px]
             border border-white/12
-            text-white/85
-            text-[0.88rem] tracking-[0.22em]
-            transition-all duration-500 ease-out
+            text-white/85 text-[0.88rem] tracking-[0.22em]
             hover:border-white/25 hover:bg-white/8
+            transition-all duration-500
           "
         >
-          <ShoppingBag size={18} strokeWidth={1.35} className="opacity-85 transition-opacity duration-500 group-hover:opacity-100" />
-          <span className="opacity-90 group-hover:opacity-100 transition-opacity">CART</span>
-          {cartCount > 0 && <span className="text-white/60 text-[0.75rem] tracking-[0.10em]">{cartCount}</span>}
-
-          <span
-            aria-hidden="true"
-            className="
-              absolute left-4 right-4 -bottom-[6px]
-              h-[1px] w-[26%]
-              bg-white/30
-              transition-all duration-500 ease-out
-              group-hover:w-[70%]
-              group-hover:bg-white/55
-            "
-          />
+          <ShoppingBag size={18} strokeWidth={1.35} className="opacity-85 group-hover:opacity-100 transition" />
+          CART
+          {cartCount > 0 && <span className="text-white/60 text-[0.75rem] tracking-[0.08em]">{cartCount}</span>}
         </button>
       </div>
 
+      {/* PRODUCTS */}
       {products.map((p, i) => (
         <div key={p.key} id={`product-${p.key}`} className="relative w-full border-b border-white/10">
-          {/* ===== PHOTO AREA ===== */}
-          <div className="relative w-full h-[76vh] lg:h-[112vh] overflow-hidden">
-            <div className="cinema-hover w-full h-full">
-              <img
-                src={p.image}
-                alt={p.title}
-                className="
-                  absolute inset-0
-                  w-full h-full
-                  object-cover object-center
-                "
-              />
-              <div className="cinema-shadow" />
-
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background:
-                    "radial-gradient(600px 420px at 78% 22%, rgba(255,255,255,0.12), rgba(255,255,255,0.04) 42%, rgba(0,0,0,0) 70%)",
-                }}
-              />
-
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background: "linear-gradient(to bottom, rgba(0,0,0,0.20), rgba(0,0,0,0.02) 32%, rgba(0,0,0,0.22))",
-                  mixBlendMode: "multiply",
-                }}
-              />
-            </div>
-
-            {/* 右縦グラデ膜 */}
-            <div
-              className="absolute inset-y-0 right-0 w-[34%] pointer-events-none backdrop-blur-[3px]"
-              style={{ background: rightGrad[p.grad] }}
+          {/* PHOTO AREA */}
+          <div className="relative w-full h-[78vh] lg:h-[112vh] overflow-hidden">
+            {/* PHOTO */}
+            <img
+              src={p.image}
+              alt={p.title}
+              className="absolute inset-0 w-full h-full object-cover object-center z-[1]"
             />
 
-            {/* ---- PC OVERLAY（そのまま） ---- */}
-            <div
-              className="
-                hidden lg:grid
-                absolute inset-0
-                grid-cols-[50%_35%]
-                gap-[8vw]
-                px-[6vw]
-                place-content-center
-                pointer-events-none
-              "
-            >
-              <Reveal delayMs={80 + i * 80} className="relative text-left translate-x-[1.5vw]">
-                <h3 className={`${UI.t95} ${titleColor[p.key]} text-[2.8rem] font-light tracking-[0.02em]`}>{p.title}</h3>
-
-                {p.key === "white" && (
-                  <div
-                    aria-hidden="true"
-                    className="
-                      absolute -left-[6vw] -top-[4vh]
-                      w-[38vw] h-[22vh]
-                      rounded-[22px]
-                      backdrop-blur-[14px]
-                      bg-black/18
-                      mix-blend-normal
-                      pointer-events-none
-                      z-[-1]
-                    "
-                  />
-                )}
-
-                <p className="text-white/75 text-[1.05rem] mt-4 leading-relaxed tracking-[0.02em]">{p.metaCopy}</p>
-                <p className="text-white/80 text-[1.15rem] mt-3 tracking-[0.015em]">{p.sub}</p>
-                <div className="mt-6 w-[180px] h-[1px] bg-white/20" />
-              </Reveal>
-
-              <div className="relative text-left pl-[17vw] translate-x-[2vw]">
-                <Reveal delayMs={160 + i * 80}>
-                  <p className="text-white/95 text-[1.08rem] leading-[1.95] whitespace-pre-line">{p.detail}</p>
-                </Reveal>
-
-                <Reveal delayMs={240 + i * 80}>
-                  <p className="mt-6 text-[0.95rem] text-white/70 leading-relaxed">
-                    <span className="text-white/45 tracking-[0.12em]">INGREDIENTS</span>
-                    <br />
-                    {p.ingredients}
-                  </p>
-                </Reveal>
-
-                <Reveal delayMs={310 + i * 80}>
-                  <p className="mt-7 text-[1.3rem] text-white/95 tracking-wide font-light">{p.priceLabel}</p>
-                </Reveal>
-
-                <Reveal delayMs={380 + i * 80} className="pointer-events-auto mt-6">
-                  <UnderlineAction onClick={() => addToCart(p)}>PURCHASE</UnderlineAction>
-                </Reveal>
-              </div>
-            </div>
-          </div>
-
-          {/* ===== SP（黒×膜に統一） ===== */}
-          <div className="lg:hidden relative bg-black px-6 pt-10 pb-12 text-left">
-            {/* SPの背面膜（文字の上質な抜け） */}
+            {/* BASE DARK LAYER */}
             <div
               aria-hidden="true"
-              className="
-                absolute inset-0
-                pointer-events-none
-              "
+              className="absolute inset-0 z-[0] pointer-events-none"
               style={{
-                background:
-                  "radial-gradient(780px 520px at 18% 12%, rgba(255,255,255,0.06), rgba(255,255,255,0.02) 38%, rgba(0,0,0,0) 72%)",
+                background: "linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.15) 32%, rgba(0,0,0,0.4))",
+                mixBlendMode: "multiply",
               }}
             />
 
+{/* ★ テキスト背面の縦薄膜（高級演出：視認性UP） */}
+<div
+  aria-hidden="true"
+  className="
+    absolute inset-0
+    z-[2]
+    pointer-events-none
+    rounded-[18px]
+    backdrop-blur-[4px]
+  "
+  style={{
+    background: rightGrad[p.grad],
+    opacity: 0.62,
+    mixBlendMode: "soft-light",
+  }}
+/>
+
+            {/* PC OVERLAY */}
+            <div
+              className="
+                hidden lg:grid absolute inset-0
+                grid-cols-[50%_35%] gap-[8vw]
+                px-[6vw] place-content-center
+                pointer-events-none z-[3]
+              "
+            >
+              <Reveal delayMs={80 + i * 100} className="text-left translate-x-[1vw]">
+                <h3 className={`${UI.t95} ${titleColor[p.key]} text-[2.8rem] font-light`}>{p.title}</h3>
+                <p className="text-white/75 text-[1.06rem] mt-4 leading-relaxed">{p.metaCopy}</p>
+                <p className="text-white/80 text-[1.15rem] mt-3">{p.sub}</p>
+                <div className="mt-6 w-[180px] h-[1px] bg-white/20" />
+              </Reveal>
+
+              <Reveal delayMs={160 + i * 100} className="text-left pl-[17vw]">
+                <p className="text-white/95 text-[1.08rem] leading-[1.95] whitespace-pre-line">{p.detail}</p>
+
+                <p className="mt-6 text-white/70 text-[0.95rem] leading-relaxed">
+                  <span className="text-white/45 tracking-[0.12em]">INGREDIENTS</span>
+                  <br />
+                  {p.ingredients}
+                </p>
+
+                <p className="mt-7 text-[1.3rem] text-white/95 tracking-wide font-light">{p.priceLabel}</p>
+
+                <div className="mt-6 pointer-events-auto">
+                  <UnderlineAction onClick={() => addToCart(p)}>PURCHASE</UnderlineAction>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+
+          {/* SP */}
+          <div className="lg:hidden relative bg-black px-6 pt-10 pb-12 text-left z-[3]">
+            {/* ★ テキスト背面の縦薄膜（SP用） */}
+<div
+  aria-hidden="true"
+  className="absolute inset-0 z-[2] pointer-events-none rounded-[18px] backdrop-blur-[2px]"
+  style={{
+    background: rightGrad[p.grad],
+    opacity: 0.22,            // ← ほぼ存在の気配だけ残す値
+    mixBlendMode: "soft-light",
+  }}
+/>
+
+
             <Reveal delayMs={60}>
-              <h3 className={`${titleColor[p.key]} text-[1.85rem] font-light tracking-[0.10em]`}>
-                {p.title}
-              </h3>
+              <h3 className={`${titleColor[p.key]} text-[1.85rem] font-light tracking-[0.10em]`}>{p.title}</h3>
 
-              {/* 物語の核（SPも入れる） */}
-              <p className="text-white/75 text-[0.98rem] mt-4 leading-[1.9] tracking-[0.02em]">
-                {p.metaCopy}
-              </p>
-
-              <p className="text-white/55 text-[0.95rem] mt-3 tracking-[0.08em]">
-                {p.sub}
-              </p>
-
+              <p className="text-white/75 text-[0.98rem] mt-4 leading-[1.9]">{p.metaCopy}</p>
+              <p className="text-white/55 text-[0.95rem] mt-3 tracking-[0.08em]">{p.sub}</p>
               <div className="mt-7 w-[120px] h-[1px] bg-white/18" />
             </Reveal>
 
             <Reveal delayMs={120}>
-              <p className="mt-7 text-[0.95rem] text-white/78 leading-[1.95] whitespace-pre-line">
-                {p.detail}
-              </p>
+              <p className="mt-7 text-[0.95rem] text-white/78 leading-[1.95] whitespace-pre-line">{p.detail}</p>
             </Reveal>
 
             <Reveal delayMs={180}>
@@ -631,26 +544,14 @@ export default function ProductOverlayWide_sp() {
               </p>
             </Reveal>
 
-            <Reveal delayMs={230}>
-              <p className="mt-7 text-[1.12rem] text-white/90 tracking-[0.10em] font-light">
-                {p.priceLabel}
-              </p>
-            </Reveal>
-
-            <Reveal delayMs={280}>
+            <Reveal delayMs={240}>
               <button
                 onClick={() => addToCart(p)}
                 className="
-                  group relative mt-7 w-full py-3.5
-                  rounded-[14px]
-                  border border-white/18
-                  bg-white/6 backdrop-blur-[6px]
-                  text-white/85
-                  text-[0.9rem] tracking-[0.22em]
-                  font-light
-                  shadow-[0_2px_14px_rgba(0,0,0,0.35)]
-                  transition-all duration-500 ease-out
-                  hover:text-white hover:bg-white/9 hover:border-white/28
+                  group mt-7 w-full py-3.5
+                  rounded-[14px] border border-white/18 bg-white/6 backdrop-blur-[6px]
+                  text-white/85 text-[0.9rem] tracking-[0.22em]
+                  hover:bg-white/10 hover:border-white/28 transition-all
                 "
               >
                 <span className="relative inline-flex items-center justify-center w-full">
@@ -658,27 +559,12 @@ export default function ProductOverlayWide_sp() {
                   <span
                     aria-hidden="true"
                     className="
-                      ml-3 text-white/55
-                      transition-all duration-500 ease-out
-                      group-hover:translate-x-[6px]
-                      group-hover:text-white/80
+                      ml-3 text-white/55 transition-all
+                      group-hover:translate-x-[6px] group-hover:text-white/80
                     "
                   >
                     →
                   </span>
-
-                  <span
-                    aria-hidden="true"
-                    className="
-                      absolute left-1/2 -bottom-[9px]
-                      h-[1px] w-[28%]
-                      bg-white/28
-                      -translate-x-1/2
-                      transition-all duration-600 ease-out
-                      group-hover:w-[72%]
-                      group-hover:bg-white/55
-                    "
-                  />
                 </span>
               </button>
             </Reveal>
@@ -686,6 +572,7 @@ export default function ProductOverlayWide_sp() {
         </div>
       ))}
 
+      {/* CART MODAL */}
       <CartModal
         open={isCartOpen}
         onClose={() => setIsCartOpen(false)}

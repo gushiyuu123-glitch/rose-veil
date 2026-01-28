@@ -30,7 +30,7 @@ const ING = {
         { name: "加水分解ケラチン", role: "髪の芯を補強し、まとまりへ" },
         { name: "加水分解シルク", role: "触感のなめらかさ・光沢感" },
       ],
-      accent: "rgba(255,255,255,0.38)",
+      accent: "rgba(255,255,255,0.26)", // ← 少し明度下げて高級に
     },
     {
       key: "texture",
@@ -43,7 +43,7 @@ const ING = {
         { name: "アルガンオイル", role: "艶の深度・光の密度を補強" },
         { name: "ローズヒップオイル", role: "透明感のある輝き・柔らかさ" },
       ],
-      accent: "rgba(255,90,140,0.32)",
+      accent: "rgba(255,90,140,0.22)", // ← 赤みも浅め
     },
     {
       key: "care",
@@ -56,7 +56,7 @@ const ING = {
         { name: "カミツレ花エキス", role: "柔らかさ・整肌" },
         { name: "海藻エキス", role: "保水膜・みずみずしさ" },
       ],
-      accent: "rgba(140,175,255,0.30)",
+      accent: "rgba(140,175,255,0.22)", // ← 青膜も静かに
     },
   ],
 
@@ -142,72 +142,40 @@ export default function IngredientsSection_sp() {
       "
     >
       {/* =====================================================
-          ★ 背景：SP用に光膜の強度を調整（PCより弱め）
+          ★ 背景：光膜の整理（白＋1色に整理）
       ===================================================== */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none select-none z-[1]">
 
-        {/* ベース質感（薄膜） */}
+        {/* White Soft Film（基礎光） */}
         <div
-          className="
-            absolute inset-0 opacity-[0.10]
-            bg-center bg-cover
-            blur-[50px]
-            mix-blend-soft-light
-          "
+          className="absolute inset-0 opacity-[0.10] blur-[28px] mix-blend-soft-light"
           style={{
             backgroundImage: "url('/textures/ing-bg.png')",
+            backgroundSize: "cover",
           }}
         />
 
-        {/* Deep Red */}
+        {/* Rose Depth（赤の深度） */}
         <div
-          className="absolute inset-0 opacity-[0.16] blur-[100px] mix-blend-screen"
+          className="absolute inset-0 opacity-[0.16] blur-[32px] mix-blend-screen"
           style={{
             background: `
               radial-gradient(
                 1200px 760px at 82% 88%,
-                rgba(120, 20, 40, 0.30),
+                rgba(120, 20, 40, 0.28),
                 transparent 70%
               )
             `,
           }}
         />
 
-        {/* White Film（実験室の光） */}
+        {/* grain（控えめ） */}
         <div
-          className="absolute inset-0 opacity-[0.18] blur-[90px] mix-blend-lighten"
-          style={{
-            background: `
-              radial-gradient(
-                1000px 700px at 46% 10%,
-                rgba(255,255,255,0.22),
-                transparent 62%
-              )
-            `,
-          }}
-        />
-
-        {/* Blue Mist */}
-        <div
-          className="absolute inset-0 opacity-[0.14] blur-[90px] mix-blend-screen"
-          style={{
-            background: `
-              radial-gradient(
-                1080px 720px at 20% 82%,
-                rgba(140,175,255,0.18),
-                transparent 68%
-              )
-            `,
-          }}
-        />
-
-        {/* grain */}
-        <div
-          className="absolute inset-0 opacity-[0.04] mix-blend-soft-light"
+          className="absolute inset-0 opacity-[0.03] mix-blend-soft-light"
           style={{
             backgroundImage: "url('/textures/grain-soft.png')",
             backgroundSize: "cover",
-            filter: "blur(0.6px)",
+            filter: "blur(0.4px)",
           }}
         />
       </div>
@@ -224,12 +192,12 @@ export default function IngredientsSection_sp() {
           美しさの裏側にある、処方の設計。
         </h2>
 
-        <p className="mt-5 text-white/70 text-[0.95rem] leading-[1.85]">
+        <p className="mt-5 text-white/72 text-[0.95rem] leading-[1.85]">
           香りは “空気” 、質感は “膜”。  
           ROSE は、静かな上質さを支える成分設計です。
         </p>
 
-        <div className="mt-9 mx-auto w-[54px] h-[1px] bg-white/25" />
+        <div className="mt-9 mx-auto w-[54px] h-[1px] bg-white/22" />
       </div>
 
       {/* =====================================================
@@ -240,29 +208,29 @@ export default function IngredientsSection_sp() {
           className="
             relative rounded-[16px]
             border border-white/12
-            bg-white/[0.035] backdrop-blur-[7px]
+            bg-white/[0.03] backdrop-blur-[6px]
             px-6 py-8
           "
         >
-          {/* 内部膜（SPは弱め） */}
+          {/* 内部膜（静けさ寄りに弱め） */}
           <div
             aria-hidden="true"
-            className="absolute inset-0 opacity-[0.33] blur-[48px] mix-blend-screen"
+            className="absolute inset-0 opacity-[0.16] blur-[30px] mix-blend-screen"
             style={{
               background: `
-                radial-gradient(420px 300px at 22% 32%, rgba(255,255,255,0.18), transparent 60%),
-                radial-gradient(440px 330px at 54% 50%, rgba(255,90,140,0.14), transparent 60%),
-                radial-gradient(460px 340px at 78% 36%, rgba(140,175,255,0.14), transparent 60%)
+                radial-gradient(420px 300px at 22% 32%, rgba(255,255,255,0.14), transparent 58%),
+                radial-gradient(440px 330px at 54% 50%, rgba(255,90,140,0.10), transparent 58%),
+                radial-gradient(460px 340px at 78% 36%, rgba(140,175,255,0.12), transparent 58%)
               `,
             }}
           />
 
           <div className="relative">
-            <div className="text-white/40 tracking-[0.28em] text-[0.72rem]">
+            <div className="text-white/38 tracking-[0.28em] text-[0.72rem]">
               AESTHETIC × SCIENCE
             </div>
 
-            <p className="mt-5 text-white/82 text-[0.96rem] leading-[1.9] whitespace-pre-line font-light">
+            <p className="mt-5 text-white/85 text-[0.96rem] leading-[1.9] whitespace-pre-line font-light">
               {ING.aestheticCopy}
             </p>
           </div>
@@ -290,18 +258,18 @@ export default function IngredientsSection_sp() {
               key={c.key}
               ref={(el) => (cardsRef.current[idx] = el)}
               className="
-                relative rounded-[14px]
+                relative rounded-[16px]
                 border border-white/12
-                bg-white/[0.035] backdrop-blur-[8px]
+                bg-white/[0.03] backdrop-blur-[6px]
                 px-6 py-7 overflow-hidden
               "
             >
-              {/* カード内部の色膜（SP用に深度浅く） */}
+              {/* 内部膜（ほぼ気配のみ） */}
               <div
                 aria-hidden="true"
-                className="absolute inset-0 opacity-[0.18] blur-[52px] mix-blend-screen"
+                className="absolute inset-0 opacity-[0.14] blur-[28px] mix-blend-screen"
                 style={{
-                  background: `radial-gradient(380px 300px at 58% 30%, ${c.accent}, transparent 62%)`,
+                  background: `radial-gradient(380px 300px at 58% 30%, ${c.accent}, transparent 60%)`,
                 }}
               />
 
@@ -312,7 +280,7 @@ export default function IngredientsSection_sp() {
                   {c.title}
                 </div>
 
-                <div className="mt-3 text-white/58 text-[0.88rem] leading-[1.7]">
+                <div className="mt-3 text-white/60 text-[0.88rem] leading-[1.7]">
                   {c.note}
                 </div>
 
@@ -321,7 +289,7 @@ export default function IngredientsSection_sp() {
                 <ul className="mt-5 space-y-3">
                   {c.items.map((it) => (
                     <li key={it.name}>
-                      <div className="text-white/90 text-[0.92rem] tracking-[0.03em]">
+                      <div className="text-white/92 text-[0.92rem] tracking-[0.03em]">
                         {it.name}
                       </div>
                       <div className="mt-1 text-white/55 text-[0.82rem] leading-[1.65]">
@@ -333,7 +301,7 @@ export default function IngredientsSection_sp() {
 
                 <div className="mt-7 flex items-center gap-3">
                   <div className="h-[1px] flex-1 bg-white/12" />
-                  <div className="text-white/30 text-[0.68rem] tracking-[0.22em]">ROSE</div>
+                  <div className="text-white/28 text-[0.68rem] tracking-[0.22em]">ROSE</div>
                   <div className="h-[1px] flex-1 bg-white/12" />
                 </div>
               </div>
@@ -348,7 +316,7 @@ export default function IngredientsSection_sp() {
       <div ref={closeRef} className="relative z-10 mx-auto mt-[12vh] w-[90%] max-w-[860px] text-center">
         <div className="mx-auto w-[54px] h-[1px] bg-white/18" />
 
-        <p className="mt-9 text-white/80 text-[0.96rem] leading-[1.9] whitespace-pre-line font-light">
+        <p className="mt-9 text-white/82 text-[0.96rem] leading-[1.9] whitespace-pre-line font-light">
           {ING.closeCopy}
         </p>
       </div>

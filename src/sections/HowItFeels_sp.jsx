@@ -6,8 +6,6 @@ export default function HowItFeels_sp() {
   const sectionRef = useRef(null);
   const cardRefs = useRef([]);
   const reviewRefs = useRef([]);
-  const mistLRef = useRef(null);
-  const mistRRef = useRef(null);
 
   /* =========================
       FEELS DATA
@@ -21,8 +19,8 @@ export default function HowItFeels_sp() {
         copy: `指を入れた瞬間に摩擦がほどける。\n根元はふわり、毛先は静かにそろう。\n“軽いのに整う” を実感できます。`,
         image: "/feel/feel-white.png",
         veil:
-          "radial-gradient(70% 60% at 40% 32%, rgba(255,255,255,0.20), rgba(255,255,255,0.04), transparent)",
-        accent: "rgba(200,205,245,0.16)",
+          "radial-gradient(72% 58% at 44% 34%, rgba(255,255,255,0.18), rgba(255,255,255,0.06), transparent)",
+        accent: "rgba(200,205,245,0.12)",
       },
       {
         key: "veil",
@@ -31,8 +29,8 @@ export default function HowItFeels_sp() {
         copy: `しっとりしているのに重たくない。\n動いたときだけ香りがふわりと開きます。\n“艶の輪郭”が静かに整います。`,
         image: "/feel/feel-veil.png",
         veil:
-          "radial-gradient(70% 60% at 60% 30%, rgba(255,170,190,0.18), rgba(255,255,255,0.04), transparent)",
-        accent: "rgba(255,140,160,0.18)",
+          "radial-gradient(70% 60% at 60% 30%, rgba(255,170,190,0.14), rgba(255,255,255,0.05), transparent)",
+        accent: "rgba(255,140,160,0.14)",
       },
       {
         key: "blue",
@@ -41,12 +39,23 @@ export default function HowItFeels_sp() {
         copy: `乾いたあと空気が澄む。\n揺れた瞬間だけ香る“距離の美学”。\n透明感のある潤いが続きます。`,
         image: "/feel/feel-blue.png",
         veil:
-          "radial-gradient(70% 60% at 52% 34%, rgba(170,200,255,0.16), rgba(255,255,255,0.04), transparent)",
-        accent: "rgba(160,195,255,0.16)",
+          "radial-gradient(70% 60% at 52% 34%, rgba(170,200,255,0.14), rgba(255,255,255,0.05), transparent)",
+        accent: "rgba(160,195,255,0.14)",
       },
     ],
     []
   );
+
+  /* =========================
+      REVIEW TONES
+  ========================= */
+  const reviewTone = (tone) => {
+    if (tone === "crimson")
+      return "radial-gradient(70% 60% at 30% 20%, rgba(255,140,160,0.12), rgba(255,255,255,0.04), transparent)";
+    if (tone === "blue")
+      return "radial-gradient(70% 60% at 70% 30%, rgba(160,195,255,0.12), rgba(255,255,255,0.04), transparent)";
+    return "radial-gradient(70% 60% at 45% 25%, rgba(255,180,200,0.12), rgba(255,255,255,0.04), transparent)";
+  };
 
   /* =========================
       REVIEWS DATA
@@ -75,14 +84,6 @@ export default function HowItFeels_sp() {
     []
   );
 
-  const reviewTone = (tone) => {
-    if (tone === "crimson")
-      return "radial-gradient(70% 60% at 30% 20%, rgba(255,140,160,0.13), rgba(255,255,255,0.02), transparent)";
-    if (tone === "blue")
-      return "radial-gradient(70% 60% at 70% 30%, rgba(160,195,255,0.12), rgba(255,255,255,0.02), transparent)";
-    return "radial-gradient(70% 60% at 45% 25%, rgba(255,180,200,0.12), rgba(255,255,255,0.02), transparent)";
-  };
-
   /* =========================
       GSAP
   ========================= */
@@ -96,8 +97,8 @@ export default function HowItFeels_sp() {
     const fadeEls = root.querySelectorAll(".hif-sp-fade");
     const revFadeEls = root.querySelectorAll(".rev-sp-fade");
 
-    gsap.set([fadeEls, revFadeEls], { opacity: 0, y: 18, filter: "blur(12px)" });
-    gsap.set([...feelsCards, ...revCards], { opacity: 0, y: 24, filter: "blur(12px)" });
+    gsap.set([fadeEls, revFadeEls], { opacity: 0, y: 16, filter: "blur(12px)" });
+    gsap.set([...feelsCards, ...revCards], { opacity: 0, y: 22, filter: "blur(12px)" });
 
     const io = new IntersectionObserver(
       ([entry]) => {
@@ -116,31 +117,29 @@ export default function HowItFeels_sp() {
           opacity: 1,
           y: 0,
           filter: "blur(0px)",
-          duration: 1.2,
+          duration: 1.15,
           stagger: 0.16,
-          delay: 0.1,
+          delay: 0.12,
           ease: "power2.out",
         });
 
-        // 呼吸アニメ
         gsap.utils.toArray(root.querySelectorAll(".hif-sp-breath")).forEach((el, idx) => {
           gsap.to(el, {
-            y: idx % 2 === 0 ? -1.0 : -0.6,
-            duration: 5 + idx * 0.5,
+            y: idx % 2 === 0 ? -1.1 : -0.7,
+            duration: 4.8 + idx * 0.4,
             ease: "sine.inOut",
             yoyo: true,
             repeat: -1,
           });
         });
 
-        // レビュー
         gsap.to(revFadeEls, {
           opacity: 1,
           y: 0,
           filter: "blur(0px)",
           duration: 1,
           stagger: 0.12,
-          delay: 0.4,
+          delay: 0.35,
           ease: "power2.out",
         });
 
@@ -148,9 +147,9 @@ export default function HowItFeels_sp() {
           opacity: 1,
           y: 0,
           filter: "blur(0px)",
-          duration: 1.3,
+          duration: 1.25,
           stagger: 0.18,
-          delay: 0.55,
+          delay: 0.48,
           ease: "power2.out",
         });
 
@@ -168,34 +167,31 @@ export default function HowItFeels_sp() {
       ref={sectionRef}
       className="
         relative w-full overflow-hidden
-        py-[14vh]
-        bg-[radial-gradient(circle_at_50%_22%,rgba(60,20,30,0.24),rgba(15,10,15,0.94))]
+        py-[13vh]
+        bg-[radial-gradient(circle_at_50%_22%,rgba(60,20,30,0.22),rgba(15,10,15,0.95))]
       "
     >
-      {/* =====================================================
-          BACKGROUND（SP薄膜 最適化）
-      ===================================================== */}
+      {/* =========================
+          BACKGROUND（薄膜）
+      ========================= */}
       <div aria-hidden="true" className="absolute inset-0 z-0">
 
-        {/* ピンクの薄膜 */}
         <div
-          className="absolute inset-0 opacity-[0.20] blur-[70px] mix-blend-lighten"
+          className="absolute inset-0 opacity-[0.18] blur-[70px] mix-blend-lighten"
           style={{
             background:
-              "radial-gradient(1000px 700px at 50% 26%, rgba(255,168,188,0.28), transparent)",
+              "radial-gradient(1000px 700px at 50% 26%, rgba(255,168,188,0.24), transparent)",
           }}
         />
 
-        {/* 白膜 */}
         <div
-          className="absolute inset-0 opacity-[0.15] blur-[100px] mix-blend-screen"
+          className="absolute inset-0 opacity-[0.14] blur-[90px] mix-blend-screen"
           style={{
             background:
               "radial-gradient(900px 620px at 46% 35%, rgba(255,255,255,0.26), transparent)",
           }}
         />
 
-        {/* 青膜 */}
         <div
           className="absolute inset-0 opacity-[0.12] blur-[90px] mix-blend-screen"
           style={{
@@ -204,35 +200,32 @@ export default function HowItFeels_sp() {
           }}
         />
 
-        {/* 粒子 */}
-        <div
-          className="absolute inset-0 opacity-[0.05] bg-[url('/grain.png')] mix-blend-soft-light blur-[0.4px]"
-        />
+        <div className="absolute inset-0 opacity-[0.05] bg-[url('/grain.png')] mix-blend-soft-light blur-[0.4px]" />
       </div>
 
-      {/* =====================================================
+      {/* =========================
           HEADER
-      ===================================================== */}
-      <div className="relative z-10 text-center mb-[10vh] px-4">
+      ========================= */}
+      <div className="relative z-10 text-center mb-[9vh] px-4">
         <div className="hif-sp-fade text-[0.75rem] tracking-[0.32em] text-white/50">
           HOW&nbsp;IT&nbsp;FEELS
         </div>
 
-        <h2 className="hif-sp-fade mt-4 text-[1.85rem] font-light tracking-[0.01em] text-white/88">
+        <h2 className="hif-sp-fade mt-4 text-[1.92rem] font-light tracking-[0.01em] text-white/90">
           体験の質感を、言葉にする。
         </h2>
 
-        <p className="hif-sp-fade mt-4 text-[0.92rem] text-white/62 leading-[1.8]">
+        <p className="hif-sp-fade mt-4 text-[0.94rem] text-white/65 leading-[1.80]">
           香りは “強さ” ではなく距離で伝わる。<br />
           揺れた瞬間の余韻を静かに設計しました。
         </p>
 
-        <div className="hif-sp-fade w-[48px] h-[1px] bg-white/20 mx-auto mt-8" />
+        <div className="hif-sp-fade w-[48px] h-[1px] bg-white/18 mx-auto mt-8" />
       </div>
 
-      {/* =====================================================
-          FEELS（3枚）
-      ===================================================== */}
+      {/* =========================
+          FEELS CARDS
+      ========================= */}
       <div className="relative z-10 w-[88%] mx-auto flex flex-col gap-[10vh]">
         {feels.map((f, i) => (
           <article
@@ -240,22 +233,22 @@ export default function HowItFeels_sp() {
             ref={(el) => (cardRefs.current[i] = el)}
             className="
               relative rounded-[20px]
-              bg-white/[0.03]
-              border border-white/[0.08]
+              bg-white/[0.035]
+              border border-white/[0.09]
               backdrop-blur-[12px]
               overflow-hidden
-              shadow-[0_12px_50px_rgba(0,0,0,0.32)]
+              shadow-[0_12px_50px_rgba(0,0,0,0.30)]
             "
           >
             <div
               aria-hidden="true"
-              className="absolute inset-0 opacity-[0.75]"
+              className="absolute inset-0 opacity-[0.70]"
               style={{ backgroundImage: f.veil }}
             />
 
             <div
               aria-hidden="true"
-              className="absolute -top-[20%] -right-[20%] w-[60%] h-[60%] blur-[40px] opacity-[0.35]"
+              className="absolute -top-[22%] -right-[22%] w-[60%] h-[60%] blur-[40px] opacity-[0.32]"
               style={{
                 background: `radial-gradient(circle at 30% 30%, ${f.accent}, transparent)`,
               }}
@@ -275,12 +268,12 @@ export default function HowItFeels_sp() {
                     w-full rounded-[14px]
                     border border-white/[0.08]
                     object-cover
-                    opacity-[0.9]
+                    opacity-[0.92]
                   "
                 />
               </div>
 
-              <h3 className="mt-6 text-[1.12rem] font-light text-white/88 leading-snug">
+              <h3 className="mt-6 text-[1.14rem] font-light text-white/88 leading-snug">
                 {f.title}
               </h3>
 
@@ -294,31 +287,30 @@ export default function HowItFeels_sp() {
         ))}
       </div>
 
-      {/* =====================================================
+      {/* =========================
           FOOT NOTE
-      ===================================================== */}
-      <div className="relative z-10 mt-[12vh] text-center px-4">
+      ========================= */}
+      <div className="relative z-10 mt-[11vh] text-center px-4">
         <p className="hif-sp-fade text-[0.88rem] text-white/60 tracking-[0.18em]">
           “香りは、近づいた人だけが気づく。”
         </p>
       </div>
 
-      {/* =====================================================
-          REVIEWS（静かに溶ける）
-      ===================================================== */}
+      {/* =========================
+          REVIEWS
+      ========================= */}
       <div className="relative z-10 mt-[12vh] w-[88%] mx-auto">
-
         <div className="text-center mb-[9vh]">
           <div className="rev-sp-fade text-[0.78rem] tracking-[0.32em] text-white/45">
             CUSTOMER&nbsp;REVIEWS
           </div>
 
-          <h3 className="rev-sp-fade mt-4 text-[1.72rem] font-light tracking-[0.01em] text-white/84">
+          <h3 className="rev-sp-fade mt-4 text-[1.78rem] font-light tracking-[0.01em] text-white/86">
             静かに褒められる香り
           </h3>
 
-          <p className="rev-sp-fade mt-4 text-[0.90rem] text-white/58 leading-[1.8]">
-            言葉よりも“余韻”に残る体験。
+          <p className="rev-sp-fade mt-4 text-[0.90rem] text-white/60 leading-[1.8]">
+            言葉よりも “余韻” に残る体験。
           </p>
 
           <div className="rev-sp-fade w-[48px] h-[1px] bg-white/14 mx-auto mt-8" />
@@ -331,7 +323,7 @@ export default function HowItFeels_sp() {
               ref={(el) => (reviewRefs.current[i] = el)}
               className="
                 relative rounded-[20px]
-                bg-white/[0.03]
+                bg-white/[0.035]
                 border border-white/[0.08]
                 p-[2rem]
                 backdrop-blur-[12px]
@@ -340,7 +332,7 @@ export default function HowItFeels_sp() {
             >
               <div
                 aria-hidden="true"
-                className="absolute inset-0 opacity-[0.75]"
+                className="absolute inset-0 opacity-[0.70]"
                 style={{ backgroundImage: reviewTone(r.tone) }}
               />
 
@@ -363,7 +355,7 @@ export default function HowItFeels_sp() {
                   ))}
                 </div>
 
-                <p className="text-[0.92rem] text-white/68 leading-[1.85] whitespace-pre-line">
+                <p className="text-[0.92rem] text-white/65 leading-[1.85] whitespace-pre-line">
                   {r.text}
                 </p>
 

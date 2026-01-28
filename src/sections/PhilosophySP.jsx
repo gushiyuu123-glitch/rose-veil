@@ -16,15 +16,15 @@ export default function PhilosophySP() {
         const tl = gsap.timeline();
 
         /* ============================
-           ふわり背景（SP用・存在は薄く）
+           背景の薄い光膜
         ============================ */
         tl.fromTo(
           el.querySelectorAll(".sp-philo-veil"),
-          { opacity: 0, scale: 1.06 },
+          { opacity: 0, scale: 1.05 },
           {
             opacity: 1,
             scale: 1,
-            duration: 1.9,
+            duration: 1.6,
             ease: "power2.out",
             stagger: 0.12,
           },
@@ -32,7 +32,7 @@ export default function PhilosophySP() {
         );
 
         /* ============================
-           テキスト
+           テキストフェード
         ============================ */
         tl.fromTo(
           el.querySelectorAll(".sp-philo-text"),
@@ -40,12 +40,12 @@ export default function PhilosophySP() {
           {
             opacity: 1,
             y: 0,
-            filter: "blur(0px)",
-            duration: 1.28,
+            filter: "blur(0)",
+            duration: 1.25,
             ease: "power2.out",
             stagger: 0.10,
           },
-          0.22
+          0.18
         );
 
         io.disconnect();
@@ -66,8 +66,9 @@ export default function PhilosophySP() {
         pt-[18vh] pb-[14vh]
       "
     >
+
       {/* ================================
-          左右の薔薇は SP では “気配レベル”
+          左右の薔薇（SPは気配だけ）
       ================================ */}
       <img
         src="/world/rose-left.png"
@@ -92,36 +93,36 @@ export default function PhilosophySP() {
       />
 
       {/* ================================
-          光膜（SP適正強度）
+          光膜
       ================================ */}
       <div
         className="
           sp-philo-veil
-          absolute top-[10%] left-[10%]
-          w-[220px] h-[220px]
+          absolute top-[10%] left-[12%]
+          w-[240px] h-[240px]
           bg-[radial-gradient(circle,rgba(255,210,230,0.16),rgba(255,210,230,0))]
-          blur-[65px]
-          opacity-[0.38]
+          blur-[70px]
+          opacity-[0.36]
         "
       />
       <div
         className="
           sp-philo-veil
-          absolute bottom-[10%] right-[8%]
-          w-[200px] h-[200px]
+          absolute bottom-[12%] right-[10%]
+          w-[220px] h-[220px]
           bg-[radial-gradient(circle,rgba(255,185,215,0.12),rgba(255,185,215,0))]
-          blur-[70px]
-          opacity-[0.30]
+          blur-[75px]
+          opacity-[0.28]
         "
       />
 
       {/* ================================
-          TEXT BLOCK
+          TEXT BLOCK（黄金比改行）
       ================================ */}
       <div
         className="
           relative z-10
-          w-[84%] mx-auto text-center
+          w-[90%] mx-auto text-center
         "
       >
         {/* TITLE */}
@@ -148,9 +149,11 @@ export default function PhilosophySP() {
           className="
             sp-philo-text
             text-[1.05rem]
-            tracking-[0.05em]
+            tracking-[0.04em]
             mb-[6vh]
             text-[rgb(248,242,238)]
+            leading-[1.9]
+            [text-wrap:balance]
           "
         >
           “<span className='text-[rgba(255,160,175,0.82)]'>香り</span>
@@ -159,30 +162,33 @@ export default function PhilosophySP() {
           である。”
         </p>
 
-        {/* 3ブロック */}
+        {/* ================================
+            3ブロック
+        ================================ */}
         <div
           className="
             space-y-[8vh]
             text-[rgb(248,242,238)]
-            leading-[1.85]
-            tracking-[0.02em]
+            leading-[2.05]
+            tracking-[0.03em]
+            [text-wrap:balance]
           "
         >
-          {[
+          {[ 
             {
               num: "01",
               title: "SILENT FRAGRANCE",
-              body: `日常の近い距離だけでふわりと香る“静けさ”の設計。\n天然ローズ精油を軸に、甘さ・深み・余韻を繊細に整える。`,
+              body: `日常の近い距離だけでふわりと香る“静けさ”の設計。天然ローズ精油を軸に、甘さ・深み・余韻を繊細に整える。`,
             },
             {
               num: "02",
               title: "VEIL OF LIGHT",
-              body: `髪が揺れた一瞬だけ立ち上がる薄い光膜のような香り。\n輪郭を曖昧にし、静かに美しさをまとわせる。`,
+              body: `髪が揺れた一瞬だけ立ち上がる薄い光膜のような香り。輪郭を曖昧にし、静かに美しさをまとわせる。`,
             },
             {
               num: "03",
               title: "WEARABLE LUXURY",
-              body: `肌と髪に寄り添い、まとうように続くラグジュアリー。\n派手さではなく余白の美しさで魅せる香りの思想。`,
+              body: `肌と髪に寄り添い、まとうように続くラグジュアリー。派手さではなく余白の美しさで魅せる香りの思想。`,
             },
           ].map((b, i) => (
             <div key={i} className="sp-philo-text">
@@ -196,7 +202,7 @@ export default function PhilosophySP() {
                 </h3>
               </div>
 
-              <p className="text-white/90 text-[0.98rem] whitespace-pre-line">
+              <p className="text-white/90 text-[0.98rem] leading-[1.95]">
                 {b.body}
               </p>
             </div>
