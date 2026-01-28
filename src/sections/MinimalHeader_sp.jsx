@@ -10,7 +10,7 @@ export default function MinimalHeader_sp() {
     if (!el) return;
 
     /* ============================================
-       初回フェード（SPは軽く・速く）
+       初回フェード（SP：軽く速く）
     ============================================ */
     gsap.fromTo(
       el,
@@ -19,30 +19,28 @@ export default function MinimalHeader_sp() {
         opacity: 1,
         y: 0,
         filter: "blur(0px)",
-        duration: 1.1,
+        duration: 1.05,
         ease: "power2.out",
-        delay: 0.3,
+        delay: 0.25,
       }
     );
 
     /* ============================================
-       スクロールで透明膜付与（PCより弱め）
+       スクロールで“ごく薄い膜”をオン
     ============================================ */
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          // Hero 付近は完全透明
           el.classList.remove("bg-active-sp");
         } else {
-          // 離れるとごく薄膜
           el.classList.add("bg-active-sp");
         }
       },
       { threshold: 0.1 }
     );
 
-    const hero = document.querySelector(".hero-section");
-    if (hero) io.observe(hero);
+    const hero = document.querySelector(".hero-section") || document.body;
+    io.observe(hero);
 
     return () => io.disconnect();
   }, []);
@@ -52,27 +50,38 @@ export default function MinimalHeader_sp() {
       ref={ref}
       className="
         fixed top-0 left-0 right-0 z-[99]
-        h-[64px]              /* ← SP最適化 */
+        h-[64px]
         px-5 flex items-center
-        backdrop-blur-[3px]   /* ← SPは blur 弱め */
         transition-all duration-500
+        backdrop-blur-[2px]      /* ← SPは弱めのblur */
       "
     >
-      {/* ロゴ（Heroへ戻る） */}
+      {/* 薄光膜：class付与でオンオフ */}
+      <div
+        aria-hidden="true"
+        className="
+          pointer-events-none
+          absolute inset-0
+          opacity-0
+          transition-all duration-500
+          bg-white/0
+          bg-active-sp:bg-white/8          /* ← スクロール時の柔光膜 */
+          bg-active-sp:backdrop-blur-[3px] /* ← 最小限の滲み */
+        "
+      />
+
+      {/* ロゴ（静かな透明感） */}
       <a
         href="#hero"
         className="
-          group
-          block
-          transition-all
-          cursor-pointer
+          group block cursor-pointer transition-all
         "
       >
         <img
-          src="roseveil-logo.png"
+          src="/roseveil-logo.png"
           alt="ROSE VEIL"
           className="
-            h-[62px]       /* ← SP版は少し縮小 */
+            h-[56px]              /* ← SP黄金比サイズ */
             opacity-90
             group-hover:opacity-100
             transition-all duration-500

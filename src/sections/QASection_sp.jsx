@@ -51,7 +51,7 @@ ROSE シリーズの香りは “甘い/強い” ではなく
   ];
 
   /* ============================
-      GSAP（静かな波クロス）
+      GSAP（静かな呼吸ウェーブ）
   ============================ */
   useEffect(() => {
     const root = sectionRef.current;
@@ -59,7 +59,7 @@ ROSE シリーズの香りは “甘い/強い” ではなく
 
     const items = qaRefs.current.filter(Boolean);
 
-    gsap.set(items, { opacity: 0, y: 20, filter: "blur(10px)" });
+    gsap.set(items, { opacity: 0, y: 20, filter: "blur(12px)" });
 
     const io = new IntersectionObserver(
       ([entry]) => {
@@ -69,24 +69,24 @@ ROSE シリーズの香りは “甘い/強い” ではなく
           opacity: 1,
           y: 0,
           filter: "blur(0px)",
-          duration: 1.3,
+          duration: 1.25,
           ease: "power2.out",
           stagger: 0.14,
         });
 
-        // INQUIRY（後から静かに）
+        // INQUIRY（後半の余韻）
         if (inquiryRef.current) {
           gsap.fromTo(
             inquiryRef.current.querySelectorAll(".inq-fade-sp"),
-            { opacity: 0, y: 16, filter: "blur(10px)" },
+            { opacity: 0, y: 18, filter: "blur(12px)" },
             {
               opacity: 1,
               y: 0,
               filter: "blur(0px)",
-              duration: 1.4,
+              duration: 1.3,
               ease: "power2.out",
               stagger: 0.12,
-              delay: 0.45,
+              delay: 0.4,
             }
           );
         }
@@ -100,142 +100,153 @@ ROSE シリーズの香りは “甘い/強い” ではなく
   }, []);
 
   return (
-    <section
-      id="contact"
-      ref={sectionRef}
-      className="
-        relative w-full
-        py-[16vh]
-        bg-[#fcfbfa]
-        text-black
-        overflow-hidden
-      "
-    >
-      {/* BACKGROUND（SP薄膜：横霧） */}
-      <div
-        aria-hidden="true"
-        className="
-          absolute inset-0
-          opacity-[0.18]
-          blur-[60px]
-        "
-        style={{
-          background: `
-            radial-gradient(800px 550px at 42% 28%, rgba(255,235,245,0.18), transparent),
-            radial-gradient(800px 550px at 68% 52%, rgba(255,150,170,0.16), transparent),
-            radial-gradient(800px 550px at 50% 82%, rgba(160,200,255,0.14), transparent)
-          `,
-        }}
-      />
+<section
+  id="contact"
+  ref={sectionRef}
+  className="
+    relative w-full
+    py-[16vh]
+    bg-[#fcfbfa]
+    text-black
+    overflow-hidden
+  "
+>
 
-      {/* 微粒子 */}
-      <div
-        aria-hidden="true"
-        className="
-          absolute inset-0 opacity-[0.20]
-          bg-[url('/grain.png')] bg-repeat mix-blend-soft-light
-        "
-      />
+  {/* ================================================
+      BACKGROUND（Rose Veil：紙×薄紅×青の三層）
+    ================================================ */}
+  <div
+    aria-hidden="true"
+    className="
+      absolute inset-0
+      opacity-[0.16]
+      blur-[70px]
+    "
+    style={{
+      background: `
+        radial-gradient(900px 600px at 48% 22%, rgba(255,230,245,0.22), transparent 65%),
+        radial-gradient(900px 600px at 62% 50%, rgba(255,150,170,0.16), transparent 65%),
+        radial-gradient(900px 600px at 50% 88%, rgba(170,200,255,0.14), transparent 65%)
+      `,
+    }}
+  />
 
-      {/* HEADER */}
-      <div className="relative z-10 text-center mb-[10vh] px-4">
-        <div className="text-[0.74rem] tracking-[0.32em] text-black/55">
-          Q & A
+  {/* 粒子（Rose Veil 固有の柔らかいフィルム） */}
+  <div
+    aria-hidden="true"
+    className="
+      absolute inset-0
+      opacity-[0.14]
+      bg-[url('/grain.png')] bg-repeat
+      mix-blend-soft-light
+    "
+  />
+
+  {/* ================================================
+      HEADER
+    ================================================ */}
+  <div className="relative z-10 text-center mb-[10vh] px-4">
+    <div className="text-[0.74rem] tracking-[0.32em] text-black/55">
+      Q & A
+    </div>
+
+    <h2 className="mt-3 text-[1.85rem] font-light tracking-[0.02em] text-black/80 leading-tight">
+      よくある質問と、静かな回答。
+    </h2>
+
+    <p className="mt-3 text-black/55 text-[0.92rem] leading-[1.85]">
+      高級ブランドの「疑問解消」は、強い説得ではなく“静かな理解”です。
+    </p>
+  </div>
+
+  {/* ================================================
+      QA LIST
+    ================================================ */}
+  <div
+    className="
+      relative z-10
+      mx-auto w-[90%] max-w-[780px]
+      divide-y divide-black/10
+    "
+  >
+    {qaList.map((qa, i) => {
+      const isOpen = openIndex === i;
+
+      return (
+        <div
+          key={i}
+          ref={(el) => (qaRefs.current[i] = el)}
+          className="py-6 cursor-pointer select-none"
+          onClick={() => setOpenIndex(isOpen ? null : i)}
+        >
+          <div className="flex justify-between items-center">
+            <span className="text-[1rem] tracking-[0.02em] text-black/78">
+              {qa.q}
+            </span>
+            <span className="text-black/35 text-[1.5rem] leading-none">
+              {isOpen ? "−" : "+"}
+            </span>
+          </div>
+
+          <div
+            className={`
+              overflow-hidden
+              transition-all duration-[620ms] ease-out
+              ${isOpen ? "max-h-[480px] mt-3" : "max-h-0"}
+            `}
+          >
+            <p className="text-[0.9rem] text-black/55 leading-[1.85] whitespace-pre-line pb-4">
+              {qa.a}
+            </p>
+          </div>
         </div>
+      );
+    })}
+  </div>
 
-        <h2 className="mt-3 text-[1.85rem] font-light tracking-[0.02em] text-black/80 leading-tight">
-          よくある質問と、静かな回答。
-        </h2>
+  {/* ================================================
+      INQUIRY（静かな締め）
+    ================================================ */}
+  <div ref={inquiryRef} className="relative z-10 mt-[12vh] text-center px-4">
+    <h3 className="inq-fade-sp text-[1.32rem] font-light tracking-[0.02em] text-black/80">
+      ご相談・お問い合わせ
+    </h3>
 
-        <p className="mt-3 text-black/55 text-[0.92rem] leading-[1.85]">
-          高級ブランドの「疑問解消」は、強い説得ではなく“静かな理解”です。
-        </p>
-      </div>
+    <p className="inq-fade-sp mt-4 text-[0.9rem] text-black/55 leading-[1.8]">
+      香り・質感・処方について静かにご相談いただけます。<br />
+      無理なご案内は一切ありません。
+    </p>
 
-      {/* QA LIST */}
-      <div
+    <div className="inq-fade-sp mt-8 flex flex-col items-center gap-5">
+      <a
+        href="mailto:contact@gushikendesign.com"
         className="
-          relative z-10
-          mx-auto w-[90%] max-w-[780px]
-          divide-y divide-black/10
+          w-[220px] py-3
+          border border-black/25 rounded-[10px]
+          text-black/70 text-[0.82rem]
+          tracking-[0.1em]
+          hover:text-black hover:border-black/45
+          transition-all
         "
       >
-        {qaList.map((qa, i) => {
-          const isOpen = openIndex === i;
+        メールで静かに相談する
+      </a>
 
-          return (
-            <div
-              key={i}
-              ref={(el) => (qaRefs.current[i] = el)}
-              className="py-6 cursor-pointer select-none"
-              onClick={() => setOpenIndex(isOpen ? null : i)}
-            >
-              <div className="flex justify-between items-center">
-                <span className="text-[1rem] tracking-[0.02em] text-black/78">
-                  {qa.q}
-                </span>
-                <span className="text-black/35 text-[1.5rem] leading-none">
-                  {isOpen ? "−" : "+"}
-                </span>
-              </div>
-
-              <div
-                className={`
-                  overflow-hidden
-                  transition-all duration-[620ms] ease-out
-                  ${isOpen ? "max-h-[480px] mt-3" : "max-h-0"}
-                `}
-              >
-                <p className="text-[0.9rem] text-black/55 leading-[1.85] whitespace-pre-line pb-4">
-                  {qa.a}
-                </p>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-
-      {/* INQUIRY */}
-      <div ref={inquiryRef} className="relative z-10 mt-[12vh] text-center px-4">
-        <h3 className="inq-fade-sp text-[1.32rem] font-light tracking-[0.02em] text-black/80">
-          ご相談・お問い合わせ
-        </h3>
-
-        <p className="inq-fade-sp mt-4 text-[0.9rem] text-black/55 leading-[1.8]">
-          香り・質感・処方について静かにご相談いただけます。<br />
-          無理なご案内は一切ありません。
-        </p>
-
-        <div className="inq-fade-sp mt-8 flex flex-col items-center gap-5">
-          <a
-            href="mailto:contact@gushikendesign.com"
-            className="
-              w-[220px] py-3
-              border border-black/25 rounded-[10px]
-              text-black/70 text-[0.82rem]
-              tracking-[0.1em]
-              hover:text-black hover:border-black/45
-              transition-all
-            "
-          >
-            メールで静かに相談する
-          </a>
-
-          <a
-            href="tel:090-0000-0000"
-            className="
-              w-[220px] py-3
-              border border-black/25 rounded-[10px]
-              text-black/70 text-[0.82rem]
-              tracking-[0.1em]
-              hover:text-black hover:border-black/45
-              transition-all
-            "
-          >
-            電話で静かに相談する
-          </a>
-        </div>
-      </div>
-    </section>
+      <a
+        href="tel:090-0000-0000"
+        className="
+          w-[220px] py-3
+          border border-black/25 rounded-[10px]
+          text-black/70 text-[0.82rem]
+          tracking-[0.1em]
+          hover:text-black hover:border-black/45
+          transition-all
+        "
+      >
+        電話で静かに相談する
+      </a>
+    </div>
+  </div>
+</section>
   );
 }

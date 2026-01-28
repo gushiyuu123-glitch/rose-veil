@@ -13,7 +13,7 @@ export const products = [
     sub: "透明感の甘さ × 軽い仕上がり",
     image: "rose-white.png",
     grad: "white",
-    artImage: "/art/rose-white-art.png",
+    artImage: "/art/rose-white-art9.png",
 
     /* DETAIL */
     detail: `敏感な地肌でも使いやすい低刺激処方。
@@ -58,7 +58,7 @@ export const products = [
     sub: "深紅の甘さ × しっとり上品",
     image: "rose-veil.png",
     grad: "veil",
-    artImage: "/art/rose-veil-art.png",
+    artImage: "/art/rose-veil-art9.png",
 
     /* DETAIL */
     detail: `ダメージ毛を集中ケアする艶特化設計。
@@ -103,7 +103,7 @@ export const products = [
     sub: "青の静けさ × 凛とした潤い",
     image: "rose-blue.png",
     grad: "blue",
-    artImage: "/art/rose-blue-art1.png",
+    artImage: "/art/rose-blue-art9.png",
 
     /* DETAIL */
     detail: `皮脂や湿気による“ベタつき”に強い処方。
