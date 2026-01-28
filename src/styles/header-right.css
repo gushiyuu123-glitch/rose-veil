@@ -36,7 +36,6 @@
   pointer-events: none;
 }
 
-/* 文字 */
 .vr-nav-item {
   position: relative;
   display: inline-block;
@@ -56,6 +55,10 @@
     0 0 14px rgba(255, 195, 220, 0.03);
 
   opacity: 0.90;
+
+  /* ★ ここを追加 — ほんの少しだけ上げる */
+  transform: translateY(-9px);
+
   transition:
     opacity 0.25s ease,
     transform 0.35s cubic-bezier(.25,.1,.25,1);
