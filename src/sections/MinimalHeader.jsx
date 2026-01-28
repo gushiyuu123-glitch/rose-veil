@@ -49,9 +49,9 @@ export default function MinimalHeader() {
       ref={ref}
       className="
         fixed top-0 left-0 right-0 z-[99]
-        h-[75px]
+        h-[70px]
         px-8 flex items-center
-        backdrop-blur-[4px]
+        backdrop-blur-[2px]
         transition-all duration-500
       "
     >
