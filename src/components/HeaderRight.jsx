@@ -33,7 +33,7 @@ export default function HeaderRight() {
 
   return (
  <nav ref={navRef} className="vr-nav fixed-nav">
-  <div className="vr-line"></div>
+
 
 
 <a className="vr-nav-item" href="#concept">CONCEPT</a>
@@ -43,7 +43,7 @@ export default function HeaderRight() {
 
 <a className="vr-nav-item" href="#contact">CONTACT</a>
 
-  <div className="vr-end"></div>
+
 </nav>
 
   );
