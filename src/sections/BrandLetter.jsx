@@ -45,74 +45,93 @@ export default function BrandLetter() {
       className="
         relative w-full
         py-[26vh]
-        bg-[#fcfbfa]
         text-black
         overflow-hidden
+
+        /* ★ 最背面の“にじむ薄背景” */
+        bg-[url('/letter/soft-back-roseveil.png')]
+        bg-cover bg-center
+        bg-no-repeat bg-fixed
       "
     >
-      {/* ============================================
-          ★ 1) 紙ベース
-      ============================================ */}
+      {/* =====================================================
+          1) 紙ベース（紙テクスチャ）
+      ===================================================== */}
       <div
         aria-hidden="true"
         className="
-          absolute inset-0 -z-10
+          absolute inset-0
+          z-[1]
           bg-[url('/letter/paper-base.png')]
           bg-cover bg-center
-          opacity-[0.34]
+          opacity-[0.2]
         "
       />
 
-      {/* ホワイト膜 */}
+      {/* =====================================================
+          2) にじませ層（Rose Veil の世界観の基底）
+      ===================================================== */}
       <div
         aria-hidden="true"
         className="
-          absolute inset-0 -z-10
-          bg-white/30
-          backdrop-blur-[1px]
+          absolute inset-0
+          z-[2]
+          bg-[url('/letter/soft-back-roseveil.png')]
+          bg-cover bg-[center_top_16%]
+          opacity-[0.22]
+          blur-[18px]
+          scale-[1.08]
+          brightness-[1.06]
+          pointer-events-none
         "
       />
 
-      {/* ============================================
-          ★ 2) Rose Veil の夕方の“香り膜”
-         （薄赤 × 薄金 × 薄黒の3層）
-      ============================================ */}
+      {/* =====================================================
+          3) 香り膜（薄赤）
+      ===================================================== */}
       <div
         aria-hidden="true"
         className="
-          absolute inset-0 -z-10
-          bg-[radial-gradient(circle_at_62%_18%,rgba(255,180,195,0.12),rgba(255,255,255,0))]
+          absolute inset-0
+          z-[3]
+          bg-[radial-gradient(circle_at_62%_18%,rgba(255,180,195,0.12),transparent)]
           blur-[90px]
           opacity-[0.18]
         "
       />
 
-      {/* 金黒の香り影（evening → 白への橋渡し） */}
+      {/* =====================================================
+          4) 金黒の影（夕方の香りの温度）
+      ===================================================== */}
       <div
         aria-hidden="true"
         className="
-          absolute inset-0 -z-10
-          bg-[radial-gradient(circle_at_48%_72%,rgba(60,40,45,0.08),rgba(255,255,255,0))]
+          absolute inset-0
+          z-[3]
+          bg-[radial-gradient(circle_at_48%_72%,rgba(60,40,45,0.08),transparent)]
           blur-[120px]
           opacity-[0.16]
         "
       />
 
-      {/* 微粒子（grain） */}
+      {/* =====================================================
+          5) 微粒子
+      ===================================================== */}
       <div
         aria-hidden="true"
         className="
-          absolute inset-0 -z-10
-          bg-[url('/grain.png')]
+          absolute inset-0
+          z-[3]
+          bg-[url('/grain.png')] bg-repeat
           opacity-[0.18]
           mix-blend-soft-light
         "
       />
 
-      {/* ============================================
+      {/* =====================================================
           HEADER
-      ============================================ */}
-      <div className="relative z-10 text-center mb-[10vh] px-6">
+      ===================================================== */}
+      <div className="relative z-[10] text-center mb-[10vh] px-6">
         <h2
           className="
             bl-fade
@@ -128,11 +147,9 @@ export default function BrandLetter() {
 
         <p
           className="
-            bl-fade
-            mt-6
+            bl-fade mt-6
             text-[2.15rem] md:text-[2.35rem]
-            font-light
-            tracking-[0.02em]
+            font-light tracking-[0.02em]
             text-[rgba(40,30,35,0.85)]
           "
         >
@@ -140,22 +157,23 @@ export default function BrandLetter() {
         </p>
       </div>
 
-      {/* ============================================
+      {/* =====================================================
           BODY
-      ============================================ */}
+      ===================================================== */}
       <div
         className="
-          relative z-10 mx-auto
-          w-[88%] max-w-[900px]
+          relative z-[10]
+          mx-auto w-[88%] max-w-[900px]
           text-center
         "
       >
-        {/* 奥行きの光膜（締めの余韻） */}
+        {/* 奥行きの光膜 */}
         <div
           aria-hidden="true"
           className="
             absolute inset-0
-            bg-[radial-gradient(circle,rgba(255,230,240,0.22),rgba(255,255,255,0))]
+            z-[3]
+            bg-[radial-gradient(circle,rgba(255,230,240,0.22),transparent)]
             blur-[90px]
             opacity-[0.28]
           "
@@ -178,7 +196,6 @@ Rose Veil は、生活の“輪郭”をほんの少しだけ美しくするた�
 
 香りは強さではなく、距離で伝わる。
 触れた瞬間の質感、乾いたあとの余韻。
-その細かなすべてに、あなたの日常の景色が重なります。
 
 忙しい朝も、ふとした瞬間も、
 あなたの背中をそっと押すように。

@@ -127,17 +127,17 @@ export default function Footer() {
         <div className="ft-fade w-[64px] h-[1px] bg-white/12 mx-auto mt-10" />
       </div>
 
-      {/* === NAVIGATION BLOCK === */}
-      <div
-        className="
-          ft-fade
-          mt-[12vh]
-          w-[92%] max-w-[980px] mx-auto
-          grid grid-cols-1 md:grid-cols-3
-          gap-12
-          text-center md:text-left
-        "
-      >
+  <div
+  className="
+    ft-fade
+    mt-[12vh]
+    w-[92%] max-w-[980px] mx-auto
+    grid grid-cols-1 md:grid-cols-3
+    gap-12
+    text-center        /* ← 統一して美しく */
+  "
+>
+
         <div className="space-y-3">
           <div className="text-[0.78rem] tracking-[0.22em] text-white/40">
             PRODUCTS
