@@ -1,0 +1,148 @@
+/* ===========================================
+   右ナビ（Hero内で完全固定）
+=========================================== */
+.vr-nav {
+  position: absolute;
+  top: 57.5%;
+  right: 7vw;
+  transform: translateY(-50%);
+  z-index: 50;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2.28rem;
+  pointer-events: auto;
+}
+
+/* ラインも absolute */
+.vr-line {
+  position: absolute;
+  top: 45%;
+  right: calc(6.8vw + 60px);
+  transform: translateY(-40%);
+  width: 1.1px;
+  height: 210px;
+
+  background: linear-gradient(
+    to bottom,
+      rgba(255, 238, 245, 0.32),
+      rgba(255, 224, 235, 0.12),
+      rgba(255, 255, 255, 0)
+  );
+
+  filter: blur(1px);
+  opacity: 0.48;
+  pointer-events: none;
+}
+
+/* 文字 */
+.vr-nav-item {
+  position: relative;
+  display: inline-block;
+  width: 168px;
+  text-align: right;
+
+  padding: 6px 10px;
+  cursor: pointer;
+
+  font-family: var(--eng);
+  font-size: 1rem;
+  letter-spacing: 0.26em;
+
+  color: rgba(248, 236, 240, 0.94);
+  text-shadow:
+    0 0 7px rgba(255, 215, 230, 0.05),
+    0 0 14px rgba(255, 195, 220, 0.03);
+
+  opacity: 0.90;
+  transition:
+    opacity 0.25s ease,
+    transform 0.35s cubic-bezier(.25,.1,.25,1);
+}
+
+/* Hover */
+.vr-nav-item:hover {
+  opacity: 1;
+  transform: translateX(7px);
+}
+
+.vr-nav-item::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  text-align: right;
+  color: rgba(255,240,245,0);
+  letter-spacing: 0.26em;
+  pointer-events: none;
+  transition: all 0.35s ease;
+}
+
+.vr-nav-item:hover::after {
+  color: rgba(255,240,245,0.96);
+  letter-spacing: 0.33em;
+}
+
+/* 背面フィルム */
+.vr-nav::before {
+  content: "";
+  position: absolute;
+  width: 255px;
+  height: 330px;
+
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -53%) scale(1.08);
+  z-index: -1;
+
+  background:
+    linear-gradient(
+      to bottom,
+        rgba(24,12,14,0.36),
+        rgba(46,22,28,0.22),
+        rgba(0,0,0,0)
+    ),
+    url("/bg/rose-veil-bg1.png") center/cover no-repeat;
+
+  opacity: 0.21;
+  filter: blur(9px) saturate(1.05);
+  border-radius: 22px;
+
+  mask-image: radial-gradient(
+    circle at 60% 50%,
+      rgba(0,0,0,0.88),
+      rgba(0,0,0,0.60),
+      rgba(0,0,0,0)
+  );
+}
+
+/* 下端ライン */
+.vr-end {
+  width: 1px;
+  height: 24px;
+  margin-top: 10px;
+  margin-right: -55px;
+
+  opacity: 0.42;
+  background: linear-gradient(
+    to bottom,
+      rgba(255,240,245,0),
+      rgba(255,240,245,0.32),
+      rgba(255,255,255,0)
+  );
+}
+/* Hero 最下層に「スクロールでナビを隠すベール」 */
+.hero-nav-mask {
+  position: absolute;
+  inset: 0;
+  z-index: 100; /* ← ナビより下、Heroのベールより上 */
+
+  background: linear-gradient(
+    to bottom,
+      rgba(0,0,0,0.0) 0%,
+      rgba(0,0,0,0.0) 45%,
+      rgba(0,0,0,0.36) 100%
+  );
+
+  pointer-events: none;
+}

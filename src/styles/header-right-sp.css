@@ -1,0 +1,18 @@
+/* ================================
+   SP NAV — Quiet Luxury Bar
+================================ */
+.sp-nav {
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  letter-spacing: 0.14em;
+}
+
+/* アイテムの微妙な透明感（タップ前提のやわらかさ） */
+.sp-nav-item {
+  transition: opacity 0.28s ease, color 0.28s ease;
+}
+
+.sp-nav-item:active,
+.sp-nav-item:hover {
+  color: rgba(255,255,255,0.92);
+}

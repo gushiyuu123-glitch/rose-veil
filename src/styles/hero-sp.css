@@ -1,0 +1,141 @@
+/* ============================================================
+   SP HERO — Quiet Luxury × Breath × Rose Glow
+============================================================ */
+.sp-hero-section {
+  position: relative;
+  width: 100%;
+  height: 94vh;
+  overflow: hidden;
+  background: #0b0b0b;
+}
+
+/* 背景：SPは“上3割”にボトルを集める */
+.sp-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('/bg/rose-veil-big.png') center top / cover no-repeat;
+  z-index: 1;
+}
+
+/* 右影：PCより弱く、空気の層に合わせる */
+.sp-hero-shadow {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    to left,
+      rgba(0,0,0,0.45) 0%,
+      rgba(0,0,0,0.28) 24%,
+      rgba(0,0,0,0.10) 50%,
+      transparent 80%
+  );
+  pointer-events: none;
+}
+
+/* 高級ベール（SPは濃度を30%→20%へ） */
+.sp-hero-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+
+  background:
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(30,12,18,0.18) 0%,
+      rgba(20,8,14,0.10) 40%,
+      transparent 80%
+    );
+  mix-blend-mode: soft-light;
+  filter: blur(2.8px) brightness(0.96);
+  opacity: 0.58;
+  pointer-events: none;
+}
+
+/* 粒子（SPは粒を12個に減らす） */
+.sp-hero-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      rgba(255,225,240,0.055),
+      transparent 70%
+    );
+  mix-blend-mode: screen;
+}
+
+/* Canvas 粒子 */
+.sp-hero-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  mix-blend-mode: lighten;
+}
+
+/* コピー位置 */
+.sp-hero-copy {
+  position: absolute;
+  bottom: 14%;
+  width: 100%;
+  text-align: center;
+  z-index: 6;
+}
+
+/* Label */
+.sp-hero-label {
+  font-size: 0.72rem;
+  font-family: var(--eng);
+  letter-spacing: 0.16em;
+  color: #c7b27a;
+  opacity: 0.82;
+  margin-bottom: 0.5rem;
+  -webkit-text-stroke: 0.25px rgba(255, 244, 230, 0.35);
+}
+
+/* Title */
+.sp-hero-title {
+  font-family: var(--eng);
+  font-weight: 300;
+  color: #eee8d4;
+  font-size: clamp(1.8rem, 6vw, 2.8rem);
+  letter-spacing: 0.14em;
+  text-shadow:
+    0 0 0.5px rgba(255,244,230,0.5),
+    0 0 1px rgba(255,244,230,0.35);
+}
+
+/* Sub Copy */
+.sp-hero-sub {
+  margin-top: 1.4rem;
+  font-family: var(--jp);
+  color: #e7d4c5;
+  font-size: clamp(0.92rem, 3.8vw, 1.25rem);
+  letter-spacing: 0.05em;
+
+  background: linear-gradient(
+    to bottom,
+      transparent 0%,
+      rgba(0,0,0,0.04) 60%,
+      rgba(0,0,0,0.12) 100%
+  );
+  padding: 0.12rem 0.4rem;
+  display: inline-block;
+}
+
+/* Luxury word */
+.sp-word-luxury {
+  color: rgba(248, 232, 214, 0.95);
+  text-shadow:
+    0 0 8px rgba(255,240,225,0.18),
+    0 0 18px rgba(255,230,215,0.10);
+}
+
+/* Scent word */
+.sp-word-scent {
+  color: rgba(255,228,238,0.92);
+  text-shadow:
+    0 0 7px rgba(255,205,225,0.14),
+    0 0 16px rgba(255,188,215,0.08);
+}

@@ -1,0 +1,64 @@
+.concept-section {
+  width: 100%;
+  padding: 22vh 0 18vh;
+  background: #000;
+  color: #f5f0f3;
+}
+
+.concept-title {
+  text-align: center;
+  font-family: var(--eng);
+  font-size: 1.12rem;
+  letter-spacing: 0.32em;
+  opacity: 0.86;
+  margin-bottom: 8vh;
+}
+
+.concept-grid {
+  width: 88%;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3.6rem;
+}
+
+.concept-card {
+  text-align: center;
+}
+
+.concept-img {
+  width: 100%;
+  max-width: 240px;
+  margin: 0 auto 2rem;
+  opacity: 0.93;
+  filter: blur(0.3px);
+}
+
+.concept-name {
+  font-family: var(--eng);
+  font-size: 0.96rem;
+  letter-spacing: 0.18em;
+  margin-bottom: 1.2rem;
+  opacity: 0.92;
+}
+
+.concept-copy {
+  font-size: 0.82rem;
+  line-height: 1.9;
+  opacity: 0.8;
+  white-space: pre-line;
+}
+
+.concept-divider {
+  width: 1px;
+  height: 80px;
+  background: linear-gradient(
+    to bottom,
+      rgba(255,240,245,0.00) 0%,
+      rgba(255,240,245,0.32) 48%,
+      rgba(255,255,255,0.00) 100%
+  );
+  margin: 10vh auto 0;
+  opacity: 0.38;
+}

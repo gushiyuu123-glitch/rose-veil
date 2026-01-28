@@ -1,0 +1,269 @@
+/* ===========================================
+   Hero セクション全体
+=========================================== */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #0b0b0b; /* ← 黒に“温度”を1%足す（高級黒） */
+}
+
+/* ===========================================
+   背景画像（フルスクリーン）
+=========================================== */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('/bg/rose-veil-big.png') center/cover no-repeat;
+  z-index: 1;
+}
+
+/* ===========================================
+   右に沈む影（贅沢な闇の深度）
+=========================================== */
+.hero-shadow-right {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    to left,
+      rgba(0, 0, 0, 0.55) 0%,
+      rgba(0, 0, 0, 0.32) 18%,
+      rgba(0, 0, 0, 0.12) 40%,
+      rgba(0, 0, 0, 0.00) 60%
+  );
+  pointer-events: none;
+}
+
+/* ===========================================
+   高級光膜（右で光が厚いバージョン）
+=========================================== */
+.hero-lux-film {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+
+  /* ← “布→ボトル” に向かう光の濃度差を付けた最適解 */
+  background: linear-gradient(
+    to right,
+      rgba(0,0,0,0.35) 0%,       /* 左：沈む布（闇へ） */
+      rgba(255,255,255,0.05) 45%,/* 中央：空気の膜 */
+      rgba(255,255,255,0.18) 75%,/* 右：香りの光膜（主役） */
+      rgba(255,255,255,0.00) 100%
+  );
+
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+/* ===========================================
+   HEROコピー（位置改善版）
+=========================================== */
+.hero-copy {
+  position: absolute;
+  top: 17%;           /* ← 呼吸を作るため “2% 下げる” が最適 */
+  left: 50%;
+  transform: translateX(-90%);
+  text-align: center;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* ===========================================
+   小ラベル（補助）
+=========================================== */
+.hero-label {
+  font-size: 0.85rem;
+ font-family: var(--eng);
+  font-weight: 300; /* 300のまま使う */
+  
+  /* 線の“縁”だけ厚く見せる最上品のやり方 */
+  text-shadow:
+    0 0 0.6px rgba(255, 244, 230, 0.55),
+    0 0 1.2px rgba(255, 244, 230, 0.40);
+  letter-spacing: 0.18em;
+  color: #c7b27a;
+  opacity: 0.8;
+  margin-bottom: 0.6rem;
+   -webkit-text-stroke: 0.3px rgba(255, 244, 230, 0.35);
+}
+
+/* ===========================================
+   英字タイトル（ブランドの顔）
+=========================================== */
+.hero-title {
+ font-family: var(--eng);
+  font-weight: 300; /* 300のまま使う */
+  
+  /* 線の“縁”だけ厚く見せる最上品のやり方 */
+  text-shadow:
+    0 0 0.6px rgba(255, 244, 230, 0.55),
+    0 0 1.2px rgba(255, 244, 230, 0.40);
+ letter-spacing: 0.11em;
+  color: #eee8d4;
+  font-size: clamp(2.7rem, 4.6vw, 5rem);
+   -webkit-text-stroke: 0.3px rgba(255, 244, 230, 0.35);
+}
+
+/* ===========================================
+   日本語コピー（四角感ゼロ・空気の膜 — 最終微調整）
+=========================================== */
+.hero-sub {
+  margin-top: 2rem;
+  font-family: var(--jp);
+
+  /* ← 赤み1%カットして上品さを強める */
+  color: #e7d4c5;
+
+  letter-spacing: 0.06em;
+  font-size: clamp(1rem, 1.4vw, 1.6rem);
+
+  /* === 四角感ゼロの絶対条件 === */
+  padding: 0.18rem 0;
+  display: inline;
+
+  /* === 下方向の“気配”の影膜（濃度の山を狭めて自然化） === */
+  background: linear-gradient(
+    to bottom,
+      rgba(0, 0, 0, 0.00) 0%,
+      rgba(0, 0, 0, 0.03) 58%,   /* ← 65% → 58% */
+      rgba(0, 0, 0, 0.10) 100%
+  );
+
+  /* ← 空気膜の厚み＋2% */
+  backdrop-filter: blur(0.5px); /* ← 0.4 → 0.5 */
+}
+
+/* ===========================================
+   HERO ベール（空気の密度だけ変える最薄膜）
+=========================================== */
+.hero-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+
+  background:
+    radial-gradient(
+      circle at 50% 40%,
+      rgba(255, 242, 250, 0.045) 0%,   /* ← 透明度ほぼゼロのローズ光 */
+      rgba(255, 242, 250, 0.022) 48%,  /* ← 空気に溶ける光膜 */
+      rgba(255, 242, 250, 0.000) 88%   /* ← 完全溶解 */
+    ),
+    linear-gradient(
+      to bottom,
+        rgba(255, 242, 250, 0.015) 0%,  /* ← “香りの気配”だけ残す */
+        rgba(255, 255, 255, 0.010) 56%, /* ← 光の層（限界薄） */
+        rgba(255, 255, 255, 0.000) 100%
+    );
+
+  mix-blend-mode: screen;          /* ← 黒混じり防止・濁りゼロ */
+  filter: blur(1.2px) brightness(1.03);
+  opacity: 0.55;                   /* ← “見えないのに効く”黄金値 */
+  pointer-events: none;
+}
+/* ===========================================
+   高級ベール（暗め・気配の黒薔薇膜）
+=========================================== */
+.hero-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+
+  background:
+    /* ---- 中心：黒に“赤みの温度”を混ぜた暗光 ---- */
+    radial-gradient(
+      circle at 50% 38%,
+      rgba(30, 12, 18, 0.24) 0%,     /* ← 黒 × 赤の空気（高級） */
+      rgba(20, 8, 14, 0.15) 34%,     /* ← 深湧きする闇 */
+      rgba(10, 4, 10, 0.08) 62%,     /* ← 空気と混ざる暗膜 */
+      rgba(0, 0, 0, 0.00) 90%        /* ← 外側は溶ける */
+    ),
+
+    /* ---- 全体に極薄の黒紫を流して“空気の温度”を落とす ---- */
+    linear-gradient(
+      to bottom,
+        rgba(26, 10, 18, 0.12) 0%,   /* ← 薄膜の黒紫光 */
+        rgba(18, 8, 12, 0.08) 48%,   /* ← 落ち着いた空気 */
+        rgba(0, 0, 0, 0.00) 100%
+    );
+
+  mix-blend-mode: soft-light;  /* ← “暗く重ねる”の高級モード */
+  filter: blur(3px) brightness(0.94); /* ← 黒の濁りを防ぎつつ暗さを増す */
+  opacity: 0.70;               /* ← 暗膜が“感じる”濃度ライン */
+  pointer-events: none;
+}
+
+/* ===========================================
+   ローズ粒子（空気に完全融合したほんのり粒子）
+=========================================== */
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+
+  background:
+    radial-gradient(
+      circle at 48% 42%,             /* ← 位置最適（影と重ならない） */
+      rgba(255, 225, 240, 0.065) 0%,  /* ← 粒子が“粒に見えない”濃度 */
+      rgba(255, 225, 240, 0.030) 36%, /* ← 滲ませて境界消す */
+      rgba(255, 225, 240, 0.012) 64%, /* ← 空気化 */
+      rgba(255, 225, 240, 0.000) 90%
+    );
+
+  mix-blend-mode: screen;  
+  filter: blur(20px) brightness(1.04);
+  opacity: 0.38;                    /* ← 存在するかしないかの最適値 */
+  pointer-events: none;
+}
+.hero-particle-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  mix-blend-mode: lighten; /* ← screen より見える */
+}
+.hero-sub {
+  margin-top: 2rem;
+  font-family: var(--jp);
+  color: #e9d8ca;
+  letter-spacing: 0.06em;
+  font-size: clamp(1rem, 1.4vw, 1.6rem);
+  padding: 0.18rem 0;
+  display: inline;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.00) 0%,
+    rgba(0, 0, 0, 0.03) 65%,
+    rgba(0, 0, 0, 0.10) 100%
+  );
+  backdrop-filter: blur(0.4px);
+}
+
+
+.word-luxury {
+  color: rgba(248, 232, 214, 0.98); /* ← 少し明るく、僅かに赤みを入れる */
+  
+  text-shadow:
+    0 0 10px rgba(255, 240, 225, 0.18), /* 光の芯を増強 */
+    0 0 22px rgba(255, 230, 215, 0.12), /* 赤み0.5%だけ混ぜる */
+    0 0 36px rgba(255, 220, 215, 0.07); /* 背景のローズと調和 */
+}
+
+.word-scent {
+  /* 赤みを3〜4%だけ加えたローズカラー */
+  color: rgba(255, 228, 238, 0.93);
+  /*  ↑ 232→228 で “ほんのり赤寄り” に */
+
+  text-shadow:
+    0 0 8px  rgba(255, 205, 225, 0.13),   /* 赤要素 +1% */
+    0 0 16px rgba(255, 188, 215, 0.09),   /* 彩度少し上げて香りの膜 */
+    0 0 28px rgba(255, 180, 210, 0.05);   /* 余韻に赤みをほんのり */
+}
+
+:root {
+  --eng: 'Cormorant Garamond', serif;
+  --sub: 'Spectral', serif;
+  --jp: 'Pretendard', sans-serif;
+}
