@@ -9,25 +9,25 @@ export default function MinimalHeader_sp() {
     const el = ref.current;
     if (!el) return;
 
-    /* ============================================
-       初回フェード（SP：軽く速く）
-    ============================================ */
+    /* ================================
+       初回フェード（さらに軽く・薄く）
+    ================================ */
     gsap.fromTo(
       el,
-      { opacity: 0, y: -14, filter: "blur(10px)" },
+      { opacity: 0, y: -10, filter: "blur(12px)" },
       {
         opacity: 1,
         y: 0,
         filter: "blur(0px)",
-        duration: 1.05,
+        duration: 0.9,
         ease: "power2.out",
-        delay: 0.25,
+        delay: 0.22,
       }
     );
 
-    /* ============================================
-       スクロールで“ごく薄い膜”をオン
-    ============================================ */
+    /* ================================
+       スクロール薄膜（極薄）
+    ================================ */
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -50,13 +50,13 @@ export default function MinimalHeader_sp() {
       ref={ref}
       className="
         fixed top-0 left-0 right-0 z-[99]
-        h-[64px]
+        h-[62px]
         px-5 flex items-center
         transition-all duration-500
-        backdrop-blur-[2px]      /* ← SPは弱めのblur */
+        backdrop-blur-[1px]     /* ← さらに薄い滲み */
       "
     >
-      {/* 薄光膜：class付与でオンオフ */}
+      {/* ◆ 極薄光膜：4%  */}
       <div
         aria-hidden="true"
         className="
@@ -65,24 +65,22 @@ export default function MinimalHeader_sp() {
           opacity-0
           transition-all duration-500
           bg-white/0
-          bg-active-sp:bg-white/8          /* ← スクロール時の柔光膜 */
-          bg-active-sp:backdrop-blur-[3px] /* ← 最小限の滲み */
+          bg-active-sp:bg-white/4           /* ← 8% → 4% */
+          bg-active-sp:backdrop-blur-[2px]  /* ← blur も最小に */
         "
       />
 
-      {/* ロゴ（静かな透明感） */}
+      {/* ロゴ：存在を薄く・hoverで光る */}
       <a
         href="#hero"
-        className="
-          group block cursor-pointer transition-all
-        "
+        className="group block cursor-pointer transition-opacity"
       >
         <img
           src="/roseveil-logo.png"
           alt="ROSE VEIL"
           className="
-            h-[56px]              /* ← SP黄金比サイズ */
-            opacity-90
+            h-[52px]
+            opacity-85               /* ← 90 → 80 */
             group-hover:opacity-100
             transition-all duration-500
             select-none
