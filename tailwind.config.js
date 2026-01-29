@@ -4,15 +4,16 @@ export default {
     "./index.html",
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
+safelist: [
+  "text-\\[#c9c4ef\\]",
+  "text-\\[#efa9bd\\]",
+  "text-\\[#aecdff\\]",
 
-  /* ===========================================
-     追加：動的カラーの purge 防止（重要）
-  =========================================== */
-  safelist: [
-    "text-[#c9c4ef]",
-    "text-[#efa9bd]",
-    "text-[#aecdff]",
-  ],
+  // 追加：PC版 titleColor の色
+  "text-\\[#ccc9f1\\]",
+  "text-\\[#f1b3c6\\]",
+  "text-\\[#b7d5ff\\]",
+],
 
   theme: {
     extend: {
@@ -27,7 +28,9 @@ export default {
           light:    "#C53145",
           DEFAULT:  "#8C0F25",
           dark:     "#5A0510",
+          
         },
+        
         sapphire: {
           hairline: "rgba(47,101,177,0.14)",
           glow:     "rgba(47,101,177,0.20)",
