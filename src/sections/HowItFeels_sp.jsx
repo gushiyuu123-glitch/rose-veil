@@ -17,7 +17,7 @@ export default function HowItFeels_sp() {
         label: "WHITE — AIRY SMOOTH",
         title: "触れた瞬間にほどける、空気の軽さ。",
         copy: `指を入れた瞬間に摩擦がほどける。\n根元はふわり、毛先は静かにそろう。\n“軽いのに整う” を実感できます。`,
-        image: "/feel/feel-white.png",
+        image: "/feel/feel-white.webp",
         veil:
           "radial-gradient(72% 58% at 44% 34%, rgba(255,255,255,0.18), rgba(255,255,255,0.06), transparent)",
         accent: "rgba(200,205,245,0.12)",
@@ -27,7 +27,7 @@ export default function HowItFeels_sp() {
         label: "VEIL — DEEP SILKY",
         title: "体温でひらく艶膜が、輪郭だけを残す。",
         copy: `しっとりしているのに重たくない。\n動いたときだけ香りがふわりと開きます。\n“艶の輪郭”が静かに整います。`,
-        image: "/feel/feel-veil.png",
+        image: "/feel/feel-veil.webp",
         veil:
           "radial-gradient(70% 60% at 60% 30%, rgba(255,170,190,0.14), rgba(255,255,255,0.05), transparent)",
         accent: "rgba(255,140,160,0.14)",
@@ -37,7 +37,7 @@ export default function HowItFeels_sp() {
         label: "BLUE — CLEAR BREATH",
         title: "揮発する冷たさが、透明な余韻を残す。",
         copy: `乾いたあと空気が澄む。\n揺れた瞬間だけ香る“距離の美学”。\n透明感のある潤いが続きます。`,
-        image: "/feel/feel-blue.png",
+        image: "/feel/feel-blue.webp",
         veil:
           "radial-gradient(70% 60% at 52% 34%, rgba(170,200,255,0.14), rgba(255,255,255,0.05), transparent)",
         accent: "rgba(160,195,255,0.14)",

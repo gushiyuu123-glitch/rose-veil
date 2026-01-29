@@ -48,7 +48,7 @@ export default function BrandLetter_sp() {
     text-black
 
     /* ★ まずベースの紙背景（固定） */
-    bg-[url('/vertical-soft-paper.png')]
+    bg-[url('/vertical-soft-paper.webp')]
     bg-cover bg-top
   "
 >
@@ -70,7 +70,7 @@ export default function BrandLetter_sp() {
       scale-[1.12]
       pointer-events-none
       mix-blend-soft-light
-      bg-[url('/letter/soft-back-roseveil.png')]
+      bg-[url('/letter/soft-back-roseveil.webp')]
       bg-cover bg-center
     "
   />

@@ -83,7 +83,7 @@ export default function ConceptSection_sp() {
 <div
   className="
     model-bg-sp absolute inset-0
-    bg-[url('/model-hair-flow-vertical3.png')]
+    bg-[url('/model-hair-flow-vertical3.webp')]
     bg-cover bg-center
     opacity-[0.76]              /* ← 大幅に可視化 */
     blur-[4px]                  /* ← ぼかしを弱め、存在を出す */
