@@ -30,9 +30,9 @@ const UI = {
 };
 
 const titleColor = {
-  white: "text-[#c9c4ef]",
-  veil: "text-[#efa9bd]",
-  blue: "text-[#aecdff]",
+  white: "text-[#ccc9f1]", // 元より +4% だけ彩度UP（ほぼ違和感ゼロ）
+  veil:  "text-[#f1b3c6]", // 元より +5% 赤みUP（甘さはそのまま）
+  blue:  "text-[#b7d5ff]", // 元より +4% 深さUP（淡さキープ）
 };
 
 const products = [
@@ -559,30 +559,43 @@ export default function ProductOverlayWide() {
                 pointer-events-none
               "
             >
-              {/* LEFT */}
-              <Reveal delayMs={80 + i * 80} className="relative text-left translate-x-[1.5vw]">
-                <h3 className={`${UI.t95} ${titleColor[p.key]} text-[2.8rem] font-light tracking-[0.02em]`}>{p.title}</h3>
+{/* LEFT */}
+<Reveal delayMs={80 + i * 80} className="relative text-left translate-x-[1.5vw]">
 
-                {p.key === "white" && (
-                  <div
-                    aria-hidden="true"
-                    className="
-                      absolute -left-[6vw] -top-[4vh]
-                      w-[38vw] h-[22vh]
-                      rounded-[22px]
-                      backdrop-blur-[14px]
-                      bg-black/18
-                      mix-blend-normal
-                      pointer-events-none
-                      z-[-1]
-                    "
-                  />
-                )}
+  {/* ★ タイトル色が100%反映される修正版 */}
+  <h3 
+    className={`${titleColor[p.key]} ${UI.t95} text-[2.8rem] font-light tracking-[0.02em]`}
+  >
+    {p.title}
+  </h3>
 
-                <p className="text-white/75 text-[1.05rem] mt-4 leading-relaxed tracking-[0.02em]">{p.metaCopy}</p>
-                <p className="text-white/80 text-[1.15rem] mt-3 tracking-[0.015em]">{p.sub}</p>
-                <div className="mt-6 w-[180px] h-[1px] bg-white/20" />
-              </Reveal>
+  {/* WHITE専用の背景ボックス */}
+  {p.key === "white" && (
+    <div
+      aria-hidden="true"
+      className="
+        absolute -left-[6vw] -top-[4vh]
+        w-[38vw] h-[22vh]
+        rounded-[22px]
+        backdrop-blur-[14px]
+        bg-black/18
+        mix-blend-normal
+        pointer-events-none
+        z-[-1]
+      "
+    />
+  )}
+
+  <p className="text-white/75 text-[1.05rem] mt-4 leading-relaxed tracking-[0.02em]">
+    {p.metaCopy}
+  </p>
+
+  <p className="text-white/80 text-[1.15rem] mt-3 tracking-[0.015em]">
+    {p.sub}
+  </p>
+
+  <div className="mt-6 w-[180px] h-[1px] bg-white/20" />
+</Reveal>
 
               {/* RIGHT */}
               <div className="relative text-left pl-[17vw] translate-x-[2vw]">

@@ -4,6 +4,16 @@ export default {
     "./index.html",
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
+
+  /* ===========================================
+     追加：動的カラーの purge 防止（重要）
+  =========================================== */
+  safelist: [
+    "text-[#c9c4ef]",
+    "text-[#efa9bd]",
+    "text-[#aecdff]",
+  ],
+
   theme: {
     extend: {
 
@@ -11,16 +21,13 @@ export default {
          COLORS — Rose Veil High-End Palette（最終版）
       ========================================================== */
       colors: {
-        /* ---- ROSE CRIMSON（赤みの温度を統一） ---- */
         crimson: {
-          hairline: "rgba(197,49,69,0.14)",   // 薄膜
-          glow:     "rgba(197,49,69,0.22)",   // 気配
-          light:    "#C53145",                // 気持ち明るい
-          DEFAULT:  "#8C0F25",                // 主役
-          dark:     "#5A0510",                // 重心
+          hairline: "rgba(197,49,69,0.14)",
+          glow:     "rgba(197,49,69,0.22)",
+          light:    "#C53145",
+          DEFAULT:  "#8C0F25",
+          dark:     "#5A0510",
         },
-
-        /* ---- ROSE SAPPHIRE（青） ---- */
         sapphire: {
           hairline: "rgba(47,101,177,0.14)",
           glow:     "rgba(47,101,177,0.20)",
@@ -28,53 +35,44 @@ export default {
           DEFAULT:  "#124C8F",
           dark:     "#0A1C3A",
         },
-
-        /* ---- VEIL WHITE（白の階層を再設計） ---- */
         veilwhite: {
-          glow:   "rgba(250,248,246,0.40)",  // 薄膜の光
+          glow:   "rgba(250,248,246,0.40)",
           light:  "#F4F2EF",
           DEFAULT:"#FAF8F6",
           dark:   "#E8E6E3",
         },
-
-        /* ---- GOLD（高級ブランドの黄金比） ---- */
         gold: {
-          glow:  "rgba(232,223,210,0.18)",   // 英字タイトルの外側光
-          thin:  "#E8DFD2",                  // LUXURY, 英字大見出し
-          soft:  "#D7C8B8",                  // 日本語サブ
-          label: "#CFC6BA",                  // 小ラベル・補助文字
-          deep:  "#B8AFA3",                  // 中間影（ブランド色の影）
+          glow:  "rgba(232,223,210,0.18)",
+          thin:  "#E8DFD2",
+          soft:  "#D7C8B8",
+          label: "#CFC6BA",
+          deep:  "#B8AFA3",
         },
 
-        /* ---- SHADOW / BLACK（黒の温度を統一） ---- */
         smoke:   "rgba(0,0,0,0.55)",
         smokeMd: "rgba(0,0,0,0.38)",
         smokeLt: "rgba(0,0,0,0.18)",
       },
 
       /* ==========================================================
-         FONTS — 英字 × 日本語（最終チューニング）
+         FONTS — 英字 × 日本語
       ========================================================== */
-fontFamily: {
-  eng: ["'Cormorant Garamond'", "serif"],  // 英字タイトル（Canela系）
-  sub: ["'Spectral'", "serif"],            // 英文ラベル（Editorial系）
-  jp: ["'Pretendard'", "sans-serif"],      // 日本語
-},
-
-
-      /* ==========================================================
-         LETTER SPACING — 高級感の源（誤差0.01の調整）
-      ========================================================== */
-      letterSpacing: {
-        eng:    "0.12em",   // 英字タイトル
-        label:  "0.18em",   // ラベル・補助
-        jp:     "0.06em",   // 日本語コピー
-        wide:   "0.24em",   // ナビ hover 拡張
+      fontFamily: {
+        eng: ["'Cormorant Garamond'", "serif"],
+        sub: ["'Spectral'", "serif"],
+        jp: ["'Pretendard'", "sans-serif"],
       },
 
       /* ==========================================================
-         OPACITY / BLUR（高級ブランドの質感）
+         LETTER SPACING — 高級感の源
       ========================================================== */
+      letterSpacing: {
+        eng:    "0.12em",
+        label:  "0.18em",
+        jp:     "0.06em",
+        wide:   "0.24em",
+      },
+
       opacity: {
         12: "0.12",
         15: "0.15",
@@ -87,20 +85,14 @@ fontFamily: {
         sm: "3px",
         md: "6px",
         lg: "12px",
-        xl: "18px",    // ← Hero の粒子と膜で使う
+        xl: "18px",
       },
 
-      /* ==========================================================
-         SPACING — Hero / Section Rhythm
-      ========================================================== */
       spacing: {
-        hero: "62vh",         // Hero 高さ（既に最適）
-        lux: "3.8rem",        // 高級系セクションの縦リズム
+        hero: "62vh",
+        lux: "3.8rem",
       },
 
-      /* ==========================================================
-         DROP SHADOW（光の階層を統合）
-      ========================================================== */
       dropShadow: {
         gold:     "0 6px 14px rgba(232,223,210,0.22)",
         goldSoft: "0 4px 10px rgba(232,223,210,0.12)",
@@ -108,12 +100,9 @@ fontFamily: {
         sapphire: "0 6px 12px rgba(47,101,177,0.25)",
       },
 
-      /* ==========================================================
-         TRANSITION — 高級ブランドの動き
-      ========================================================== */
       transitionTimingFunction: {
-        luxury: "cubic-bezier(0.33, 0.04, 0.25, 1)",  // 柔らかい流速
-        soft:   "cubic-bezier(0.25,0.10,0.25,1)",     // 余韻系
+        luxury: "cubic-bezier(0.33, 0.04, 0.25, 1)",
+        soft:   "cubic-bezier(0.25,0.10,0.25,1)",
       },
     },
   },
