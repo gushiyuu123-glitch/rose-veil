@@ -70,7 +70,7 @@ export default function HowItFeels_sp() {
       },
       {
         name: "女性 / 30代",
-        text: `乾いたあと毛先に自然な艶。\nローズの香りも甘すぎず近くでふわっと香る。`,
+        text: `乾いたあと毛先に自然な艶。\nローズの香りも甘すぎず近くでふわっと\n香る。`,
         stars: 5,
         tone: "crimson",
       },
@@ -207,7 +207,7 @@ export default function HowItFeels_sp() {
     </div>
 
     <h2 className="hif-sp-fade mt-4 text-[1.88rem] font-light tracking-[0.01em] text-white/90">
-      体験の質感を、言葉にする。
+      体験の質感を、言葉に<br />する。
     </h2>
 
     <p className="hif-sp-fade mt-4 text-[0.92rem] text-white/65 leading-[1.80]">
