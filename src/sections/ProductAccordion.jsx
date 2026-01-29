@@ -30,10 +30,11 @@ const UI = {
 };
 
 const titleColor = {
-  white: "text-[#d9d6f2]",
-  veil: "text-[#f5c8d6]",
-  blue: "text-[#c8e2ff]",
+  white: "text-[#d2cfee]",
+  veil: "text-[#f1bfcf]",
+  blue: "text-[#bfd8fa]",
 };
+
 
 const products = [
   {
