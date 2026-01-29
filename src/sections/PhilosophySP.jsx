@@ -5,56 +5,61 @@ import gsap from "gsap";
 export default function PhilosophySP() {
   const sectionRef = useRef(null);
 
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
+useEffect(() => {
+  const el = sectionRef.current;
+  if (!el) return;
 
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
+  const texts = el.querySelectorAll(".sp-philo-text");
+  const veils = el.querySelectorAll(".sp-philo-veil");
 
-        const tl = gsap.timeline();
+  // 初期状態
+  gsap.set([...texts, ...veils], {
+    opacity: 0,
+    y: 18,
+    filter: "blur(10px)",
+  });
 
-        /* ============================
-           背景の薄い光膜
-        ============================ */
-        tl.fromTo(
-          el.querySelectorAll(".sp-philo-veil"),
-          { opacity: 0, scale: 1.05 },
-          {
-            opacity: 1,
-            scale: 1,
-            duration: 1.6,
-            ease: "power2.out",
-            stagger: 0.12,
-          },
-          0
-        );
+  const io = new IntersectionObserver(
+    ([entry]) => {
+      if (!entry.isIntersecting) return;
 
-        /* ============================
-           テキストフェード
-        ============================ */
-        tl.fromTo(
-          el.querySelectorAll(".sp-philo-text"),
-          { opacity: 0, y: 18, filter: "blur(6px)" },
-          {
-            opacity: 1,
-            y: 0,
-            filter: "blur(0)",
-            duration: 1.25,
-            ease: "power2.out",
-            stagger: 0.10,
-          },
-          0.18
-        );
+      /* ------------------------------
+         光膜（ふわっと後ろから）
+      ------------------------------ */
+      veils.forEach((v, i) => {
+        gsap.to(v, {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          filter: "blur(0px)",
+          duration: 1.4,
+          ease: "power2.out",
+          delay: 0.12 + i * 0.12,
+        });
+      });
 
-        io.disconnect();
-      },
-      { threshold: 0.20 }
-    );
+      /* ------------------------------
+         テキスト（順番に静かに出す）
+      ------------------------------ */
+      texts.forEach((t, i) => {
+        gsap.to(t, {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          duration: 1.2,
+          ease: "power2.out",
+          delay: 0.28 + i * 0.10, // ← ここが“パッパ防止”の心臓
+        });
+      });
 
-    io.observe(el);
-  }, []);
+      io.disconnect();
+    },
+    { threshold: 0.24 } // ← ちょい遅めに発火
+  );
+
+  io.observe(el);
+}, []);
+
 
   return (
     <section
