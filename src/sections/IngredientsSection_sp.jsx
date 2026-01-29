@@ -30,7 +30,7 @@ const ING = {
         { name: "加水分解ケラチン", role: "髪の芯を補強し、まとまりへ" },
         { name: "加水分解シルク", role: "触感のなめらかさ・光沢感" },
       ],
-      accent: "rgba(255,255,255,0.26)", // ← 少し明度下げて高級に
+      accent: "rgba(255,255,255,0.23)",
     },
     {
       key: "texture",
@@ -43,7 +43,7 @@ const ING = {
         { name: "アルガンオイル", role: "艶の深度・光の密度を補強" },
         { name: "ローズヒップオイル", role: "透明感のある輝き・柔らかさ" },
       ],
-      accent: "rgba(255,90,140,0.22)", // ← 赤みも浅め
+      accent: "rgba(255,90,140,0.20)",
     },
     {
       key: "care",
@@ -56,7 +56,7 @@ const ING = {
         { name: "カミツレ花エキス", role: "柔らかさ・整肌" },
         { name: "海藻エキス", role: "保水膜・みずみずしさ" },
       ],
-      accent: "rgba(140,175,255,0.22)", // ← 青膜も静かに
+      accent: "rgba(140,175,255,0.20)",
     },
   ],
 
@@ -142,40 +142,54 @@ export default function IngredientsSection_sp() {
       "
     >
       {/* =====================================================
-          ★ 背景：光膜の整理（白＋1色に整理）
+          ★ 背景（白膜 × 深紅 × 青膜）完全アップグレード版
       ===================================================== */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none select-none z-[1]">
 
         {/* White Soft Film（基礎光） */}
         <div
-          className="absolute inset-0 opacity-[0.10] blur-[28px] mix-blend-soft-light"
+          className="absolute inset-0 opacity-[0.10] blur-[26px] mix-blend-soft-light"
           style={{
             backgroundImage: "url('/textures/ing-bg.png')",
             backgroundSize: "cover",
           }}
         />
 
-        {/* Rose Depth（赤の深度） */}
+        {/* Deep Rose Film（深紅の気配） */}
         <div
-          className="absolute inset-0 opacity-[0.16] blur-[32px] mix-blend-screen"
+          className="absolute inset-0 opacity-[0.16] blur-[40px] mix-blend-screen"
           style={{
             background: `
               radial-gradient(
-                1200px 760px at 82% 88%,
-                rgba(120, 20, 40, 0.28),
+                1080px 760px at 78% 88%,
+                rgba(120, 20, 40, 0.25),
+                transparent 68%
+              )
+            `,
+          }}
+        />
+
+        {/* Blue Mist（青い静けさ） */}
+        <div
+          className="absolute inset-0 opacity-[0.14] blur-[40px] mix-blend-screen"
+          style={{
+            background: `
+              radial-gradient(
+                1000px 720px at 22% 80%,
+                rgba(140,175,255,0.22),
                 transparent 70%
               )
             `,
           }}
         />
 
-        {/* grain（控えめ） */}
+        {/* Grain (極薄) */}
         <div
-          className="absolute inset-0 opacity-[0.03] mix-blend-soft-light"
+          className="absolute inset-0 opacity-[0.02] mix-blend-soft-light"
           style={{
             backgroundImage: "url('/textures/grain-soft.png')",
             backgroundSize: "cover",
-            filter: "blur(0.4px)",
+            filter: "blur(0.3px)",
           }}
         />
       </div>
@@ -212,10 +226,10 @@ export default function IngredientsSection_sp() {
             px-6 py-8
           "
         >
-          {/* 内部膜（静けさ寄りに弱め） */}
+          {/* 内部膜（気配だけ） */}
           <div
             aria-hidden="true"
-            className="absolute inset-0 opacity-[0.16] blur-[30px] mix-blend-screen"
+            className="absolute inset-0 opacity-[0.14] blur-[30px] mix-blend-screen"
             style={{
               background: `
                 radial-gradient(420px 300px at 22% 32%, rgba(255,255,255,0.14), transparent 58%),
@@ -238,7 +252,7 @@ export default function IngredientsSection_sp() {
       </div>
 
       {/* =====================================================
-          CATEGORIES（3レイヤー構造）
+          CATEGORIES
       ===================================================== */}
       <div className="relative z-10 mx-auto mt-[12vh] w-[92%] max-w-[960px]">
         <div className="text-center mb-[7vh]">
@@ -264,7 +278,7 @@ export default function IngredientsSection_sp() {
                 px-6 py-7 overflow-hidden
               "
             >
-              {/* 内部膜（ほぼ気配のみ） */}
+              {/* アクセント膜（超繊細） */}
               <div
                 aria-hidden="true"
                 className="absolute inset-0 opacity-[0.14] blur-[28px] mix-blend-screen"

@@ -11,21 +11,21 @@ export default function ScentPaletteSP() {
   const panelRefs = useRef([]);
 
   /* ===============================
-      GSAP（SP最適）
+      GSAP（SP最適・最終版）
   =============================== */
   useEffect(() => {
     if (!sectionRef.current) return;
 
     gsap.set(conceptRef.current, { opacity: 0, y: 24 });
-    gsap.set(productLineRef.current, { opacity: 0, y: 32 });
+    gsap.set(productLineRef.current, { opacity: 0, y: 28 });
 
     panelRefs.current.forEach((p) => {
       if (!p) return;
       gsap.set(p, {
         opacity: 0,
-        y: 26,
+        y: 22,
         scale: 0.965,
-        filter: "blur(6px)",
+        filter: "blur(8px)",
       });
     });
 
@@ -34,22 +34,32 @@ export default function ScentPaletteSP() {
       defaults: { ease: "power2.out" },
     });
 
-    tl.to(conceptRef.current, { opacity: 1, y: 0, duration: 1.1 })
+    tl.to(conceptRef.current, {
+      opacity: 1,
+      y: 0,
+      duration: 1.1,
+      filter: "blur(0px)",
+    })
       .to(
         panelRefs.current,
         {
           opacity: 1,
           y: 0,
           scale: 1,
-          duration: 1.15,
-          stagger: 0.18,
           filter: "blur(0px)",
+          duration: 1.2,
+          stagger: 0.18,
         },
         "-=0.45"
       )
       .to(
         productLineRef.current,
-        { opacity: 1, y: 0, duration: 1.1 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.15,
+          filter: "blur(0px)",
+        },
         "-=0.35"
       );
 
@@ -77,58 +87,66 @@ export default function ScentPaletteSP() {
       "
     >
       {/* ===============================
-          背景（全て pointer-events-none）
+          BACKGROUND LAYERS（静脈 × 光膜 × 粒子）
       =============================== */}
       <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* 黒ベース */}
         <div className="absolute inset-0 bg-black" />
 
+        {/* 右ローズ静脈（赤） */}
         <img
           src="/bg/rose-vein.png"
           className="
-            absolute right-[-26%] bottom-[6%]
-            w-[92vw] opacity-[0.18] blur-[4px]
-            scale-[1.05] mix-blend-lighten
+            absolute right-[-24%] bottom-[3%]
+            w-[90vw]
+            opacity-[0.16] blur-[4px]
+            scale-[1.06] mix-blend-lighten
           "
         />
 
+        {/* 右・白光膜 */}
         <div
           className="
-            absolute right-[-4%] bottom-[11%]
-            w-[72vw] h-[68vh]
-            opacity-[0.10] blur-[48px]
+            absolute right-[-6%] bottom-[12%]
+            w-[74vw] h-[62vh]
+            opacity-[0.12] blur-[48px]
             mix-blend-screen
           "
           style={{
             background:
-              "radial-gradient(800px 580px at 50% 35%, rgba(255,255,255,0.23), transparent)",
+              "radial-gradient(760px 540px at 52% 36%, rgba(255,255,255,0.22), transparent)",
           }}
         />
 
+        {/* 左ローズ静脈（深紅） */}
         <img
           src="/bg/rose-red.png"
           className="
-            absolute left-[-27%] top-[10.6%]
-            w-[90vw] opacity-[0.18] blur-[5px]
-            scale-[1.05] mix-blend-lighten
+            absolute left-[-26%] top-[12%]
+            w-[92vw] opacity-[0.18]
+            blur-[5px] scale-[1.05]
+            mix-blend-lighten
           "
         />
 
+        {/* 左・桜膜 */}
         <div
           className="
-            absolute left-[-14%] top-[18%]
+            absolute left-[-12%] top-[18%]
             w-[68vw] h-[62vh]
-            opacity-[0.11] blur-[50px]
+            opacity-[0.14] blur-[52px]
             mix-blend-screen
           "
           style={{
             background:
-              "radial-gradient(720px 520px at 50% 36%, rgba(255,60,110,0.15), transparent)",
+              "radial-gradient(720px 520px at 50% 36%, rgba(255,60,110,0.16), transparent)",
           }}
         />
 
+        {/* 粒子膜（世界観統一） */}
         <div
           className="
-            absolute inset-0 opacity-[0.035]
+            absolute inset-0 opacity-[0.030]
             mix-blend-soft-light
           "
           style={{
@@ -139,14 +157,13 @@ export default function ScentPaletteSP() {
       </div>
 
       {/* ===============================
-          SCENT CONCEPT（全センター）
+          SCENT CONCEPT
       =============================== */}
       <div
         ref={conceptRef}
         className="
           relative z-10 opacity-0
-          mx-auto w-[88%]
-          text-center
+          mx-auto w-[88%] text-center
           mb-[11vh]
         "
       >
@@ -156,7 +173,7 @@ export default function ScentPaletteSP() {
 
         <p
           className="
-            mt-6 text-[1.03rem]
+            mt-6 text-[1.06rem]
             leading-[1.95]
             text-white/90 font-light
             whitespace-pre-line
@@ -179,21 +196,22 @@ WHITE は軽さ、VEIL は艶、BLUE は透明感。
       </div>
 
       {/* ===============================
-          PALETTE（全センター揃え）
+          PALETTE（ボトル群）
       =============================== */}
       <div className="relative z-10 mx-auto w-[88%] space-y-[14vh] mb-[18vh]">
         {products.map((p, i) => (
           <div
             key={p.key}
             ref={(el) => (panelRefs.current[i] = el)}
-            className="opacity-0 translate-y-[26px]"
+            className="opacity-0 translate-y-[22px]"
           >
-            {/* 画像 */}
+            {/* 画像レイヤー */}
             <div className="relative w-fit mx-auto pointer-events-none">
+              {/* 白光膜 */}
               <div
                 className="
-                  absolute inset-0 opacity-[0.13]
-                  blur-[24px] mix-blend-screen
+                  absolute inset-0 opacity-[0.14]
+                  blur-[26px] mix-blend-screen
                 "
                 style={{
                   background:
@@ -201,24 +219,26 @@ WHITE は軽さ、VEIL は艶、BLUE は透明感。
                 }}
               />
 
+              {/* 色膜（商品別：濃度最適化） */}
               <div
                 className="
-                  absolute inset-0 opacity-[0.10]
-                  blur-[38px] mix-blend-lighten
+                  absolute inset-0 opacity-[0.12]
+                  blur-[34px] mix-blend-lighten
                 "
                 style={{
                   background:
                     p.key === "white"
-                      ? "rgba(255,255,255,0.34)"
+                      ? "rgba(255,255,255,0.30)"
                       : p.key === "veil"
-                      ? "rgba(255,80,130,0.28)"
-                      : "rgba(120,150,255,0.27)",
+                      ? "rgba(255,60,120,0.26)"
+                      : "rgba(120,150,255,0.24)",
                 }}
               />
 
+              {/* 粒子膜 */}
               <div
                 className="
-                  absolute inset-0 opacity-[0.04]
+                  absolute inset-0 opacity-[0.05]
                   mix-blend-soft-light
                 "
                 style={{
@@ -227,6 +247,7 @@ WHITE は軽さ、VEIL は艶、BLUE は透明感。
                 }}
               />
 
+              {/* 本体画像 */}
               <img
                 src={p.artImage}
                 alt={p.title}
@@ -237,56 +258,51 @@ WHITE は軽さ、VEIL は艶、BLUE は透明感。
               />
             </div>
 
-            {/* テキスト（すべて中央揃え） */}
+            {/* テキスト */}
             <div className="mt-6 text-center">
               <div
-                className={`text-[1.12rem] font-light tracking-[0.20em] ${titleColor[p.key]}`}
+                className={`
+                  text-[1.14rem] font-light tracking-[0.20em]
+                  ${titleColor[p.key]}
+                `}
               >
                 {p.title}
               </div>
 
               <p
                 className="
-                  mt-3 text-white/70
-                  text-[0.98rem] leading-[1.9]
-                  whitespace-pre-line
-                  [text-wrap:balance]
-                  text-center
+                  mt-3 text-white/72 text-[0.98rem]
+                  leading-[1.9] whitespace-pre-line
+                  [text-wrap:balance] text-center
                 "
               >
                 {p.metaCopy}
               </p>
+
+              <p
+                className="
+                  mt-4 text-white/80 italic
+                  text-[0.95rem] leading-[1.9]
+                  whitespace-pre-line
+                  [text-wrap:balance] text-center
+                "
+              >
+                {p.summary}
+              </p>
             </div>
 
-            <p
-              className="
-                mt-4 text-white/75
-                text-[0.95rem] leading-[1.9]
-                italic whitespace-pre-line
-                [text-wrap:balance]
-                text-center
-              "
-            >
-              {p.summary}
-            </p>
-
-            {/* ===============================
-                CTA（ページ内リンク100%成功版）
-            =============================== */}
+            {/* CTA */}
             <a
               href={`#products-sp-${p.key}`}
               className="
                 relative z-[20]
                 block mx-auto mt-7
-                w-fit px-7 py-3
-                rounded-[12px]
+                w-fit px-7 py-3 rounded-[12px]
                 border border-white/22
-                text-white/85
-                text-[0.82rem]
+                text-white/85 text-[0.82rem]
                 tracking-[0.22em]
                 hover:bg-white/10 hover:text-white
-                transition-all
-                pointer-events-auto
+                transition-all pointer-events-auto
               "
             >
               VIEW SHAMPOO
@@ -296,7 +312,7 @@ WHITE は軽さ、VEIL は艶、BLUE は透明感。
       </div>
 
       {/* ===============================
-          PRODUCT LINE
+          PRODUCT LINE 最下部
       =============================== */}
       <div
         ref={productLineRef}

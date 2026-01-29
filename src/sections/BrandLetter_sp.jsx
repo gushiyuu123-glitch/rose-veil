@@ -16,8 +16,8 @@ export default function BrandLetter_sp() {
 
     gsap.set(items, {
       opacity: 0,
-      y: 14,               // ← SP 最適値
-      filter: "blur(6px)", // ← 負荷を1/2に
+      y: 14,
+      filter: "blur(6px)",
     });
 
     const io = new IntersectionObserver(([entry]) => {
@@ -27,9 +27,9 @@ export default function BrandLetter_sp() {
         opacity: 1,
         y: 0,
         filter: "blur(0px)",
-        duration: 1.10,
+        duration: 1.1,
         ease: "power2.out",
-        stagger: 0.10,
+        stagger: 0.12,
       });
 
       io.disconnect();
@@ -47,27 +47,21 @@ export default function BrandLetter_sp() {
     overflow-hidden
     text-black
 
-    /* ★ まずベースの紙背景（固定） */
     bg-[url('/vertical-soft-paper.webp')]
     bg-cover bg-top
   "
 >
 
   {/* =================================================
-      ★ 1) “背景画像” をより背景化 – にじみ処理
-      -------------------------------------------------
-      ・opacity は 0.12〜0.18（存在を残す最適帯）
-      ・blur は 48〜60px（SPで負荷軽い最大値）
-      ・scale で端の濃さを溶かす
-    ================================================= */}
+      1) 背景画像の抽象化（にじみ処理）
+  ================================================= */}
   <div
     aria-hidden="true"
     className="
-      absolute inset-0
-      -z-0
+      absolute inset-0 -z-0
       opacity-[0.16]
       blur-[52px]
-      scale-[1.12]
+      scale-[1.1]
       pointer-events-none
       mix-blend-soft-light
       bg-[url('/letter/soft-back-roseveil.webp')]
@@ -76,16 +70,15 @@ export default function BrandLetter_sp() {
   />
 
   {/* =================================================
-      ★ 2) 香り膜 – Radial（淡紅 × 白 × 青）
-      （背景画像をさらに奥に押すフェード）
-    ================================================= */}
+      2) 香りの3層膜（rose / white / blue）
+  ================================================= */}
 
-  {/* 淡紅（soft rose mist） */}
+  {/* soft rose veil */}
   <div
     aria-hidden="true"
     className="
       absolute inset-0 -z-0
-      opacity-[0.3]
+      opacity-[0.28]
       blur-[80px]
       bg-[radial-gradient(
         680px_480px_at_50%_22%,
@@ -95,12 +88,12 @@ export default function BrandLetter_sp() {
     "
   />
 
-  {/* 柔白（white veil） */}
+  {/* white light veil */}
   <div
     aria-hidden="true"
     className="
       absolute inset-0 -z-0
-      opacity-[0.3]
+      opacity-[0.28]
       blur-[90px]
       bg-[radial-gradient(
         720px_520px_at_52%_70%,
@@ -110,36 +103,36 @@ export default function BrandLetter_sp() {
     "
   />
 
-  {/* 微青（evening blue haze） */}
+  {/* blue haze */}
   <div
     aria-hidden="true"
     className="
       absolute inset-0 -z-0
-      opacity-[0.3]
+      opacity-[0.28]
       blur-[100px]
       bg-[radial-gradient(
         760px_560px_at_50%_45%,
-        rgba(170,200,255,0.38),
+        rgba(170,200,255,0.35),
         transparent 75%
       )]
     "
   />
 
   {/* =================================================
-      ★ 3) 微粒子（grain）
-      -------------------------------------------------
-      ・“紙の上の香り”の雰囲気を作る
-    ================================================= */}
+      3) 粒子（grain）
+  ================================================= */}
   <div
     aria-hidden="true"
     className="
       absolute inset-0 -z-0
       opacity-[0.14]
-      bg-[url('/grain.png')] bg-repeat
+      bg-[url('/grain.png')]
+      bg-repeat
       mix-blend-soft-light
     "
   />
-  {/* テキストの背後に “薄い香り膜” */}
+
+  {/* テキスト下の淡い香り膜 */}
   <div
     aria-hidden="true"
     className="
@@ -155,7 +148,7 @@ export default function BrandLetter_sp() {
 
   {/* =================================================
       HEADER
-    ================================================= */}
+  ================================================= */}
   <div className="relative z-10 text-center mb-[7vh] px-6">
     <h2
       className="
@@ -172,8 +165,7 @@ export default function BrandLetter_sp() {
 
     <p
       className="
-        bl-fade-sp
-        mt-6
+        bl-fade-sp mt-6
         text-[1.75rem]
         font-light
         tracking-[0.02em]
@@ -186,8 +178,8 @@ export default function BrandLetter_sp() {
   </div>
 
   {/* =================================================
-      BODY
-    ================================================= */}
+      BODY（全文アップグレード）
+  ================================================= */}
   <div className="relative z-10 mx-auto w-[90%] max-w-[900px] text-center">
 <p
   className="
@@ -197,7 +189,7 @@ export default function BrandLetter_sp() {
     font-light
     whitespace-pre-line
     tracking-[0.01em]
-    text-[rgba(40,35,40,0.82)]    /* ← 文字本体は普通の色で保持 */
+    text-[rgba(40,35,40,0.82)]
     [text-shadow:0_1px_1px_rgba(0,0,0,0.06)]
   "
   style={{
@@ -209,21 +201,28 @@ export default function BrandLetter_sp() {
     backgroundClip: "text",
   }}
 >
+{`髪が揺れた瞬間にふわりと香りがほどけ、  
+その“余韻”だけが静かに残る。
 
+Rose Veil は、毎日の中で  
+美しさの輪郭をそっと整えるために生まれました。
 
-{`髪が揺れた瞬間にふわりと漂う、
-静かで上品な香り。
+香りは強く主張するのではなく、  
+距離で伝わるものだと考えています。
 
-Rose Veil は、日常の“輪郭”を
-そっと美しく整える処方です。
+近づいたときに初めて気づく甘さ、  
+触れたときに感じるやわらかい質感、  
+乾いたあとに残る透明な気配。
 
-香りは強さではなく距離で伝わり、
-触れた瞬間の質感や乾いたあとの余韻が
-静かに続きます。
+そのすべてが控えめで、  
+あなたの雰囲気を壊さずに寄り添うように  
+慎重に調整されています。
 
-忙しい朝も、ふとした瞬間も、
-あなたに静かに寄り添うように。`}
-    </p>
+慌ただしい朝も、  
+ふとした瞬間に自分を思い出したい時間も、  
+Rose Veil の“静かなやさしさ”が  
+そっと呼吸を整えてくれます。`}
+</p>
 
     <div className="bl-fade-sp w-[94px] h-[1px] bg-black/15 mx-auto mt-10" />
 

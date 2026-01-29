@@ -8,7 +8,7 @@ export default function HowItFeels_sp() {
   const reviewRefs = useRef([]);
 
   /* =========================
-      FEELS DATA
+      FEELS DATA（アップグレード済）
   ========================= */
   const feels = useMemo(
     () => [
@@ -16,31 +16,37 @@ export default function HowItFeels_sp() {
         key: "white",
         label: "WHITE — AIRY SMOOTH",
         title: "触れた瞬間にほどける、空気の軽さ。",
-        copy: `指を入れた瞬間に摩擦がほどける。\n根元はふわり、毛先は静かにそろう。\n“軽いのに整う” を実感できます。`,
+        copy: `指を入れた瞬間に摩擦が消え、
+髪が“そよぐように”整う軽さ。
+白い光の余韻だけを静かに残します。`,
         image: "/feel/feel-white.webp",
         veil:
-          "radial-gradient(72% 58% at 44% 34%, rgba(255,255,255,0.18), rgba(255,255,255,0.06), transparent)",
-        accent: "rgba(200,205,245,0.12)",
+          "radial-gradient(72% 58% at 44% 34%, rgba(255,255,255,0.20), rgba(255,255,255,0.06), transparent)",
+        accent: "rgba(200,205,245,0.13)",
       },
       {
         key: "veil",
         label: "VEIL — DEEP SILKY",
-        title: "体温でひらく艶膜が、輪郭だけを残す。",
-        copy: `しっとりしているのに重たくない。\n動いたときだけ香りがふわりと開きます。\n“艶の輪郭”が静かに整います。`,
+        title: "体温でゆっくり溶ける、深紅の艶膜。",
+        copy: `しっとりなのに、重くならない。
+揺れた瞬間だけ甘さがふわりと開き、
+“艶の輪郭”が穏やかに整います。`,
         image: "/feel/feel-veil.webp",
         veil:
-          "radial-gradient(70% 60% at 60% 30%, rgba(255,170,190,0.14), rgba(255,255,255,0.05), transparent)",
-        accent: "rgba(255,140,160,0.14)",
+          "radial-gradient(70% 60% at 60% 30%, rgba(255,170,190,0.16), rgba(255,255,255,0.05), transparent)",
+        accent: "rgba(255,145,165,0.15)",
       },
       {
         key: "blue",
         label: "BLUE — CLEAR BREATH",
-        title: "揮発する冷たさが、透明な余韻を残す。",
-        copy: `乾いたあと空気が澄む。\n揺れた瞬間だけ香る“距離の美学”。\n透明感のある潤いが続きます。`,
+        title: "冷たさが揮発し、青い透明感だけが残る。",
+        copy: `乾いたあと空気が澄み、
+揺れた一瞬だけ香りが立つ“距離の美学”。
+静かな潤いが長く続きます。`,
         image: "/feel/feel-blue.webp",
         veil:
-          "radial-gradient(70% 60% at 52% 34%, rgba(170,200,255,0.14), rgba(255,255,255,0.05), transparent)",
-        accent: "rgba(160,195,255,0.14)",
+          "radial-gradient(70% 60% at 52% 34%, rgba(170,200,255,0.16), rgba(255,255,255,0.05), transparent)",
+        accent: "rgba(165,195,255,0.16)",
       },
     ],
     []
@@ -58,25 +64,29 @@ export default function HowItFeels_sp() {
   };
 
   /* =========================
-      REVIEWS DATA
+      REVIEWS DATA（アップグレード済）
   ========================= */
   const reviews = useMemo(
     () => [
       {
         name: "女性 / 20代",
-        text: `香りが“静かに続く”タイプで上品。\n髪を触ったときの手触りもとても良い。`,
+        text: `香りが“静かに続く”感じが本当に上品。
+触れたときの手触りもやわらかくて心地いい。`,
         stars: 5,
         tone: "veil",
       },
       {
         name: "女性 / 30代",
-        text: `乾いたあと毛先に自然な艶。\nローズの香りも甘すぎず近くでふわっと\n香る。`,
+        text: `乾いたあと毛先に自然な艶。
+ローズの甘さも控えめで、
+近くに来たときだけふわっと香る。`,
         stars: 5,
         tone: "crimson",
       },
       {
         name: "男性 / 20代",
-        text: `職場で「香りいいですね」と言われました。\n強くないのに清潔感が残りやすい。`,
+        text: `強い香りじゃないのに清潔感が残る。
+「何使ってるの？」と聞かれることが増えました。`,
         stars: 4,
         tone: "blue",
       },
@@ -85,7 +95,7 @@ export default function HowItFeels_sp() {
   );
 
   /* =========================
-      GSAP
+      GSAP（既存の品質そのまま）
   ========================= */
   useEffect(() => {
     const root = sectionRef.current;
@@ -172,11 +182,9 @@ export default function HowItFeels_sp() {
   "
 >
   {/* --------------------------
-      BACKGROUND OPTIMIZED
+      BACKGROUND
   --------------------------- */}
   <div aria-hidden="true" className="absolute inset-0 z-0">
-
-    {/* ピンク膜（軽量縮小） */}
     <div
       className="absolute inset-0 opacity-[0.16] blur-[48px]"
       style={{
@@ -184,8 +192,6 @@ export default function HowItFeels_sp() {
           "radial-gradient(760px 520px at 50% 26%, rgba(255,160,185,0.22), transparent)",
       }}
     />
-
-    {/* 白膜（柔光：負荷半減） */}
     <div
       className="absolute inset-0 opacity-[0.12] blur-[50px]"
       style={{
@@ -193,13 +199,11 @@ export default function HowItFeels_sp() {
           "radial-gradient(700px 480px at 48% 40%, rgba(255,255,255,0.22), transparent)",
       }}
     />
-
-    {/* 粒子は負荷軽いので残す */}
     <div className="absolute inset-0 opacity-[0.06] bg-[url('/grain.png')] mix-blend-soft-light" />
   </div>
 
   {/* --------------------------
-      HEADER
+      HEADER（アップグレード）
   --------------------------- */}
   <div className="relative z-10 text-center mb-[8vh] px-4">
     <div className="hif-sp-fade text-[0.75rem] tracking-[0.32em] text-white/50">
@@ -207,12 +211,12 @@ export default function HowItFeels_sp() {
     </div>
 
     <h2 className="hif-sp-fade mt-4 text-[1.88rem] font-light tracking-[0.01em] text-white/90">
-      体験の質感を、言葉に<br />する。
+      “質感”を、静かに言葉へ。
     </h2>
 
     <p className="hif-sp-fade mt-4 text-[0.92rem] text-white/65 leading-[1.80]">
-      香りは “強さ” ではなく距離で伝わる。<br />
-      揺れた瞬間の余韻を静かに設計しました。
+      香りは強さではなく、距離で伝わる。<br />
+      揺れた瞬間の余韻を丁寧にデザインしました。
     </p>
 
     <div className="hif-sp-fade w-[46px] h-[1px] bg-white/16 mx-auto mt-8" />
@@ -235,14 +239,12 @@ export default function HowItFeels_sp() {
           shadow-[0_8px_34px_rgba(0,0,0,0.28)]
         "
       >
-        {/* メインの薄膜：1層に統合して軽量化 */}
         <div
           aria-hidden="true"
           className="absolute inset-0 opacity-[0.55] blur-[34px]"
           style={{ backgroundImage: f.veil }}
         />
 
-        {/* 小さめアクセント（控えめ） */}
         <div
           aria-hidden="true"
           className="absolute -top-[20%] -right-[20%] w-[52%] h-[52%] blur-[32px] opacity-[0.26]"
@@ -256,7 +258,6 @@ export default function HowItFeels_sp() {
             {f.label}
           </div>
 
-          {/* 呼吸をもっと繊細に（0.6px前後） */}
           <div className="mt-6 relative">
             <img
               src={f.image}
@@ -294,9 +295,8 @@ export default function HowItFeels_sp() {
     </p>
   </div>
 
-
   {/* --------------------------
-      REVIEWS（軽量化済）
+      REVIEWS
   --------------------------- */}
   <div className="relative z-10 mt-[11vh] w-[88%] mx-auto">
     <div className="text-center mb-[8vh]">

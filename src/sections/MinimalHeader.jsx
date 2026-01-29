@@ -9,37 +9,40 @@ export default function MinimalHeader() {
     const el = ref.current;
     if (!el) return;
 
-    // ===== 初回ふわっと出現 =====
+    /* -------------------------------------------------------
+       初回フェード（PCは少しゆったり・上質さを演出）
+    ------------------------------------------------------- */
     gsap.fromTo(
       el,
-      { opacity: 0, y: -16, filter: "blur(10px)" },
+      { opacity: 0, y: -18, filter: "blur(14px)" },
       {
         opacity: 1,
         y: 0,
         filter: "blur(0px)",
-        duration: 1.4,
+        duration: 1.35,
         ease: "power2.out",
-        delay: 0.4,
+        delay: 0.28,
       }
     );
 
-    // ===== スクロールでうっすら背景をつける =====
+    /* -------------------------------------------------------
+       スクロール膜（PC = SPより薄く長く伸びる）
+       “静かな透明膜 → ほんのり光膜”
+       bg-active クラスで切り替え
+    ------------------------------------------------------- */
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          // Hero 付近 → 完全透明
           el.classList.remove("bg-active");
         } else {
-          // Hero を離れた → 薄膜を付与
           el.classList.add("bg-active");
         }
       },
       { threshold: 0.1 }
     );
 
-    // hero セクション監視
     const hero = document.querySelector(".hero-section");
-    if (hero) io.observe(hero);
+    io.observe(hero || document.body);
 
     return () => io.disconnect();
   }, []);
@@ -49,35 +52,49 @@ export default function MinimalHeader() {
       ref={ref}
       className="
         fixed top-0 left-0 right-0 z-[99]
-        h-[70px]
-        px-8 flex items-center
-        backdrop-blur-[2px]
+        h-[72px]
+        px-10 flex items-center
         transition-all duration-500
+
+        /* 初期は透明 */
+        backdrop-blur-[1px]
       "
     >
-{/* ロゴ（Heroへ戻る） */}
-<a
-  href="#hero"
-  className="
-    group
-    block
-    transition-all
-    cursor-pointer
-  "
->
-  <img
-    src="roseveil-logo.png"
-    alt="ROSE VEIL"
-    className="
-      h-[80px]
-      opacity-90
-      group-hover:opacity-100
-      transition-all duration-500
-      select-none
-    "
-  />
-</a>
+      {/* -------------------------------------------
+          背景膜（PC版は“静かに光る黒ベール”）
+      ------------------------------------------- */}
+      <div
+        aria-hidden="true"
+        className="
+          absolute inset-0 pointer-events-none
+          opacity-0 bg-white/0
+          transition-all duration-500
 
+          /* Heroを離れたら淡い光膜に */
+          bg-active:bg-white/5
+          bg-active:backdrop-blur-[6px]
+        "
+      />
+
+      {/* -------------------------------------------
+          LOGO（PCは大きめ・静かな存在感）
+      ------------------------------------------- */}
+      <a
+        href="#hero"
+        className="group block cursor-pointer transition-opacity"
+      >
+        <img
+          src="/roseveil-logo.png"
+          alt="ROSE VEIL"
+          className="
+            h-[82px]
+            opacity-80
+            group-hover:opacity-100
+            transition-all duration-700
+            select-none
+          "
+        />
+      </a>
     </header>
   );
 }

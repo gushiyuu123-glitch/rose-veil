@@ -3,82 +3,91 @@
 @tailwind utilities;
 
 /* ==========================================================
-   GLOBAL — Rose Veil High-End Base
-   （位置・構造はそのまま、質感だけ最終調整）
+   GLOBAL — Rose Veil High-End Base（完全版）
+   “黒の温度 × 白の階調 × 薄膜 × 余白ゼロ” を統一
 ========================================================== */
 
 html, body {
   font-family: 'Pretendard', sans-serif;
 
-  /* ---- 黒の温度を +1% 温かくした「高級黒」 ---- */
-  background-color: #0b0b0b;
+  /* ---- 黒の温度：赤1%を含むラグジュアリー黒 ---- */
+  background-color: #0b0a0a;
 
-  /* ---- テキストの白も“完全白”ではなく上品白 ---- */
-  color: #f6f1e9;
+  /* ---- 白：柔らかい上品白（眩しくない広告白） ---- */
+  color: #f5f2eb;
 
-  /* ---- スクロール品質 ---- */
+  /* ---- スクロールの質感 ---- */
   scroll-behavior: smooth;
   overscroll-behavior: none;
 
-  /* ---- 文字のにじみを除去（高級フォント用） ---- */
+  /* ---- 高精細タイポのにじみ除去 ---- */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 
-  /* ---- 余白の気配を消す（UIのジャンプ感ゼロ） ---- */
   margin: 0;
   padding: 0;
-}
 
-/* ==========================================================
-   ROOT — 品のある“空気の膜”を全ページに
-========================================================== */
-:root {
-  /* 英字タイトル用の“ほの甘ゴールド” */
-  --eng-soft-gold: #e8dfd2;
-
-  /* 日本語コピーの“柔らかいベージュ白” */
-  --jp-warm-white: #f4f1ea;
-
-  /* ヘッダー＋背景用の“黒 + 赤み1%” */
-  --lux-black: #0b0a0a;
-
-  /* 全体の空気感（薄ローズ膜） */
-  --veil-rose: rgba(255, 242, 250, 0.035);
-}
-
-/* ==========================================================
-   BODY（微振動抑え・破綻ゼロ）
-========================================================== */
-body {
-  background-color: var(--lux-black);
-  color: var(--jp-warm-white);
-
-  /* スクロールで揺れない上質 UI */
+  /* ---- UI揺れ防止（高級サイトの必須） ---- */
   backface-visibility: hidden;
   -webkit-tap-highlight-color: transparent;
 }
 
 /* ==========================================================
-   IMG（全体の“生々しさ”をなくす）
+   ROOT VARIABLES — “空気の色” と “光膜の質感”
+========================================================== */
+:root {
+  /* 英字タイトル用の“薄い金膜” */
+  --eng-soft-gold: #e9dfd4;
+
+  /* 日本語コピー専用の“柔ベージュ白” */
+  --jp-warm-white: #f5f2eb;
+
+  /* 背景黒（少し赤味を含ませる） */
+  --lux-black: #0b0a0a;
+
+  /* 全体に漂う薄いローズ膜（黒を濁らせず上品） */
+  --veil-rose: rgba(255, 240, 248, 0.032);
+
+  /* 影と光の“やわらかさ”係数 */
+  --soft-shadow: rgba(0, 0, 0, 0.28);
+  --soft-light: rgba(255, 255, 255, 0.14);
+}
+
+/* ==========================================================
+   IMG — 写真の“生々しさ”を0.5%だけ消してフィルム化
 ========================================================== */
 img {
   -webkit-user-drag: none;
   user-select: none;
   pointer-events: none;
 
-  /* ほんのりフィルム質感（高級系） */
+  /* --- フィルム質感（高級ブランドの透明感） --- */
   image-rendering: auto;
+  filter: brightness(1.01) contrast(0.99);
 }
-html {
-  scroll-behavior: smooth;
-}
-/* globals.css */
+
+/* ==========================================================
+   TEXT BLOCK — “余白と甘さのある文章用”
+========================================================== */
 .text-block {
-  @apply whitespace-pre-line leading-[1.9] tracking-[0.02em] text-white/80;
+  @apply whitespace-pre-line leading-[1.9] tracking-[0.02em];
+  color: var(--jp-warm-white);
+  opacity: 0.82;
 }
-/* 薄膜状態（スクロール後） */
+
+/* ==========================================================
+   薄膜状態（ヘッダーのスクロール後）
+========================================================== */
 .bg-active {
+  /* 深夜の光膜：ローズ黒 × 薄ベール × blur */
   background: rgba(20, 12, 16, 0.22);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px) saturate(140%);
+}
+
+/* ==========================================================
+   全UIの色・背景の統一速度
+========================================================== */
+* {
+  transition: background-color 0.32s ease, color 0.32s ease;
 }

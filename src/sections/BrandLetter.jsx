@@ -6,7 +6,7 @@ export default function BrandLetter() {
   const rootRef = useRef(null);
 
   /* ==============================================
-     FADE-IN（呼吸系の静かなフェード）
+     FADE-IN（静かな呼吸）
   ============================================== */
   useEffect(() => {
     const el = rootRef.current;
@@ -26,8 +26,8 @@ export default function BrandLetter() {
           opacity: 1,
           y: 0,
           filter: "blur(0px)",
-          duration: 1.4,
-          ease: "power2.out",
+          duration: 1.45,
+          ease: "power3.out",
           stagger: 0.16,
         });
 
@@ -48,82 +48,75 @@ export default function BrandLetter() {
         text-black
         overflow-hidden
 
-        /* ★ 最背面の“にじむ薄背景” */
         bg-[url('/letter/soft-back-roseveil.png')]
-        bg-cover bg-center
-        bg-no-repeat bg-fixed
+        bg-cover bg-center bg-no-repeat bg-fixed
       "
     >
-      {/* =====================================================
-          1) 紙ベース（紙テクスチャ）
-      ===================================================== */}
+      {/* 1) 紙ベース */}
       <div
         aria-hidden="true"
         className="
-          absolute inset-0
-          z-[1]
+          absolute inset-0 z-[1]
           bg-[url('/letter/paper-base.png')]
           bg-cover bg-center
-          opacity-[0.2]
+          opacity-[0.18]
         "
       />
 
-      {/* =====================================================
-          2) にじませ層（Rose Veil の世界観の基底）
-      ===================================================== */}
+      {/* 2) Rose Veil のにじみ層 */}
       <div
         aria-hidden="true"
         className="
-          absolute inset-0
-          z-[2]
+          absolute inset-0 z-[2]
           bg-[url('/letter/soft-back-roseveil.png')]
-          bg-cover bg-[center_top_16%]
-          opacity-[0.22]
-          blur-[18px]
-          scale-[1.08]
-          brightness-[1.06]
+          bg-cover bg-[center_top_14%]
+          opacity-[0.26]
+          blur-[22px]
+          scale-[1.06]
+          brightness-[1.05]
           pointer-events-none
         "
       />
 
-      {/* =====================================================
-          3) 香り膜（薄赤）
-      ===================================================== */}
+      {/* 3) 香りの淡い赤膜 */}
       <div
         aria-hidden="true"
         className="
-          absolute inset-0
-          z-[3]
-          bg-[radial-gradient(circle_at_62%_18%,rgba(255,180,195,0.12),transparent)]
-          blur-[90px]
-          opacity-[0.18]
+          absolute inset-0 z-[3]
+          opacity-[0.22]
+          blur-[95px]
+          pointer-events-none
         "
+        style={{
+          background: `
+            radial-gradient(900px 700px at 60% 20%, rgba(255,150,170,0.16), transparent 70%),
+            radial-gradient(1100px 880px at 48% 78%, rgba(170,200,255,0.14), transparent 70%)
+          `,
+        }}
       />
 
-      {/* =====================================================
-          4) 金黒の影（夕方の香りの温度）
-      ===================================================== */}
+      {/* 4) 黒金の深度膜 */}
       <div
         aria-hidden="true"
         className="
-          absolute inset-0
-          z-[3]
-          bg-[radial-gradient(circle_at_48%_72%,rgba(60,40,45,0.08),transparent)]
-          blur-[120px]
+          absolute inset-0 z-[3]
           opacity-[0.16]
+          blur-[120px]
         "
+        style={{
+          background: `
+            radial-gradient(1000px 760px at 50% 58%, rgba(50,40,45,0.08), transparent 70%)
+          `,
+        }}
       />
 
-      {/* =====================================================
-          5) 微粒子
-      ===================================================== */}
+      {/* 5) 微粒子フィルム */}
       <div
         aria-hidden="true"
         className="
-          absolute inset-0
-          z-[3]
+          absolute inset-0 z-[4]
           bg-[url('/grain.png')] bg-repeat
-          opacity-[0.18]
+          opacity-[0.12]
           mix-blend-soft-light
         "
       />
@@ -137,7 +130,7 @@ export default function BrandLetter() {
             bl-fade
             text-[0.82rem]
             tracking-[0.34em]
-            text-[rgba(60,50,55,0.48)]
+            text-[rgba(60,50,55,0.46)]
           "
         >
           A LETTER FROM ROSE VEIL
@@ -150,10 +143,10 @@ export default function BrandLetter() {
             bl-fade mt-6
             text-[2.15rem] md:text-[2.35rem]
             font-light tracking-[0.02em]
-            text-[rgba(40,30,35,0.85)]
+            text-[rgba(40,30,35,0.86)]
           "
         >
-          静かに、美しさの輪郭を整える手紙。
+          あなたの美しさを願う、ひとつの手紙。
         </p>
       </div>
 
@@ -167,15 +160,14 @@ export default function BrandLetter() {
           text-center
         "
       >
-        {/* 奥行きの光膜 */}
+        {/* 奥行き膜 */}
         <div
           aria-hidden="true"
           className="
-            absolute inset-0
-            z-[3]
-            bg-[radial-gradient(circle,rgba(255,230,240,0.22),transparent)]
-            blur-[90px]
-            opacity-[0.28]
+            absolute inset-0 z-[3]
+            bg-[radial-gradient(circle,rgba(255,230,240,0.24),transparent)]
+            blur-[95px]
+            opacity-[0.26]
           "
         />
 
@@ -183,24 +175,27 @@ export default function BrandLetter() {
           className="
             bl-fade relative
             text-[1.02rem]
-            text-[rgba(40,35,40,0.78)]
+            text-[rgba(40,35,40,0.82)]
             leading-[2.05]
             whitespace-pre-line
-            tracking-wide
-            font-light
+            font-light tracking-wide
           "
         >
-{`髪が揺れた瞬間にだけふわりと漂う、静かで上品な香り。
+{`あなたがそっと前を向けるように。
+日々の輪郭が、少しでも美しく整うように。
 
-Rose Veil は、生活の“輪郭”をほんの少しだけ美しくするための処方です。
+Rose Veil は、香りと質感で
+“雰囲気そのもの”を優しく底上げするために生まれた一本です。
 
-香りは強さではなく、距離で伝わる。
-触れた瞬間の質感、乾いたあとの余韻。
+強さではなく、距離で伝わる香り。
+やわらかく整う手触り。
+乾いたあとに残る、ほのかな余韻。
 
-忙しい朝も、ふとした瞬間も、
-あなたの背中をそっと押すように。
+これは、ほんの少しだけ
+あなたの美しさを支えたいという願いを込めた手紙です。
 
-Rose Veil が、あなたを静かに包みます。`}
+忙しい日も、余裕がない朝も、
+あなたを静かに後押しできますように。`}
         </p>
 
         <div className="bl-fade w-[110px] h-[1px] bg-black/15 mx-auto mt-10" />
@@ -210,7 +205,7 @@ Rose Veil が、あなたを静かに包みます。`}
             bl-fade mt-6
             text-[0.92rem]
             tracking-[0.22em]
-            text-[rgba(40,40,45,0.55)]
+            text-[rgba(40,40,45,0.52)]
           "
         >
           ROSE VEIL FRAGRANCE SHAMPOO

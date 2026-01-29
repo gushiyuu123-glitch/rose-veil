@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 /* ============================================================
-   一押しコピー（100点版／世界観30：購買70）
+   一押しコピー（世界観 × 商業バランス最適）
 ============================================================ */
 const breathCopy = `
 髪がふわりと揺れた瞬間に漂う “清潔感のある香り” は、
@@ -32,7 +32,7 @@ export default function ConceptSection() {
   const sectionRef = useRef(null);
 
   /* ============================================================
-      背景モデル（にじみ浮上フェード）
+      背景モデル（にじみ × 浮上フェード）
   ============================================================ */
   useEffect(() => {
     const el = sectionRef.current;
@@ -42,18 +42,18 @@ export default function ConceptSection() {
       el.querySelector(".model-bg"),
       { opacity: 0, scale: 1.08, filter: "blur(28px)" },
       {
-        opacity: 0.82,
+        opacity: 0.86,
         scale: 1,
-        filter: "blur(5px)",
-        duration: 3.2,
+        filter: "blur(6px)",
+        duration: 3.0,
         ease: "sine.out",
-        scrollTrigger: { trigger: el, start: "top 88%" },
+        scrollTrigger: { trigger: el, start: "top 85%" },
       }
     );
   }, []);
 
   /* ============================================================
-      メインコピー（中央浮上）
+      メインコピー（静かに中央浮上）
   ============================================================ */
   useEffect(() => {
     const el = sectionRef.current;
@@ -61,21 +61,21 @@ export default function ConceptSection() {
 
     gsap.fromTo(
       el.querySelector(".breath-copy"),
-      { opacity: 0, y: 26, filter: "blur(18px)" },
+      { opacity: 0, y: 30, filter: "blur(20px)" },
       {
         opacity: 1,
         y: 0,
         filter: "blur(0px)",
-        duration: 1.8,
+        duration: 1.75,
         ease: "power2.out",
-        scrollTrigger: { trigger: el, start: "top 70%" },
+        scrollTrigger: { trigger: el, start: "top 72%" },
       }
     );
   }, []);
 
   return (
     <section
-      id="purchase-guide" // ← 最終判断セクションID
+      id="purchase-guide"
       ref={sectionRef}
       className="
         relative w-full py-[26vh]
@@ -84,62 +84,74 @@ export default function ConceptSection() {
       "
     >
       {/* ============================================================
-          背景モデル
+          背景モデル（髪 × 余韻）
       ============================================================ */}
       <div
         className="
           model-bg absolute inset-0
-          bg-[url('/model-hair-flow2.png')]
+          bg-[url('/model-hair-flow1.png')]
           bg-cover bg-center
         "
       />
 
       {/* ============================================================
-          レビュー → コンセプトを滑らかに繋ぐ淡紅ミスト（最上層）
+          淡紅ミスト（上部の香りの余韻）
       ============================================================ */}
       <div
         className="
           absolute inset-x-0 top-0 h-[38vh]
-          opacity-[0.18]
-          bg-[radial-gradient(
-            900px_620px_at_50%_0%,
-            rgba(255,150,170,0.45),
-            rgba(255,255,255,0)
-          )]
+          opacity-[0.20]
           blur-[110px]
           pointer-events-none
         "
+        style={{
+          background: `
+            radial-gradient(
+              900px 620px at 50% 0%,
+              rgba(255,150,170,0.48),
+              rgba(255,255,255,0)
+            )
+          `,
+        }}
       />
 
       {/* ============================================================
-          白膜（基底の空気）
+          白膜（基底の空気）× 桜ピンク膜 × ホワイト光膜
       ============================================================ */}
       <div className="absolute inset-0 bg-white/55 backdrop-blur-[1px]" />
 
-      {/* 淡い桜ピンク膜 */}
+      {/* 桜ピンク膜 */}
       <div
         className="
           absolute inset-0
-          bg-[radial-gradient(
-            circle_at_60%_30%,
-            rgba(255,170,190,0.22),
-            rgba(255,255,255,0)
-          )]
           blur-[95px]
         "
+        style={{
+          background: `
+            radial-gradient(
+              circle_at_60%_30%,
+              rgba(255,170,190,0.22),
+              rgba(255,255,255,0)
+            )
+          `,
+        }}
       />
 
-      {/* ホワイトライト膜 */}
+      {/* ホワイト光膜 */}
       <div
         className="
           absolute inset-0
-          bg-[radial-gradient(
-            circle_at_50%_20%,
-            rgba(255,240,245,0.38),
-            rgba(255,255,255,0)
-          )]
           blur-[70px]
         "
+        style={{
+          background: `
+            radial-gradient(
+              circle_at_50%_20%,
+              rgba(255,240,245,0.38),
+              rgba(255,255,255,0)
+            )
+          `,
+        }}
       />
 
       {/* ============================================================
@@ -178,28 +190,31 @@ export default function ConceptSection() {
       </div>
 
       {/* ============================================================
-          本文
+          本文（内部に光膜レイヤー）
       ============================================================ */}
       <div
         className="
           breath-copy relative z-10 mx-auto
           w-[90%] max-w-[900px]
-          text-center
-           px-6
+          text-center px-6
         "
       >
-        {/* 内部淡膜 */}
+        {/* 内部淡膜（深度UP） */}
         <div
           className="
             absolute inset-0
-            bg-[radial-gradient(
-              circle,
-              rgba(255,215,230,0.24),
-              rgba(255,255,255,0)
-            )]
-            blur-[80px]
-            opacity-[0.42]
+            blur-[85px]
+            opacity-[0.1]
           "
+          style={{
+            background: `
+              radial-gradient(
+                circle,
+                rgba(255,215,230,0.26),
+                rgba(255,255,255,0)
+              )
+            `,
+          }}
         />
 
         <p
@@ -217,7 +232,7 @@ export default function ConceptSection() {
       </div>
 
       {/* ============================================================
-          下層（選択誘導）
+          下層（誘導・選択）
       ============================================================ */}
       <div
         className="
@@ -225,20 +240,24 @@ export default function ConceptSection() {
           flex flex-col items-center text-center px-6
         "
       >
-        {/* 区切りの淡膜 */}
+        {/* 区切りの淡い膜 */}
         <div
           className="
             absolute top-[-14vh] left-0 right-0 h-[32vh]
-            bg-[radial-gradient(
-              ellipse_at_center,
-              rgba(230,200,210,0.22),
-              rgba(255,255,255,0)
-            )]
             blur-[90px] opacity-[0.55]
           "
+          style={{
+            background: `
+              radial-gradient(
+                ellipse_at_center,
+                rgba(230,200,210,0.22),
+                rgba(255,255,255,0)
+              )
+            `,
+          }}
         />
 
-        {/* 上の区切りライン */}
+        {/* ライン */}
         <div className="w-[62%] max-w-[900px] h-[1px] bg-[rgba(60,50,55,0.18)]" />
 
         <p
@@ -275,31 +294,27 @@ export default function ConceptSection() {
 
         <div className="mt-10 w-[1px] h-[40px] bg-[rgba(60,50,55,0.25)] rounded-full" />
 
-        {/* ============================================================
-            ★ “選びなおす” リンク（視認性最適化版）
-        ============================================================ */}
+        {/* CTA（視認性UP版） */}
         <a
           href="#products"
           className="
             mt-10
             text-[0.92rem]
             tracking-[0.20em]
-            text-[rgba(90,80,90,0.60)]     /* ← 灰桜で視認性UP */
+            text-[rgba(90,80,90,0.60)]
             hover:text-[rgba(90,80,90,0.85)]
             transition-all
             relative
             pb-2
           "
-          style={{ cursor: 'pointer' }}
         >
           WHITE・VEIL・BLUE を選びなおす
-
           <span
             className="
               absolute left-1/2 -bottom-[1px]
               w-[84px] h-[1px]
               bg-[rgba(90,80,90,0.28)]
-              transform -translate-x-1/2
+              -translate-x-1/2
             "
           />
         </a>

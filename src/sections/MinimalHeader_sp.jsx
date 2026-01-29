@@ -9,25 +9,27 @@ export default function MinimalHeader_sp() {
     const el = ref.current;
     if (!el) return;
 
-    /* ================================
-       初回フェード（さらに軽く・薄く）
-    ================================ */
+    /* --------------------------------------------
+       初回フェード（SP向けに最も自然な“浮上”）
+    -------------------------------------------- */
     gsap.fromTo(
       el,
-      { opacity: 0, y: -10, filter: "blur(12px)" },
+      { opacity: 0, y: -12, filter: "blur(14px)" },
       {
         opacity: 1,
         y: 0,
         filter: "blur(0px)",
-        duration: 0.9,
+        duration: 1.0,
         ease: "power2.out",
-        delay: 0.22,
+        delay: 0.18,
       }
     );
 
-    /* ================================
-       スクロール薄膜（極薄）
-    ================================ */
+    /* --------------------------------------------
+       SCROLL：背景膜（極薄 → ほんのり発光）
+       - bg-active-sp が付くと光膜が出る
+       - Rose Veil の静かな“膜”を再現
+    -------------------------------------------- */
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -53,24 +55,31 @@ export default function MinimalHeader_sp() {
         h-[62px]
         px-5 flex items-center
         transition-all duration-500
-        backdrop-blur-[1px]     /* ← さらに薄い滲み */
+
+        /* ★ ほぼ透明のまま空気だけ残す */
+        backdrop-blur-[1px]
       "
     >
-      {/* ◆ 極薄光膜：4%  */}
+      {/* --------------------------------------------
+          背景「極薄光膜」— Rose Veil の静けさ
+          発火は .bg-active-sp に紐づく
+      -------------------------------------------- */}
       <div
         aria-hidden="true"
         className="
-          pointer-events-none
-          absolute inset-0
-          opacity-0
+          absolute inset-0 pointer-events-none
+          opacity-0 bg-white/0
           transition-all duration-500
-          bg-white/0
-          bg-active-sp:bg-white/4           /* ← 8% → 4% */
-          bg-active-sp:backdrop-blur-[2px]  /* ← blur も最小に */
+
+          /* ★ Scroll 発火版（膜の濃度最小に統一） */
+          bg-active-sp:bg-white/4
+          bg-active-sp:backdrop-blur-[3px]
         "
       />
 
-      {/* ロゴ：存在を薄く・hoverで光る */}
+      {/* --------------------------------------------
+          LOGO — 余白の中で“静かに光る”
+      -------------------------------------------- */}
       <a
         href="#hero"
         className="group block cursor-pointer transition-opacity"
@@ -80,7 +89,7 @@ export default function MinimalHeader_sp() {
           alt="ROSE VEIL"
           className="
             h-[52px]
-            opacity-85               /* ← 90 → 80 */
+            opacity-80
             group-hover:opacity-100
             transition-all duration-500
             select-none

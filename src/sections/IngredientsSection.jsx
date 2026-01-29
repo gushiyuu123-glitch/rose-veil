@@ -4,61 +4,70 @@ import gsap from "gsap";
 
 const ING = {
   aestheticCopy: `
-アミノ酸のやわらかな泡が、髪の表面を乱さずに余分な汚れだけを落とす。
-ローズの香りは体温でゆっくりと開き、揺れた瞬間にだけ “距離の美しさ” を残す。
+アミノ酸のやわらかな泡が、髪の表面を乱さずに余分なだけをそっと落とす。
 
-シアバターと植物オイルは、軽い艶膜をつくり、触れた瞬間の質感を静かに底上げする。
-派手さよりも、余白と質感。香りと手触りの“輪郭”が、日常の印象をそっと整えるための処方です。
+ローズは体温にふれた瞬間からゆっくりとほどけ、
+揺れた一瞬にだけ “距離の美しさ” を淡く残すように設計されています。
+
+シアバターと植物オイルは、光を薄く受ける艶膜となり、
+触れた瞬間の質感を静かに底上げする。
+
+派手さではなく、質感と静けさ。
+香りと手触りの“輪郭”が日常の印象をそっと整える処方です。
 `.trim(),
 
   categories: [
     {
       key: "active",
       label: "ACTIVE CORE",
-      title: "香りと質感の中心成分",
-      note: "「香りの輪郭」と「髪の整い」を支える核",
+      title: "香りと質感の“核”",
+      note: "“香りの輪郭” と “髪の整い” を支える中心レイヤー",
       items: [
-        { name: "ローズアブソリュート", role: "体温で開く深度のある香り" },
-        { name: "ホワイトローズエキス", role: "清潔感のある甘さ・透明感" },
-        { name: "ブルーローズリーフ抽出液", role: "静かな透明感・余韻の整え" },
-        { name: "アミノ酸系洗浄成分", role: "やわらかい泡で負担を抑える" },
-        { name: "加水分解ケラチン", role: "髪の芯を補強し、まとまりへ" },
-        { name: "加水分解シルク", role: "触感のなめらかさ・光沢感" },
+        { name: "ローズアブソリュート", role: "体温で静かにひらき、深度ある香りをつくる。" },
+        { name: "ホワイトローズエキス", role: "清潔感のある甘さと透明感を与える。" },
+        { name: "ブルーローズリーフ抽出液", role: "透明感と余韻をやわらかく整える。" },
+        { name: "アミノ酸系洗浄成分", role: "やわらかい泡で負担を抑える。" },
+        { name: "加水分解ケラチン", role: "髪の芯を補強し、まとまりを支える。" },
+        { name: "加水分解シルク", role: "なめらかな触感と光の密度を与える。" },
       ],
       accent: "rgba(255,255,255,0.42)",
     },
     {
       key: "texture",
       label: "TEXTURE LAYER",
-      title: "艶膜・質感レイヤー",
-      note: "“しっとり” と “さらり” を両立する設計",
+      title: "薄い艶膜のレイヤー",
+      note: "しっとりと軽さを両立する質感レイヤー",
       items: [
-        { name: "シアバター", role: "軽い艶膜を形成し、手触りを整える" },
-        { name: "ホホバオイル", role: "重くならないまとまり・保護" },
-        { name: "アルガンオイル", role: "艶の深度・光の密度を補強" },
-        { name: "ローズヒップオイル", role: "透明感のある輝き・柔らかさ" },
+        { name: "シアバター", role: "軽い艶膜をつくり、手触りを整える。" },
+        { name: "ホホバオイル", role: "重くならずにまとまりを与える。" },
+        { name: "アルガンオイル", role: "艶の深度と光の密度を補強する。" },
+        { name: "ローズヒップオイル", role: "透明感のある輝きと柔らかさをつくる。" },
       ],
       accent: "rgba(255,90,140,0.38)",
     },
     {
       key: "care",
       label: "SCALP & MOISTURE",
-      title: "保湿・頭皮ケア",
-      note: "“清潔感” を支える、静かな安心設計",
+      title: "清潔感を支える静かなレイヤー",
+      note: "落ち着いた潤いで、髪と頭皮を支える設計",
       items: [
-        { name: "パンテノール", role: "保湿・コンディショニング" },
-        { name: "アロエベラエキス", role: "うるおい・穏やかな鎮静" },
-        { name: "カミツレ花エキス", role: "柔らかさ・整肌" },
-        { name: "海藻エキス", role: "保水膜・みずみずしさ" },
+        { name: "パンテノール", role: "保湿とコンディショニングを支える。" },
+        { name: "アロエベラエキス", role: "穏やかな潤いを与える。" },
+        { name: "カミツレ花エキス", role: "柔らかさと整肌を与える。" },
+        { name: "海藻エキス", role: "みずみずしい保水膜をつくる。" },
       ],
       accent: "rgba(140,175,255,0.36)",
     },
   ],
 
   closeCopy: `
-ROSE シリーズの処方は、「香り × 質感 × 持続」を静かに底上げするための 3レイヤー構造。
-WHITE は “軽さと清潔感”、VEIL は “艶と深紅の余韻”、BLUE は “透明感と潤い”。
-あなたの髪質と雰囲気に合う一本をお選びください。
+ROSE シリーズの処方は、「香り × 質感 × 持続」を静かに底上げする三層構造。
+
+WHITE は “軽さと清潔感”
+VEIL は “深紅の艶と余韻”
+BLUE は “透明感とみずみずしさ”
+
+あなたの雰囲気と髪質に寄り添う一本を、静かに選んでください。
 `.trim(),
 };
 
@@ -123,8 +132,7 @@ export default function IngredientsSection() {
     <section
       ref={sectionRef}
       className="
-        relative w-full
-        bg-black text-white
+        relative w-full bg-black text-white
         pt-[18vh] pb-[18vh]
         overflow-hidden
       "
@@ -134,21 +142,21 @@ export default function IngredientsSection() {
       ============================================ */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none select-none z-[1]">
 
-{/* BACKGROUND IMAGE (Ultra subtle) */}
-<div
-  className="
-    absolute inset-0
-    opacity-[0.12]
-    bg-center bg-cover
-    blur-[80px]
-    mix-blend-soft-light
-  "
-  style={{
-    backgroundImage: "url('/textures/ing-bg.png')",
-  }}
-/>
+        {/* BACKGROUND IMAGE */}
+        <div
+          className="
+            absolute inset-0
+            opacity-[0.12]
+            bg-center bg-cover
+            blur-[80px]
+            mix-blend-soft-light
+          "
+          style={{
+            backgroundImage: "url('/textures/ing-bg.png')",
+          }}
+        />
 
-        {/* DEEP RED (Right bottom) */}
+        {/* DEEP RED */}
         <div
           className="
             absolute inset-0 opacity-[0.22] blur-[120px] mix-blend-screen
@@ -164,7 +172,7 @@ export default function IngredientsSection() {
           }}
         />
 
-        {/* WHITE LAB LIGHT */}
+        {/* WHITE LIGHT */}
         <div
           className="
             absolute inset-0 opacity-[0.25] blur-[100px] mix-blend-lighten
@@ -196,7 +204,7 @@ export default function IngredientsSection() {
           }}
         />
 
-        {/* Soft grain (existing) */}
+        {/* Soft grain */}
         <div
           className="absolute inset-0 opacity-[0.035] mix-blend-soft-light"
           style={{
@@ -214,12 +222,12 @@ export default function IngredientsSection() {
         </div>
 
         <h2 className="mt-4 text-[2.35rem] md:text-[2.55rem] font-light tracking-[0.03em] text-white/96">
-          美しさの裏側にある、処方の設計。
+          美しさの輪郭をつくる、静かな処方設計。
         </h2>
 
         <p className="mt-5 text-white/70 text-[1.02rem] leading-[1.9]">
-          香りは “空気” 、質感は “膜” 。<br className="hidden md:block" />
-          ROSE は、静かな上質さを支える成分設計でつくられています。
+          香りは “空気” 、質感は “薄い膜”。<br className="hidden md:block" />
+          ROSE は、その二つが静かに重なるようにつくられています。
         </p>
 
         <div className="mt-10 mx-auto w-[64px] h-[1px] bg-white/25" />

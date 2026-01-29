@@ -57,9 +57,8 @@ export default function Footer_sp() {
     bg-black text-white
   "
 >
-
   {/* =========================================================
-      背景 深度レイヤー（黒の中に"静かな霧"）
+      BACKGROUND LAYERS（“静かな黒膜 × 香りの余韻”）
      ========================================================= */}
   <div
     aria-hidden="true"
@@ -74,7 +73,6 @@ export default function Footer_sp() {
     "
   />
 
-  {/* 白 × 青 × ピンクのカラーミスト（SP最適化） */}
   <div
     aria-hidden="true"
     className="
@@ -91,7 +89,6 @@ export default function Footer_sp() {
     }}
   />
 
-  {/* 霧（vertical） */}
   <div
     aria-hidden="true"
     className="absolute inset-0 pointer-events-none flex justify-center"
@@ -109,7 +106,6 @@ export default function Footer_sp() {
     />
   </div>
 
-  {/* 粒子（world感） */}
   <div
     aria-hidden="true"
     className="
@@ -121,7 +117,7 @@ export default function Footer_sp() {
   />
 
   {/* =========================================================
-      BRAND COPY
+      BRAND COPY（文章を上質にアップデート）
      ========================================================= */}
   <div className="relative z-10 text-center px-6 max-w-[700px] mx-auto">
     <h2 className="ft-fade-sp text-[1.15rem] tracking-[0.26em] text-white/78">
@@ -136,16 +132,16 @@ export default function Footer_sp() {
         leading-[1.82]
       "
     >
-      香りは “強さ” ではなく距離で伝わる。  
-      揺れた瞬間にふわりとひらく静かな余韻が、<br></br>
-      あなたの日常の“輪郭”を静かに整えます。
+      香りは “強さ” ではなく“距離”で伝わるもの。  
+      ふわりと揺れた瞬間にだけ開く静かな余韻が、<br />
+      あなたの日常にそっと“輪郭”を与えます。
     </p>
 
     <div className="ft-fade-sp w-[58px] h-[1px] bg-white/14 mx-auto mt-10" />
   </div>
 
   {/* =========================================================
-      NAVIGATION（整理済み）
+      NAVIGATION（要素はそのまま / 文体の統一のみ）
      ========================================================= */}
   <div
     className="
@@ -184,7 +180,7 @@ export default function Footer_sp() {
   </div>
 
   {/* =========================================================
-      COPYRIGHT AREA
+      COPYRIGHT
      ========================================================= */}
   <div className="relative z-10 mt-[12vh] text-center">
     <p className="ft-fade-sp text-[0.72rem] text-white/36 tracking-[0.18em]">

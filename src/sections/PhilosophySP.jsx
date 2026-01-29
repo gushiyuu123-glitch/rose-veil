@@ -5,61 +5,62 @@ import gsap from "gsap";
 export default function PhilosophySP() {
   const sectionRef = useRef(null);
 
-useEffect(() => {
-  const el = sectionRef.current;
-  if (!el) return;
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
 
-  const texts = el.querySelectorAll(".sp-philo-text");
-  const veils = el.querySelectorAll(".sp-philo-veil");
+    const texts = el.querySelectorAll(".sp-philo-text");
+    const veils = el.querySelectorAll(".sp-philo-veil");
 
-  // 初期状態
-  gsap.set([...texts, ...veils], {
-    opacity: 0,
-    y: 18,
-    filter: "blur(10px)",
-  });
+    /* ======================================
+       初期状態（揺れない・高級）
+    ====================================== */
+    gsap.set([...texts, ...veils], {
+      opacity: 0,
+      y: 20,
+      filter: "blur(10px)",
+    });
 
-  const io = new IntersectionObserver(
-    ([entry]) => {
-      if (!entry.isIntersecting) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
 
-      /* ------------------------------
-         光膜（ふわっと後ろから）
-      ------------------------------ */
-      veils.forEach((v, i) => {
-        gsap.to(v, {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          filter: "blur(0px)",
-          duration: 1.4,
-          ease: "power2.out",
-          delay: 0.12 + i * 0.12,
+        /* ======================================
+           光膜（薄い香り → ふわっと出る）
+        ====================================== */
+        veils.forEach((v, i) => {
+          gsap.to(v, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            filter: "blur(0px)",
+            duration: 1.4,
+            ease: "power2.out",
+            delay: 0.12 + i * 0.14,
+          });
         });
-      });
 
-      /* ------------------------------
-         テキスト（順番に静かに出す）
-      ------------------------------ */
-      texts.forEach((t, i) => {
-        gsap.to(t, {
-          opacity: 1,
-          y: 0,
-          filter: "blur(0px)",
-          duration: 1.2,
-          ease: "power2.out",
-          delay: 0.28 + i * 0.10, // ← ここが“パッパ防止”の心臓
+        /* ======================================
+           テキスト（静けさ × 余白の演出）
+        ====================================== */
+        texts.forEach((t, i) => {
+          gsap.to(t, {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 1.25,
+            ease: "power2.out",
+            delay: 0.32 + i * 0.12,
+          });
         });
-      });
 
-      io.disconnect();
-    },
-    { threshold: 0.24 } // ← ちょい遅めに発火
-  );
+        io.disconnect();
+      },
+      { threshold: 0.26 }
+    );
 
-  io.observe(el);
-}, []);
-
+    io.observe(el);
+  }, []);
 
   return (
     <section
@@ -71,10 +72,9 @@ useEffect(() => {
         pt-[18vh] pb-[14vh]
       "
     >
-
-      {/* ================================
-          左右の薔薇（SPは気配だけ）
-      ================================ */}
+      {/* ======================================
+          左右の薔薇（気配だけ / SP最適）
+      ====================================== */}
       <img
         src="/world/rose-left.png"
         alt=""
@@ -91,45 +91,49 @@ useEffect(() => {
         alt=""
         className="
           absolute right-[1%] bottom-[16%]
-          w-[180px] opacity-[0.14]
+          w-[180px] opacity-[0.13]
           blur-[14px]
           pointer-events-none select-none
         "
       />
 
-      {/* ================================
-          光膜
-      ================================ */}
+      {/* ======================================
+          光膜（Rose Veil SP：赤み1%・香り0.5%）
+      ====================================== */}
       <div
         className="
           sp-philo-veil
-          absolute top-[10%] left-[12%]
-          w-[240px] h-[240px]
-          bg-[radial-gradient(circle,rgba(255,210,230,0.16),rgba(255,210,230,0))]
-          blur-[70px]
-          opacity-[0.36]
+          absolute top-[20%] left-[12%]
+          w-[140px] h-[140px]
+          blur-[78px]
+          opacity-[0.27]
+          pointer-events-none
         "
+        style={{
+          background:
+            "radial-gradient(circle, rgba(255,215,230,0.15), rgba(255,215,230,0))",
+        }}
       />
+
       <div
         className="
           sp-philo-veil
           absolute bottom-[12%] right-[10%]
-          w-[220px] h-[220px]
-          bg-[radial-gradient(circle,rgba(255,185,215,0.12),rgba(255,185,215,0))]
-          blur-[75px]
-          opacity-[0.28]
+          w-[140px] h-[140px]
+          blur-[78px]
+          opacity-[0.27]
+          pointer-events-none
         "
+        style={{
+          background:
+            "radial-gradient(circle, rgba(255,190,210,0.12), rgba(255,190,210,0))",
+        }}
       />
 
-      {/* ================================
-          TEXT BLOCK（黄金比改行）
-      ================================ */}
-      <div
-        className="
-          relative z-10
-          w-[90%] mx-auto text-center
-        "
-      >
+      {/* ======================================
+          TEXT BLOCK（最高の改行 × バランス）
+      ====================================== */}
+      <div className="relative z-10 w-[90%] mx-auto text-center">
         {/* TITLE */}
         <h2
           className="
@@ -143,21 +147,21 @@ useEffect(() => {
           style={{
             WebkitBackgroundClip: "text",
             backgroundImage:
-              "linear-gradient(90deg,rgba(255,255,255,1),rgba(255,215,240,0.8),rgba(220,225,255,0.7),rgba(255,255,255,1))",
+              "linear-gradient(90deg,rgba(255,255,255,1),rgba(255,218,240,0.85),rgba(230,230,255,0.72),rgba(255,255,255,1))",
           }}
         >
           OUR PHILOSOPHY
         </h2>
 
-        {/* メインコピー */}
+        {/* MAIN COPY */}
         <p
           className="
             sp-philo-text
             text-[1.05rem]
             tracking-[0.04em]
             mb-[6vh]
-            text-[rgb(248,242,238)]
             leading-[1.9]
+            text-[rgb(248,242,238)]
             [text-wrap:balance]
           "
         >
@@ -167,9 +171,9 @@ useEffect(() => {
           である。”
         </p>
 
-        {/* ================================
-            3ブロック
-        ================================ */}
+        {/* ======================================
+            3 BLOCKS
+        ====================================== */}
         <div
           className="
             space-y-[8vh]
@@ -179,7 +183,7 @@ useEffect(() => {
             [text-wrap:balance]
           "
         >
-          {[ 
+          {[
             {
               num: "01",
               title: "SILENT FRAGRANCE",
@@ -197,6 +201,7 @@ useEffect(() => {
             },
           ].map((b, i) => (
             <div key={i} className="sp-philo-text">
+              {/* Block Header */}
               <div className="flex items-center gap-3 mb-[1.2vh] justify-center">
                 <span className="text-[0.72rem] tracking-[0.22em] text-white/45">
                   {b.num}
@@ -207,6 +212,7 @@ useEffect(() => {
                 </h3>
               </div>
 
+              {/* Body */}
               <p className="text-white/90 text-[0.98rem] leading-[1.95]">
                 {b.body}
               </p>

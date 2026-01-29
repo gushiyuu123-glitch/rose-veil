@@ -1,3 +1,4 @@
+// src/sections/Philosophy.jsx
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
@@ -31,7 +32,7 @@ export default function Philosophy() {
         );
 
         /* ============================
-           右ローズ（深度の影を作る役割）
+           右ローズ（深度の影を作る）
         ============================ */
         tl.fromTo(
           el.querySelector(".rose-right"),
@@ -168,7 +169,7 @@ export default function Philosophy() {
               "linear-gradient(90deg,rgba(255,255,255,1) 0%,rgba(255,215,240,0.78) 22%,rgba(255,180,220,0.72) 48%,rgba(220,225,255,0.78) 74%,rgba(255,255,255,1) 100%)",
           }}
         >
-          OUR PHILOSOPHY
+          THE PHILOSOPHY OF ROSE
         </h2>
 
         {/* メインコピー */}
@@ -182,9 +183,9 @@ export default function Philosophy() {
           "
         >
           “<span className="text-[rgba(255,160,175,0.8)]">香り</span>
-          は、ほのかに漂う
-          <span className="text-[rgba(230,150,160,0.8)]">美しさ</span>
-          である。”
+          は、あなたの
+          <span className="text-[rgba(230,150,160,0.8)]">輪郭</span>
+          をそっと整える。”
         </p>
 
         {/* 3ブロック */}
@@ -199,18 +200,18 @@ export default function Philosophy() {
           {[
             {
               num: "01",
-              title: "SILENT FRAGRANCE",
-              body: `日常の近い距離だけでふわりと香る“静けさ”の設計。\n天然ローズ精油を軸に、甘さ・深み・余韻を繊細に整える。`,
+              title: "DISTANT FRAGRANCE",
+              body: `近い距離だけでそっと漂う、静けさの香り設計。\n華やかさではなく“距離の美しさ”で印象を整える。`,
             },
             {
               num: "02",
-              title: "VEIL OF LIGHT",
-              body: `髪が揺れた一瞬だけ立ち上がる薄い光膜のような香り。\n輪郭を曖昧にし、静かに美しさをまとわせる。`,
+              title: "VEIL SILHOUETTE",
+              body: `髪が揺れた一瞬だけ立ち上がる、薄い光膜のような香り。\n輪郭をやわらかく曖昧にし、静かに美をまとう。`,
             },
             {
               num: "03",
-              title: "WEARABLE LUXURY",
-              body: `肌と髪に寄り添い、まとうように続くラグジュアリー。\n派手さではなく余白の美しさで魅せる香りの思想。`,
+              title: "QUIET LUXURY",
+              body: `肌と髪に寄り添い、まとうように続くラグジュアリー。\n余白の上品さが、時間とともに深度を与える。`,
             },
           ].map((b, i) => (
             <div key={i} className="philo-text">

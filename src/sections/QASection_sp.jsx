@@ -8,79 +8,90 @@ export default function QASection_sp() {
   const inquiryRef = useRef(null);
   const [openIndex, setOpenIndex] = useState(null);
 
-const qaList = [
-  {
-    q: "香りはどれくらい持続しますか？",
-    a: `ROSE VEIL は 
-    “強さ” ではなく “余韻” を重視しています。
-    
-    動いたとき・髪が揺れた瞬間にだけふわりと香る設計で、人工的な強い残香はありません。
+  /* ============================================================
+      Q&A — アップグレード版コピー
+  ============================================================ */
+  const qaList = [
+    {
+      q: "香りはどれくらい持続しますか？",
+      a: `ROSE VEIL の香りは “強く残す” のではなく  
+“距離で伝わる余韻” を軸に調整しています。
 
-自然で上品な残り香が、
-2〜3時間ほど静かに続きます。`,
-  },
-  {
-    q: "ドラッグストア品と何が違いますか？",
-    a: `市販シャンプーは「泡立ち・香りの強さ・コスパ」を中心に設計されています。
-    
-ROSE VEIL は「香りの輪郭・質感・余韻」を優先し、
-アミノ酸洗浄 × 艶膜レイヤー × 透明感レイヤーで
-“触れた瞬間の質感” を根本から作り変えます。`,
-  },
-  {
-    q: "敏感肌でも使えますか？",
-    a: `アミノ酸系のやさしい洗浄成分をベースに、アロエ・カミツレなどの植物エキスで刺激を抑えた処方です。
+髪が揺れた瞬間や、すれ違いざまに  
+やわらかく香りが立つ設計で、人工的な強香はありません。
 
-心配な方は腕または首の後ろでのパッチテストを推奨しています。`,
-  },
-  {
-    q: "男性でも使えますか？",
-    a: `問題ありません。
-ROSE シリーズは “甘い強香” ではなく
-“静けさ・輪郭のある余韻” を重視しており、
-男性でも自然に使える香り設計です。`,
-  },
-  {
-    q: "配送やお支払いについて知りたいです",
-    a: `配送料は
-    全国一律 590円。6,000円以上で送料無料です。
-ご注文から 2〜3 営業日以内に発送します。
+自然で上品な香りが  
+2〜3時間ほど、静かに続きます。`,
+    },
+    {
+      q: "ドラッグストア品と何が違いますか？",
+      a: `市販品は「泡立ち」「強い香り」「コスパ」を中心に設計されています。
 
-お支払いは
-クレジットカード（VISA / Master / AMEX）に対応。
+ROSE VEIL は  
+“香りの輪郭” と “質感の余韻” を最優先に考えており、
 
-未開封の場合は、到着から
-7日以内の返品・交換が可能です。`,
-  },
-];
+・アミノ酸洗浄  
+・艶膜レイヤー  
+・透明感レイヤー  
+
+の 3 構造で、  
+“触れた瞬間の質感” を根本から変える処方です。`,
+    },
+    {
+      q: "敏感肌でも使えますか？",
+      a: `アミノ酸系のやさしい洗浄成分をベースに、  
+アロエ・カミツレなどの植物エキスで刺激を抑えた設計です。
+
+心配な方は、腕または首の後ろで  
+軽いパッチテストをおすすめしています。`,
+    },
+    {
+      q: "男性でも使えますか？",
+      a: `もちろんお使いいただけます。
+
+ROSE シリーズは“甘い強香”ではなく、  
+“静けさ × 輪郭のある余韻” を重視しており、
+
+男性でも自然に使える香りです。`,
+    },
+    {
+      q: "配送やお支払いについて知りたいです",
+      a: `配送料：全国一律 590円  
+6,000円以上のご注文で送料無料です。
+
+ご注文後 2〜3 営業日以内に発送します。
+
+お支払い方法：  
+VISA / Master / AMEX に対応しています。
+
+未開封の場合は、商品到着から  
+7日以内であれば返品・交換が可能です。`,
+    },
+  ];
 
   /* ============================
-      GSAP（静かな呼吸ウェーブ / SP軽量化）
+      GSAP（SP呼吸）
   ============================ */
   useEffect(() => {
     const root = sectionRef.current;
     if (!root) return;
 
     const items = qaRefs.current.filter(Boolean);
-
-    // SP最適化：初期値軽量化
     gsap.set(items, { opacity: 0, y: 14, filter: "blur(6px)" });
 
     const io = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) return;
 
-        // Q&A 本体
         gsap.to(items, {
           opacity: 1,
           y: 0,
           filter: "blur(0px)",
-          duration: 1.08, // ← SPの黄金帯
+          duration: 1.08,
           ease: "power2.out",
-          stagger: 0.10,
+          stagger: 0.1,
         });
 
-        // INQUIRY（締め）
         if (inquiryRef.current) {
           const fades = inquiryRef.current.querySelectorAll(".inq-fade-sp");
 
@@ -93,7 +104,7 @@ ROSE シリーズは “甘い強香” ではなく
               filter: "blur(0px)",
               duration: 1.12,
               ease: "power2.out",
-              stagger: 0.10,
+              stagger: 0.1,
               delay: 0.35,
             }
           );
@@ -101,7 +112,7 @@ ROSE シリーズは “甘い強香” ではなく
 
         io.disconnect();
       },
-      { threshold: 0.05 } // ← SP最適化値
+      { threshold: 0.05 }
     );
 
     io.observe(root);
@@ -120,13 +131,13 @@ ROSE シリーズは “甘い強香” ではなく
       "
     >
 
-      {/* BACKGROUND：軽量化版 */}
+      {/* BACKGROUND */}
       <div
         aria-hidden="true"
         className="
           absolute inset-0
           opacity-[0.14]
-          blur-[28px]    /* ← 激軽 */
+          blur-[28px]
         "
         style={{
           background: `
@@ -137,7 +148,7 @@ ROSE シリーズは “甘い強香” ではなく
         }}
       />
 
-      {/* 粒子（負荷ゼロ） */}
+      {/* 粒子 */}
       <div
         aria-hidden="true"
         className="
@@ -159,7 +170,7 @@ ROSE シリーズは “甘い強香” ではなく
         </h2>
 
         <p className="mt-3 text-black/55 text-[0.92rem] leading-[1.85]">
-          高級ブランドの「疑問解消」は、強い説得ではなく<br></br>“静かな理解”です。
+          高級ブランドの Q&A は“説得”ではなく、<br />静かに理解が深まる設計です。
         </p>
       </div>
 
@@ -204,22 +215,21 @@ ROSE シリーズは “甘い強香” ではなく
             </div>
           );
         })}
- <button
-  className="
-    mt-8
-    text-[0.82rem]
-    tracking-[0.22em]
-    text-black/40 hover:text-black/55
-    transition
-    pointer-events-none
-    block mx-auto              /* ← コレで必ず中央寄せになる */
-    text-center                /* ← テキストも中央に固定 */
-  "
->
-  さらによくある質問を見る
-</button>
 
-
+        <button
+          className="
+            mt-8
+            text-[0.82rem]
+            tracking-[0.22em]
+            text-black/40 hover:text-black/55
+            transition
+            pointer-events-none
+            block mx-auto
+            text-center
+          "
+        >
+          さらによくある質問を見る
+        </button>
       </div>
 
       {/* INQUIRY */}

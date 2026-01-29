@@ -50,6 +50,9 @@ ROSE シリーズの香りは “甘い/強い” ではなく
     },
   ];
 
+  /* =========================================================
+      GSAP ANIMATION
+  ========================================================= */
   useEffect(() => {
     const root = sectionRef.current;
     if (!root) return;
@@ -98,7 +101,7 @@ ROSE シリーズの香りは “甘い/強い” ではなく
 
   return (
     <section
-     id="contact" // ← 最終判断セクションID
+      id="contact"
       ref={sectionRef}
       className="
         relative w-full
@@ -108,46 +111,60 @@ ROSE シリーズの香りは “甘い/強い” ではなく
         overflow-hidden
       "
     >
-      {/* BACKGROUND — 香りの横霧（極薄） */}
+      {/* ======================================================
+          BACKGROUND — “香りの余韻フィルム（完全版）”
+      ====================================================== */}
       <div
         aria-hidden="true"
         className="
-          absolute inset-0 opacity-[0.22] blur-[70px]
+          absolute inset-0 
+          opacity-[0.26]
+          blur-[75px]
+          pointer-events-none
         "
         style={{
           background: `
-            radial-gradient(900px 680px at 40% 32%, rgba(255,235,245,0.18), transparent),
-            radial-gradient(900px 680px at 70% 50%, rgba(255,150,170,0.16), transparent),
-            radial-gradient(900px 680px at 46% 78%, rgba(160,200,255,0.14), transparent)
+            radial-gradient(1000px 700px at 38% 30%, rgba(255,235,245,0.22), transparent 70%),
+            radial-gradient(1100px 740px at 72% 56%, rgba(255,110,150,0.17), transparent 72%),
+            radial-gradient(1080px 780px at 48% 78%, rgba(170,200,255,0.16), transparent 72%)
           `,
         }}
       />
 
-      {/* 粒子 */}
+      {/* 光粒子（白背景専用・上質版） */}
       <div
         aria-hidden="true"
         className="
-          absolute inset-0 opacity-[0.26]
-          bg-[url('/grain.png')] bg-repeat mix-blend-soft-light
+          absolute inset-0
+          bg-[url('/grain.png')] bg-repeat
+          opacity-[0.14]
+          mix-blend-screen
         "
+        style={{
+          backgroundColor: "rgba(255,255,255,0.08)",
+        }}
       />
 
-      {/* HEADER */}
+      {/* ======================================================
+          HEADER
+      ====================================================== */}
       <div className="relative z-10 text-center mb-[12vh]">
-        <div className="text-[0.82rem] tracking-[0.32em] text-black/55">
+        <div className="text-[0.82rem] tracking-[0.32em] text-black/50">
           Q & A
         </div>
 
-        <h2 className="mt-4 text-[2.0rem] md:text-[2.25rem] font-light tracking-[0.02em] text-black/80">
+        <h2 className="mt-4 text-[2.0rem] md:text-[2.25rem] font-light tracking-[0.02em] text-black/74">
           よくある質問と、静かな回答。
         </h2>
 
-        <p className="mt-4 text-black/55 text-[0.98rem] leading-[1.9]">
+        <p className="mt-4 text-black/50 text-[0.98rem] leading-[1.9]">
           高級ブランドの「疑問解消」は、強い説得ではなく“静かな理解”です。
         </p>
       </div>
 
-      {/* LIST */}
+      {/* ======================================================
+          LIST
+      ====================================================== */}
       <div
         className="
           relative z-10
@@ -165,9 +182,9 @@ ROSE シリーズの香りは “甘い/強い” ではなく
               className="py-8 cursor-pointer select-none"
               onClick={() => setOpenIndex(isOpen ? null : i)}
             >
-              <div className="text-[1.06rem] tracking-[0.02em] text-black/78 flex justify-between items-center">
+              <div className="text-[1.06rem] tracking-[0.02em] text-black/74 flex justify-between items-center">
                 <span>{qa.q}</span>
-                <span className="text-black/35 text-[1.6rem] leading-none">
+                <span className="text-black/30 text-[1.5rem] leading-none font-light">
                   {isOpen ? "−" : "+"}
                 </span>
               </div>
@@ -179,7 +196,7 @@ ROSE シリーズの香りは “甘い/強い” ではなく
                   ${isOpen ? "max-h-[500px] mt-4" : "max-h-0"}
                 `}
               >
-                <p className="text-[0.95rem] text-black/55 leading-[1.95] whitespace-pre-line tracking-wide pb-4">
+                <p className="text-[0.95rem] text-black/50 leading-[1.95] whitespace-pre-line tracking-wide pb-4">
                   {qa.a}
                 </p>
               </div>
@@ -188,13 +205,15 @@ ROSE シリーズの香りは “甘い/強い” ではなく
         })}
       </div>
 
-      {/* INQUIRY */}
+      {/* ======================================================
+          INQUIRY
+      ====================================================== */}
       <div ref={inquiryRef} className="relative z-10 mt-[14vh] text-center">
-        <h3 className="inq-fade text-[1.38rem] font-light tracking-[0.02em] text-black/80">
+        <h3 className="inq-fade text-[1.38rem] font-light tracking-[0.02em] text-black/74">
           ご相談・お問い合わせ
         </h3>
 
-        <p className="inq-fade mt-4 text-[0.95rem] text-black/55 leading-[1.8]">
+        <p className="inq-fade mt-4 text-[0.95rem] text-black/50 leading-[1.8]">
           香り・質感・処方について、静かにご相談いただけます。<br />
           無理なご案内は一切ありません。
         </p>

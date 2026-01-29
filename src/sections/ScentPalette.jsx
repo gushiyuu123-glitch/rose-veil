@@ -8,7 +8,7 @@ export default function ScentPalette() {
   const sectionRef = useRef(null);
 
   const conceptRef = useRef(null);
-  const paletteHeadRef = useRef(null);     // ★ SCENT PALETTE 見出し
+  const paletteHeadRef = useRef(null);
   const productLineRef = useRef(null);
 
   const panelRefs = useRef([]);
@@ -20,7 +20,6 @@ export default function ScentPalette() {
     if (!sectionRef.current || !conceptRef.current || !paletteHeadRef.current || !productLineRef.current) return;
 
     const ctx = gsap.context(() => {
-      // まず全部「初期状態」に固定
       gsap.set(conceptRef.current, { opacity: 0, y: 26, filter: "blur(6px)" });
       gsap.set(paletteHeadRef.current, { opacity: 0, y: 22, filter: "blur(6px)" });
       gsap.set(productLineRef.current, { opacity: 0, y: 26, filter: "blur(6px)" });
@@ -58,7 +57,7 @@ export default function ScentPalette() {
         "-=0.25"
       );
 
-      // ②-2 商品カード：中央 → 左右（裕人の意図）
+      // ②-2 中央 → 左右（カード）
       if (middlePanel) {
         tl.to(
           middlePanel,
@@ -217,7 +216,7 @@ export default function ScentPalette() {
       </div>
 
       {/* =========================================================
-          ① SCENT CONCEPT（先に必ず出る）
+          ① SCENT CONCEPT — ★文章アップグレード済み
       ========================================================= */}
       <div
         ref={conceptRef}
@@ -243,14 +242,14 @@ export default function ScentPalette() {
             whitespace-pre-line
           "
         >
-{`ROSE シリーズは、「日常に自然に馴染む香り」をめざして作られています。
-強く香らせるのではなく、髪が揺れた瞬間にふっと漂う “距離の美しさ” を大切にしています。
+{`ROSE シリーズは、「日常の動きにそっと寄り添う香り」をめざして設計されています。
+強く主張するのではなく、髪が揺れた一瞬にだけふわっと漂う “気配の美しさ” を大切にしています。
 
-WHITE は軽さ、VEIL は艶、BLUE は透明感。
-それぞれの香りが、髪質や仕上がりに応じて静かに整えてくれる処方です。
+WHITE は軽やかさ、VEIL は深みの艶、BLUE は静かな透明感。
+仕上がりや髪質に合わせて、香りの“距離感”が自然に整う処方です。
 
-派手さよりも、余白と質感。
-静かに続く香りと手触りが、日常の印象をそっと深めます。`}
+派手さではなく、質感と余白。
+静かに続く香りと手触りが、日常に上品な輪郭を与えます。`}
         </div>
 
         <div className="w-[48px] h-[1px] bg-white/25 mx-auto mt-16" />
@@ -260,10 +259,9 @@ WHITE は軽さ、VEIL は艶、BLUE は透明感。
       </div>
 
       {/* =========================================================
-          ② SCENT PALETTE（見出し → その後カード）
+          ② SCENT PALETTE — ★文章アップグレード済み
       ========================================================= */}
       <div className="relative z-10 pb-[18vh] mx-auto w-[88%] max-w-[1180px]">
-        {/* ★ 見出しブロックにref */}
         <div ref={paletteHeadRef} className="text-center mb-[10vh] opacity-0">
           <div className="text-white/55 tracking-[0.22em] text-[0.78rem]">
             SCENT PALETTE
@@ -272,12 +270,13 @@ WHITE は軽さ、VEIL は艶、BLUE は透明感。
             香りのサンプルを選ぶ
           </h2>
           <p className="mt-5 text-white/60 text-[1.05rem] leading-[1.9]">
-            香りはまず “空気” で伝わる。
+            香りはまず “空気の層” で伝わる。
             <br className="hidden md:block" />
-            直感で、もっとも近い質感をお選びください。
+            直感で、あなたに近い質感をお選びください。
           </p>
         </div>
 
+        {/* 商品カード */}
         <div className="flex flex-col md:flex-row justify-center gap-[8vh] md:gap-[3vw]">
           {products.map((p, i) => (
             <div
@@ -319,6 +318,7 @@ WHITE は軽さ、VEIL は艶、BLUE は透明感。
                         : "radial-gradient(70% 60% at 60% 50%, rgba(120,150,255,0.35), rgba(20,40,120,0.05), transparent)",
                   }}
                 />
+
                 <div
                   className="
                     absolute inset-0
@@ -348,7 +348,7 @@ WHITE は軽さ、VEIL は艶、BLUE は透明感。
                 />
               </div>
 
-              {/* Title */}
+              {/* Title & copy */}
               <div className="mt-6 text-center">
                 <div className={`text-[1.14rem] font-light tracking-[0.22em] ${titleColor[p.key]}`}>
                   {p.title}
@@ -383,9 +383,7 @@ WHITE は軽さ、VEIL は艶、BLUE は透明感。
           ))}
         </div>
 
-        {/* =========================================================
-            ③ PRODUCT LINE（最後に必ず出る）
-        ========================================================= */}
+        {/* PRODUCT LINE */}
         <div
           ref={productLineRef}
           className="
@@ -414,7 +412,7 @@ WHITE は軽さ、VEIL は艶、BLUE は透明感。
           </h2>
 
           <p className="mt-3 text-[1.02rem] leading-relaxed tracking-wide text-[rgba(230,215,225,0.78)]">
-            香りの三つの方向性を、 “質感” として再設計したコレクション。
+            香りの三つの方向性を、“質感” として再設計したコレクション。
           </p>
 
           <div className="mt-10 w-[1px] h-[40px] bg-[rgba(240,210,220,0.45)] rounded-full" />
