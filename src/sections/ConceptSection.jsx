@@ -40,7 +40,7 @@ export default function ConceptSection() {
 
     gsap.fromTo(
       el.querySelector(".model-bg"),
-      { opacity: 0, scale: 1.08, filter: "blur(28px)" },
+      { opacity: 0, scale: 1, filter: "blur(28px)" },
       {
         opacity: 0.86,
         scale: 1,
