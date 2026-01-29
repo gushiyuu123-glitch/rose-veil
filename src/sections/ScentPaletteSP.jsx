@@ -107,7 +107,7 @@ export default function ScentPaletteSP() {
         <img
           src="/bg/rose-red.png"
           className="
-            absolute left-[-22%] top-[11%]
+            absolute left-[-27%] top-[10.6%]
             w-[90vw] opacity-[0.18] blur-[5px]
             scale-[1.05] mix-blend-lighten
           "
