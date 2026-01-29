@@ -6,7 +6,6 @@ import "../styles/hero.css";
 
 export default function Hero() {
   const heroRef = useRef(null);
-  const canvasRef = useRef(null);
 
   /* ========================
      Hero Copy Animation
@@ -25,12 +24,7 @@ export default function Hero() {
 
       gsap.fromTo(
         ".hero-title",
-        {
-          opacity: 0,
-          y: 12,
-          filter: "blur(7px)",
-          letterSpacing: "0.16em",
-        },
+        { opacity: 0, y: 12, filter: "blur(7px)", letterSpacing: "0.16em" },
         {
           opacity: 1,
           y: 0,
@@ -74,68 +68,19 @@ export default function Hero() {
     return () => ctx.revert();
   }, []);
 
-  /* ========================
-     Canvas Rose Particles
-  ======================== */
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-
-    const resize = () => {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-    };
-    resize();
-    window.addEventListener("resize", resize);
-
-    const W = canvas.width;
-    const H = canvas.height;
-
-    const particles = Array.from({ length: 18 }).map(() => ({
-      x: W * 0.30 + (Math.random() * 40 - 20),
-      y: H * 0.30 + (Math.random() * 40 - 20),
-      r: Math.random() * 1.6 + 0.8,
-      alpha: Math.random() * 0.18 + 0.10,
-      dx: (Math.random() - 0.5) * 0.08,
-      dy: (Math.random() - 0.5) * 0.06,
-    }));
-
-    function draw() {
-      ctx.clearRect(0, 0, W, H);
-
-      particles.forEach((p) => {
-        ctx.beginPath();
-        ctx.fillStyle = `rgba(255, 220, 240, ${p.alpha})`;
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fill();
-
-        p.x += p.dx;
-        p.y += p.dy * 0.6;
-        p.dx += (Math.random() - 0.5) * 0.0035;
-        p.dy += (Math.random() - 0.5) * 0.0035;
-      });
-
-      requestAnimationFrame(draw);
-    }
-    draw();
-
-    return () => {
-      window.removeEventListener("resize", resize);
-    };
-  }, []);
-
   return (
     <section ref={heroRef} className="hero-section">
 
-      {/* ← ★ ナビを Hero 内に吸着（absolute） */}
+      {/* ナビ吸着 */}
       <HeaderRight />
 
+      {/* 背景レイヤー類（残す） */}
       <div className="hero-bg" />
       <div className="hero-shadow-right" />
       <div className="hero-lux-film" />
       <div className="hero-veil" />
       <div className="hero-particles" />
-<div className="hero-nav-mask"></div>
+      <div className="hero-nav-mask"></div>
 
       <div className="hero-copy">
         <p className="hero-label">ROSE VEIL — FRAGRANCE SHAMPOO</p>
@@ -147,7 +92,7 @@ export default function Hero() {
           <span className="word-scent">香り</span>から始まる。
         </p>
 
-        <canvas ref={canvasRef} className="hero-particle-canvas"></canvas>
+        {/* ⛔ 花びら（canvas）は削除 */}
       </div>
     </section>
   );

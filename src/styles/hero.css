@@ -4,10 +4,12 @@
 .hero-section {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 100dvh; /* ここだけ修正すればOK */
   overflow: hidden;
-  background: #0b0b0b; /* ← 黒に“温度”を1%足す（高級黒） */
+  background: #0b0b0b;
 }
+
+/* あとは全部そのまま使って大丈夫 */
 
 /* ===========================================
    背景画像（フルスクリーン）
