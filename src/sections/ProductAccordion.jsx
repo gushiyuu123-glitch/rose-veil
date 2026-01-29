@@ -563,12 +563,7 @@ export default function ProductOverlayWide() {
 <Reveal delayMs={80 + i * 80} className="relative text-left translate-x-[1.5vw]">
 
   {/* ★ タイトル色が100%反映される修正版 */}
-  <h3 
-    className={`${titleColor[p.key]} ${UI.t95} text-[2.8rem] font-light tracking-[0.02em]`}
-  >
-    {p.title}
-  </h3>
-
+          <h3 className={`${titleColor[p.key]} text-[2.6rem] font-light tracking-[0.02em]`}>{p.title}</h3>
   {/* WHITE専用の背景ボックス */}
   {p.key === "white" && (
     <div

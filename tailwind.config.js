@@ -4,6 +4,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
+  
 safelist: [
   "text-\\[#c9c4ef\\]",
   "text-\\[#efa9bd\\]",
