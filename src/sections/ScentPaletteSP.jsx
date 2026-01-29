@@ -274,7 +274,7 @@ WHITE は軽さ、VEIL は艶、BLUE は透明感。
                 CTA（ページ内リンク100%成功版）
             =============================== */}
             <a
-              href={`#product-${p.key}`}
+              href={`#products-sp-${p.key}`}
               className="
                 relative z-[20]
                 block mx-auto mt-7

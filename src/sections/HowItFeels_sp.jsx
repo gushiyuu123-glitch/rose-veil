@@ -163,218 +163,217 @@ export default function HowItFeels_sp() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="
-        relative w-full overflow-hidden
-        py-[13vh]
-        bg-[radial-gradient(circle_at_50%_22%,rgba(60,20,30,0.22),rgba(15,10,15,0.95))]
-      "
-    >
-      {/* =========================
-          BACKGROUND（薄膜）
-      ========================= */}
-      <div aria-hidden="true" className="absolute inset-0 z-0">
+<section
+  ref={sectionRef}
+  className="
+    relative w-full overflow-hidden
+    py-[13vh]
+    bg-[radial-gradient(circle_at_50%_22%,rgba(40,20,30,0.26),rgba(10,6,12,0.92))]
+  "
+>
+  {/* --------------------------
+      BACKGROUND OPTIMIZED
+  --------------------------- */}
+  <div aria-hidden="true" className="absolute inset-0 z-0">
 
+    {/* ピンク膜（軽量縮小） */}
+    <div
+      className="absolute inset-0 opacity-[0.16] blur-[48px]"
+      style={{
+        background:
+          "radial-gradient(760px 520px at 50% 26%, rgba(255,160,185,0.22), transparent)",
+      }}
+    />
+
+    {/* 白膜（柔光：負荷半減） */}
+    <div
+      className="absolute inset-0 opacity-[0.12] blur-[50px]"
+      style={{
+        background:
+          "radial-gradient(700px 480px at 48% 40%, rgba(255,255,255,0.22), transparent)",
+      }}
+    />
+
+    {/* 粒子は負荷軽いので残す */}
+    <div className="absolute inset-0 opacity-[0.06] bg-[url('/grain.png')] mix-blend-soft-light" />
+  </div>
+
+  {/* --------------------------
+      HEADER
+  --------------------------- */}
+  <div className="relative z-10 text-center mb-[8vh] px-4">
+    <div className="hif-sp-fade text-[0.75rem] tracking-[0.32em] text-white/50">
+      HOW&nbsp;IT&nbsp;FEELS
+    </div>
+
+    <h2 className="hif-sp-fade mt-4 text-[1.88rem] font-light tracking-[0.01em] text-white/90">
+      体験の質感を、言葉にする。
+    </h2>
+
+    <p className="hif-sp-fade mt-4 text-[0.92rem] text-white/65 leading-[1.80]">
+      香りは “強さ” ではなく距離で伝わる。<br />
+      揺れた瞬間の余韻を静かに設計しました。
+    </p>
+
+    <div className="hif-sp-fade w-[46px] h-[1px] bg-white/16 mx-auto mt-8" />
+  </div>
+
+  {/* --------------------------
+      FEELS CARDS
+  --------------------------- */}
+  <div className="relative z-10 w-[88%] mx-auto flex flex-col gap-[9vh]">
+    {feels.map((f, i) => (
+      <article
+        key={f.key}
+        ref={(el) => (cardRefs.current[i] = el)}
+        className="
+          relative rounded-[20px]
+          bg-white/[0.04]
+          border border-white/[0.08]
+          backdrop-blur-[10px]
+          overflow-hidden
+          shadow-[0_8px_34px_rgba(0,0,0,0.28)]
+        "
+      >
+        {/* メインの薄膜：1層に統合して軽量化 */}
         <div
-          className="absolute inset-0 opacity-[0.18] blur-[70px] mix-blend-lighten"
+          aria-hidden="true"
+          className="absolute inset-0 opacity-[0.55] blur-[34px]"
+          style={{ backgroundImage: f.veil }}
+        />
+
+        {/* 小さめアクセント（控えめ） */}
+        <div
+          aria-hidden="true"
+          className="absolute -top-[20%] -right-[20%] w-[52%] h-[52%] blur-[32px] opacity-[0.26]"
           style={{
-            background:
-              "radial-gradient(1000px 700px at 50% 26%, rgba(255,168,188,0.24), transparent)",
+            background: `radial-gradient(circle at 30% 30%, ${f.accent}, transparent)`,
           }}
         />
 
-        <div
-          className="absolute inset-0 opacity-[0.14] blur-[90px] mix-blend-screen"
-          style={{
-            background:
-              "radial-gradient(900px 620px at 46% 35%, rgba(255,255,255,0.26), transparent)",
-          }}
-        />
-
-        <div
-          className="absolute inset-0 opacity-[0.12] blur-[90px] mix-blend-screen"
-          style={{
-            background:
-              "radial-gradient(880px 620px at 18% 78%, rgba(170,200,255,0.16), transparent)",
-          }}
-        />
-
-        <div className="absolute inset-0 opacity-[0.05] bg-[url('/grain.png')] mix-blend-soft-light blur-[0.4px]" />
-      </div>
-
-      {/* =========================
-          HEADER
-      ========================= */}
-      <div className="relative z-10 text-center mb-[9vh] px-4">
-        <div className="hif-sp-fade text-[0.75rem] tracking-[0.32em] text-white/50">
-          HOW&nbsp;IT&nbsp;FEELS
-        </div>
-
-        <h2 className="hif-sp-fade mt-4 text-[1.92rem] font-light tracking-[0.01em] text-white/90">
-          体験の質感を、言葉にする。
-        </h2>
-
-        <p className="hif-sp-fade mt-4 text-[0.94rem] text-white/65 leading-[1.80]">
-          香りは “強さ” ではなく距離で伝わる。<br />
-          揺れた瞬間の余韻を静かに設計しました。
-        </p>
-
-        <div className="hif-sp-fade w-[48px] h-[1px] bg-white/18 mx-auto mt-8" />
-      </div>
-
-      {/* =========================
-          FEELS CARDS
-      ========================= */}
-      <div className="relative z-10 w-[88%] mx-auto flex flex-col gap-[10vh]">
-        {feels.map((f, i) => (
-          <article
-            key={f.key}
-            ref={(el) => (cardRefs.current[i] = el)}
-            className="
-              relative rounded-[20px]
-              bg-white/[0.035]
-              border border-white/[0.09]
-              backdrop-blur-[12px]
-              overflow-hidden
-              shadow-[0_12px_50px_rgba(0,0,0,0.30)]
-            "
-          >
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 opacity-[0.70]"
-              style={{ backgroundImage: f.veil }}
-            />
-
-            <div
-              aria-hidden="true"
-              className="absolute -top-[22%] -right-[22%] w-[60%] h-[60%] blur-[40px] opacity-[0.32]"
-              style={{
-                background: `radial-gradient(circle at 30% 30%, ${f.accent}, transparent)`,
-              }}
-            />
-
-            <div className="relative p-[1.9rem]">
-              <div className="text-[0.72rem] tracking-[0.28em] text-white/45">
-                {f.label}
-              </div>
-
-              <div className="mt-6 relative">
-                <img
-                  src={f.image}
-                  alt={f.label}
-                  className="
-                    hif-sp-breath
-                    w-full rounded-[14px]
-                    border border-white/[0.08]
-                    object-cover
-                    opacity-[0.92]
-                  "
-                />
-              </div>
-
-              <h3 className="mt-6 text-[1.14rem] font-light text-white/88 leading-snug">
-                {f.title}
-              </h3>
-
-              <p className="mt-4 text-[0.92rem] text-white/60 leading-[1.85] whitespace-pre-line">
-                {f.copy}
-              </p>
-
-              <div className="mt-6 w-[80px] h-[1px] bg-white/12" />
-            </div>
-          </article>
-        ))}
-      </div>
-
-      {/* =========================
-          FOOT NOTE
-      ========================= */}
-      <div className="relative z-10 mt-[11vh] text-center px-4">
-        <p className="hif-sp-fade text-[0.88rem] text-white/60 tracking-[0.18em]">
-          “香りは、近づいた人だけが気づく。”
-        </p>
-      </div>
-
-      {/* =========================
-          REVIEWS
-      ========================= */}
-      <div className="relative z-10 mt-[12vh] w-[88%] mx-auto">
-        <div className="text-center mb-[9vh]">
-          <div className="rev-sp-fade text-[0.78rem] tracking-[0.32em] text-white/45">
-            CUSTOMER&nbsp;REVIEWS
+        <div className="relative p-[1.8rem]">
+          <div className="text-[0.72rem] tracking-[0.26em] text-white/45">
+            {f.label}
           </div>
 
-          <h3 className="rev-sp-fade mt-4 text-[1.78rem] font-light tracking-[0.01em] text-white/86">
-            静かに褒められる香り
+          {/* 呼吸をもっと繊細に（0.6px前後） */}
+          <div className="mt-6 relative">
+            <img
+              src={f.image}
+              alt={f.label}
+              className="
+                hif-sp-breath
+                w-full rounded-[14px]
+                border border-white/[0.06]
+                object-cover
+                opacity-[0.90]
+              "
+            />
+          </div>
+
+          <h3 className="mt-6 text-[1.12rem] font-light text-white/88 leading-snug">
+            {f.title}
           </h3>
 
-          <p className="rev-sp-fade mt-4 text-[0.90rem] text-white/60 leading-[1.8]">
-            言葉よりも “余韻” に残る体験。
+          <p className="mt-4 text-[0.90rem] text-white/62 leading-[1.85] whitespace-pre-line">
+            {f.copy}
           </p>
 
-          <div className="rev-sp-fade w-[48px] h-[1px] bg-white/14 mx-auto mt-8" />
+          <div className="mt-6 w-[78px] h-[1px] bg-white/12" />
         </div>
+      </article>
+    ))}
+  </div>
 
-        <div className="flex flex-col gap-[9vh]">
-          {reviews.map((r, i) => (
-            <article
-              key={i}
-              ref={(el) => (reviewRefs.current[i] = el)}
-              className="
-                relative rounded-[20px]
-                bg-white/[0.035]
-                border border-white/[0.08]
-                p-[2rem]
-                backdrop-blur-[12px]
-                shadow-[0_12px_50px_rgba(0,0,0,0.30)]
-              "
-            >
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 opacity-[0.70]"
-                style={{ backgroundImage: reviewTone(r.tone) }}
-              />
+  {/* --------------------------
+      FOOT NOTE
+  --------------------------- */}
+  <div className="relative z-10 mt-[10vh] text-center px-4">
+    <p className="hif-sp-fade text-[0.86rem] text-white/58 tracking-[0.18em]">
+      “香りは、近づいた人だけが気づく。”
+    </p>
+  </div>
 
-              <div className="relative">
-                <div className="flex gap-1 mb-3">
-                  {Array.from({ length: 5 }).map((_, idx) => (
-                    <span
-                      key={idx}
-                      className={`
-                        text-[1.0rem]
-                        ${
-                          idx < r.stars
-                            ? "text-[rgba(255,175,195,0.75)]"
-                            : "text-white/14"
-                        }
-                      `}
-                    >
-                      ★
-                    </span>
-                  ))}
-                </div>
 
-                <p className="text-[0.92rem] text-white/65 leading-[1.85] whitespace-pre-line">
-                  {r.text}
-                </p>
-
-                <div className="mt-6 text-[0.78rem] text-white/45 tracking-[0.14em]">
-                  {r.name}
-                </div>
-
-                <div className="mt-6 w-[72px] h-[1px] bg-white/12" />
-              </div>
-            </article>
-          ))}
-        </div>
-
-        <div className="relative z-10 mt-[10vh] text-center">
-          <p className="rev-sp-fade text-[0.82rem] text-white/50 tracking-[0.18em]">
-            “強さではなく、距離で伝わる。”
-          </p>
-        </div>
+  {/* --------------------------
+      REVIEWS（軽量化済）
+  --------------------------- */}
+  <div className="relative z-10 mt-[11vh] w-[88%] mx-auto">
+    <div className="text-center mb-[8vh]">
+      <div className="rev-sp-fade text-[0.78rem] tracking-[0.30em] text-white/45">
+        CUSTOMER&nbsp;REVIEWS
       </div>
-    </section>
+
+      <h3 className="rev-sp-fade mt-4 text-[1.74rem] font-light tracking-[0.01em] text-white/86">
+        静かに褒められる香り
+      </h3>
+
+      <p className="rev-sp-fade mt-4 text-[0.88rem] text-white/60 leading-[1.8]">
+        言葉よりも “余韻” に残る体験。
+      </p>
+
+      <div className="rev-sp-fade w-[46px] h-[1px] bg-white/14 mx-auto mt-8" />
+    </div>
+
+    <div className="flex flex-col gap-[8vh]">
+      {reviews.map((r, i) => (
+        <article
+          key={i}
+          ref={(el) => (reviewRefs.current[i] = el)}
+          className="
+            relative rounded-[20px]
+            bg-white/[0.04]
+            border border-white/[0.08]
+            p-[1.8rem]
+            backdrop-blur-[10px]
+            shadow-[0_8px_34px_rgba(0,0,0,0.28)]
+          "
+        >
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 opacity-[0.55] blur-[34px]"
+            style={{ backgroundImage: reviewTone(r.tone) }}
+          />
+
+          <div className="relative">
+            <div className="flex gap-1 mb-3">
+              {Array.from({ length: 5 }).map((_, idx) => (
+                <span
+                  key={idx}
+                  className={`
+                    text-[1.0rem]
+                    ${
+                      idx < r.stars
+                        ? "text-[rgba(255,175,195,0.75)]"
+                        : "text-white/14"
+                    }
+                  `}
+                >
+                  ★
+                </span>
+              ))}
+            </div>
+
+            <p className="text-[0.90rem] text-white/65 leading-[1.85] whitespace-pre-line">
+              {r.text}
+            </p>
+
+            <div className="mt-6 text-[0.78rem] text-white/45 tracking-[0.14em]">
+              {r.name}
+            </div>
+
+            <div className="mt-6 w-[70px] h-[1px] bg-white/12" />
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div className="relative z-10 mt-[9vh] text-center">
+      <p className="rev-sp-fade text-[0.80rem] text-white/50 tracking-[0.18em]">
+        “強さではなく、距離で伝わる。”
+      </p>
+    </div>
+  </div>
+</section>
   );
 }

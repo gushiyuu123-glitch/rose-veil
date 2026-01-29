@@ -16,8 +16,8 @@ export default function BrandLetter_sp() {
 
     gsap.set(items, {
       opacity: 0,
-      y: 16,
-      filter: "blur(10px)",
+      y: 14,               // ← SP 最適値
+      filter: "blur(6px)", // ← 負荷を1/2に
     });
 
     const io = new IntersectionObserver(([entry]) => {
@@ -27,13 +27,13 @@ export default function BrandLetter_sp() {
         opacity: 1,
         y: 0,
         filter: "blur(0px)",
-        duration: 1.15,
+        duration: 1.10,
         ease: "power2.out",
-        stagger: 0.12,
+        stagger: 0.10,
       });
 
       io.disconnect();
-    }, { threshold: 0.15 });
+    }, { threshold: 0.10 });
 
     io.observe(el);
   }, []);
@@ -43,68 +43,120 @@ export default function BrandLetter_sp() {
   ref={rootRef}
   className="
     relative w-full
-    py-[16vh]
-    text-black
+    py-[15vh]
     overflow-hidden
-    bg-[url('/vertical-soft-paper.png')]   /* ← 絶対消えない背景 */
-    bg-cover
-    bg-top
+    text-black
+
+    /* ★ まずベースの紙背景（固定） */
+    bg-[url('/vertical-soft-paper.png')]
+    bg-cover bg-top
   "
 >
 
-  {/* ============================
-       ★ 強め滲みレイヤー（3段重ね）
-  ============================ */}
-
-  {/* ① 香りの淡紅膜（中） */}
+  {/* =================================================
+      ★ 1) “背景画像” をより背景化 – にじみ処理
+      -------------------------------------------------
+      ・opacity は 0.12〜0.18（存在を残す最適帯）
+      ・blur は 48〜60px（SPで負荷軽い最大値）
+      ・scale で端の濃さを溶かす
+    ================================================= */}
   <div
     aria-hidden="true"
     className="
-      absolute inset-0 -z-0
-      opacity-[0.22]
-      blur-[110px]
-      bg-[radial-gradient(
-        circle_at_48%_18%,
-        rgba(255,175,200,0.40),
-        transparent
-      )]
-    "
-  />
-
-  {/* ② 白の柔光膜（中） */}
-  <div
-    aria-hidden="true"
-    className="
-      absolute inset-0 -z-0
+      absolute inset-0
+      -z-0
       opacity-[0.16]
-      blur-[120px]
-      bg-[radial-gradient(
-        circle_at_52%_70%,
-        rgba(255,255,255,0.55),
-        transparent
-      )]
+      blur-[52px]
+      scale-[1.12]
+      pointer-events-none
+      mix-blend-soft-light
+      bg-[url('/letter/soft-back-roseveil.png')]
+      bg-cover bg-center
     "
   />
 
-  {/* ③ 桜ピンク膜（強め / 画面広域） */}
+  {/* =================================================
+      ★ 2) 香り膜 – Radial（淡紅 × 白 × 青）
+      （背景画像をさらに奥に押すフェード）
+    ================================================= */}
+
+  {/* 淡紅（soft rose mist） */}
   <div
     aria-hidden="true"
     className="
       absolute inset-0 -z-0
-      opacity-[0.28]
-      blur-[150px]
+      opacity-[0.3]
+      blur-[80px]
       bg-[radial-gradient(
-        900px_700px_at_50%_40%,
-        rgba(255,160,185,0.38),
+        680px_480px_at_50%_22%,
+        rgba(255,165,190,0.40),
+        transparent 70%
+      )]
+    "
+  />
+
+  {/* 柔白（white veil） */}
+  <div
+    aria-hidden="true"
+    className="
+      absolute inset-0 -z-0
+      opacity-[0.3]
+      blur-[90px]
+      bg-[radial-gradient(
+        720px_520px_at_52%_70%,
+        rgba(255,255,255,0.55),
+        transparent 75%
+      )]
+    "
+  />
+
+  {/* 微青（evening blue haze） */}
+  <div
+    aria-hidden="true"
+    className="
+      absolute inset-0 -z-0
+      opacity-[0.3]
+      blur-[100px]
+      bg-[radial-gradient(
+        760px_560px_at_50%_45%,
+        rgba(170,200,255,0.38),
+        transparent 75%
+      )]
+    "
+  />
+
+  {/* =================================================
+      ★ 3) 微粒子（grain）
+      -------------------------------------------------
+      ・“紙の上の香り”の雰囲気を作る
+    ================================================= */}
+  <div
+    aria-hidden="true"
+    className="
+      absolute inset-0 -z-0
+      opacity-[0.14]
+      bg-[url('/grain.png')] bg-repeat
+      mix-blend-soft-light
+    "
+  />
+  {/* テキストの背後に “薄い香り膜” */}
+  <div
+    aria-hidden="true"
+    className="
+      absolute inset-0 opacity-[0.22]
+      blur-[48px]
+      bg-[radial-gradient(
+        circle,
+        rgba(255,210,230,0.22),
         transparent
       )]
     "
   />
 
-  {/* ============================
+  {/* =================================================
       HEADER
-  ============================ */}
-  <div className="relative z-10 text-center mb-[8vh] px-6">
+    ================================================= */}
+  <div className="relative z-10 text-center mb-[7vh] px-6">
     <h2
       className="
         bl-fade-sp
@@ -122,10 +174,10 @@ export default function BrandLetter_sp() {
       className="
         bl-fade-sp
         mt-6
-        text-[1.76rem]
+        text-[1.75rem]
         font-light
         tracking-[0.02em]
-        text-[rgba(40,30,35,0.85)]
+        text-[rgba(40,30,35,0.88)]
         leading-[1.38]
       "
     >
@@ -133,27 +185,41 @@ export default function BrandLetter_sp() {
     </p>
   </div>
 
-  {/* ============================
+  {/* =================================================
       BODY
-  ============================ */}
+    ================================================= */}
   <div className="relative z-10 mx-auto w-[90%] max-w-[900px] text-center">
-    <p
-      className="
-        bl-fade-sp relative
-        text-[0.94rem]
-        text-[rgba(40,35,40,0.78)]
-        leading-[1.82]
-        whitespace-pre-line
-        tracking-wide
-        font-light
-      "
-    >
-{`髪が揺れた瞬間にふわりと漂う、静かで上品な香り。
+<p
+  className="
+    bl-fade-sp relative
+    text-[0.95rem]
+    leading-[1.88]
+    font-light
+    whitespace-pre-line
+    tracking-[0.01em]
+    text-[rgba(40,35,40,0.82)]    /* ← 文字本体は普通の色で保持 */
+    [text-shadow:0_1px_1px_rgba(0,0,0,0.06)]
+  "
+  style={{
+    background: `
+      radial-gradient(600px 380px at 50% 20%, rgba(255,170,190,0.07), transparent 70%),
+      radial-gradient(600px 380px at 48% 80%, rgba(170,190,255,0.05), transparent 70%)
+    `,
+    WebkitBackgroundClip: "text",
+    backgroundClip: "text",
+  }}
+>
 
-Rose Veil は、日常の“輪郭”をそっと美しく整える処方です。
+
+{`髪が揺れた瞬間にふわりと漂う、
+静かで上品な香り。
+
+Rose Veil は、日常の“輪郭”を
+そっと美しく整える処方です。
 
 香りは強さではなく距離で伝わり、
-触れた瞬間の質感や乾いたあとの余韻が静かに続きます。
+触れた瞬間の質感や乾いたあとの余韻が
+静かに続きます。
 
 忙しい朝も、ふとした瞬間も、
 あなたに静かに寄り添うように。`}
@@ -171,6 +237,7 @@ Rose Veil は、日常の“輪郭”をそっと美しく整える処方です�
     >
       ROSE VEIL FRAGRANCE SHAMPOO
     </p>
+
   </div>
 </section>
   );

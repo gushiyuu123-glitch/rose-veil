@@ -410,7 +410,7 @@ export default function ProductOverlayWide_sp() {
   };
 
   return (
-    <section id="product" className="w-full relative bg-black overflow-hidden">
+    <section id="products-sp" className="w-full relative bg-black overflow-hidden">
       {/* CART TRIGGER */}
       <div
         className={`
@@ -438,8 +438,9 @@ export default function ProductOverlayWide_sp() {
       </div>
 
       {/* PRODUCTS */}
-      {products.map((p, i) => (
-        <div key={p.key} id={`product-${p.key}`} className="relative w-full border-b border-white/10">
+{products.map((p, i) => (
+  <div key={p.key} id={`products-sp-${p.key}`} className="relative w-full border-b border-white/10">
+
           {/* PHOTO AREA */}
           <div className="relative w-full h-[78vh] lg:h-[112vh] overflow-hidden">
             {/* PHOTO */}

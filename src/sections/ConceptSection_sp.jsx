@@ -6,16 +6,19 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const breathCopy = `
-香りは “強さ” ではなく距離で伝わる。
+香りは “強さ” ではなく距離で
+伝わる。
 
-洗い上がりの柔らかさと、近づいた瞬間だけ漂う余韻。
+洗い上がりの柔らかさと、
+近づいた瞬間だけ漂う余韻。
 
 WHITE —— 軽さと清潔感
 VEIL —— 深紅の甘さと艶
 BLUE —— 透明感の潤い
 
 ただ髪を洗うだけで、
-“なりたい印象”へ自然と近づく一本。
+“なりたい印象”へ
+自然と近づく一本。
 `;
 
 export default function ConceptSection_sp() {
@@ -82,8 +85,8 @@ export default function ConceptSection_sp() {
     model-bg-sp absolute inset-0
     bg-[url('/model-hair-flow-vertical3.png')]
     bg-cover bg-center
-    opacity-[0.82]              /* ← 大幅に可視化 */
-    blur-[2px]                  /* ← ぼかしを弱め、存在を出す */
+    opacity-[0.76]              /* ← 大幅に可視化 */
+    blur-[4px]                  /* ← ぼかしを弱め、存在を出す */
   "
 />
 
@@ -184,11 +187,11 @@ export default function ConceptSection_sp() {
         </p>
 
         <h2 className="mt-3 text-[1.85rem] font-light tracking-[0.02em] text-[rgba(60,50,55,0.85)]">
-          どの“余韻”が、あなたらしい？
+          どの“余韻”が、<br></br>あなたらしい？
         </h2>
 
         <a
-          href="#products"
+          href="#products-sp"
           className="
             mt-7 text-[0.90rem] tracking-[0.20em]
             text-[rgba(90,80,90,0.60)]
