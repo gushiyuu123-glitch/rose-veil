@@ -57,7 +57,7 @@ export default function HeroSP() {
   }, []);
 
   return (
-    <section id="hero" ref={heroRef} className="sp-hero-section">
+    <section id="hero-sp" ref={heroRef} className="sp-hero-section">
 
       {/* 背景膜・影（残す） */}
       <div className="sp-hero-bg" />

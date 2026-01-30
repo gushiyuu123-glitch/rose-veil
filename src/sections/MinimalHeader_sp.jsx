@@ -81,7 +81,7 @@ export default function MinimalHeader_sp() {
           LOGO — 余白の中で“静かに光る”
       -------------------------------------------- */}
       <a
-        href="#hero"
+        href="#hero-sp"
         className="group block cursor-pointer transition-opacity"
       >
 <img

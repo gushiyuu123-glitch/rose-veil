@@ -69,7 +69,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section ref={heroRef} className="hero-section">
+    <section id="hero" ref={heroRef} className="hero-section">
 
       {/* ナビ吸着 */}
       <HeaderRight />
