@@ -87,7 +87,7 @@ export default function MinimalHeader() {
           src="/roseveil-logo1.png"
           alt="ROSE VEIL"
           className="
-            h-[54px]
+            h-[52px]
             opacity-80
             group-hover:opacity-100
             transition-all duration-700
