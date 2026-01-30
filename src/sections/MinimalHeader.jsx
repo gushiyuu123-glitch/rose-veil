@@ -52,7 +52,7 @@ export default function MinimalHeader() {
       ref={ref}
       className="
         fixed top-0 left-0 right-0 z-[99]
-        h-[69px]
+        h-[60px]
         px-10 flex items-center
         transition-all duration-500
 
@@ -84,14 +84,15 @@ export default function MinimalHeader() {
         className="group block cursor-pointer transition-opacity"
       >
         <img
-          src="/roseveil-logo.png"
+          src="/roseveil-logo1.png"
           alt="ROSE VEIL"
           className="
-            h-[77px]
+            h-[54px]
             opacity-80
             group-hover:opacity-100
             transition-all duration-700
             select-none
+            translate-y-[4px]   <!-- ★ ここ追加だけ -->
           "
         />
       </a>

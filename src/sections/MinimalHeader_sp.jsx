@@ -84,17 +84,19 @@ export default function MinimalHeader_sp() {
         href="#hero"
         className="group block cursor-pointer transition-opacity"
       >
-        <img
-          src="/roseveil-logo.png"
-          alt="ROSE VEIL"
-          className="
-            h-[52px]
-            opacity-80
-            group-hover:opacity-100
-            transition-all duration-500
-            select-none
-          "
-        />
+<img
+  src="/roseveil-logo1.png"
+  alt="ROSE VEIL"
+  className="
+    h-[38px]
+    opacity-80
+    group-hover:opacity-100
+    transition-all duration-500
+    select-none
+    translate-y-[5px]   <!-- ★ ここ追加だけ -->
+  "
+/>
+
       </a>
     </header>
   );
