@@ -129,14 +129,16 @@ export default function IngredientsSection() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="
-        relative w-full bg-black text-white
-        pt-[18vh] pb-[18vh]
-        overflow-hidden
-      "
-    >
+<section
+  ref={sectionRef}
+  className="
+    relative w-full bg-black text-white
+    pt-[18vh] pb-[18vh]
+    overflow-hidden
+    scale-[1] origin-top
+  "
+>
+
       {/* ============================================
           ★ フルワイド背景（画像 + 深紅 + 白光 + 青膜）
       ============================================ */}

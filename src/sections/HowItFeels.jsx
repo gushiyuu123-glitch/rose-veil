@@ -26,7 +26,7 @@ export default function HowItFeels() {
         key: "white",
         label: "WHITE — AIRY SMOOTH",
         title: "触れた瞬間にほどける、空気の軽さ。",
-        copy: `指を入れた瞬間に、摩擦がほどける。\n根元はふわり、毛先は静かにそろう。\n“軽いのに整う” を、手触りで実感できます。`,
+        copy: `指を入れた瞬間に、摩擦がほどける。根元はふわり、毛先は静かにそろう。“軽いのに整う” を、手触りで実感できます。`,
         image: "/feel/feel-white.png",
         veil:
           "radial-gradient(70% 60% at 40% 30%, rgba(255,255,255,0.18), rgba(255,255,255,0.04), rgba(255,255,255,0))",
@@ -36,7 +36,7 @@ export default function HowItFeels() {
         key: "veil",
         label: "VEIL — DEEP SILKY",
         title: "体温でひらく艶膜が、輪郭だけを残す。",
-        copy: `しっとりしているのに、重たくない。\n体温で香りがふわりと開き、\n髪の“艶の輪郭”だけを静かに整えます。`,
+        copy: `しっとりしているのに、重たくない。体温で香りがふわりと開き、\n髪の“艶の輪郭”だけを静かに整えます。`,
         image: "/feel/feel-veil.png",
         veil:
           "radial-gradient(70% 60% at 60% 32%, rgba(255,170,190,0.20), rgba(255,255,255,0.04), rgba(255,255,255,0))",
@@ -46,7 +46,7 @@ export default function HowItFeels() {
         key: "blue",
         label: "BLUE — CLEAR BREATH",
         title: "揮発する冷たさが、透明な余韻を残す。",
-        copy: `乾いたあと、空気が澄む。\n動いたときにだけ香る“距離の美学”。\n透明感のある潤いが、静かに続きます。`,
+        copy: `乾いたあと、空気が澄む。動いたときにだけ香る“距離の美学”。透明感のある潤いが、静かに続きます。`,
         image: "/feel/feel-blue.png",
         veil:
           "radial-gradient(70% 60% at 52% 34%, rgba(170,200,255,0.18), rgba(255,255,255,0.04), rgba(255,255,255,0))",
@@ -208,14 +208,16 @@ export default function HowItFeels() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="
-        relative w-full overflow-hidden
-        py-[22vh]
-        bg-[radial-gradient(circle_at_50%_20%,rgba(60,20,30,0.24),rgba(12,9,12,0.94))]
-      "
-    >
+<section
+  ref={sectionRef}
+  className="
+    relative w-full overflow-hidden
+    py-[22vh]
+    bg-[radial-gradient(circle_at_50%_20%,rgba(60,20,30,0.24),rgba(12,9,12,0.94))]
+    scale-[1] origin-top
+  "
+>
+
       {/* ============================================
           BACKGROUND（線なし：淡膜 × 光 × 粒子）
       ============================================ */}
@@ -288,7 +290,7 @@ export default function HowItFeels() {
           HOW&nbsp;IT&nbsp;FEELS
         </div>
 
-        <h2 className="hif-fade mt-4 text-[2.15rem] md:text-[2.35rem] font-light tracking-[0.01em] text-white/92">
+        <h2 className="hif-fade mt-4 text-[2.06rem] md:text-[2.35rem] font-light tracking-[0.01em] text-white/92">
           体験の質感を、言葉にする。
         </h2>
 
@@ -365,7 +367,7 @@ export default function HowItFeels() {
               <h3
                 className="
                   mt-7
-                  text-[1.15rem] md:text-[1.12rem]
+                  text-[1.10rem] md:text-[1.12rem]
                   font-light
                   tracking-[0.02em]
                   text-white/92
@@ -404,10 +406,10 @@ export default function HowItFeels() {
           <div className="rev-fade text-[0.82rem] tracking-[0.34em] text-white/45">
             CUSTOMER&nbsp;REVIEWS
           </div>
-          <h3 className="rev-fade mt-4 text-[1.95rem] md:text-[2.15rem] font-light tracking-[0.015em] text-white/90">
+          <h3 className="rev-fade mt-4 text-[1.87rem] md:text-[2.15rem] font-light tracking-[0.015em] text-white/90">
             静かに褒められる香り
           </h3>
-          <p className="rev-fade mt-4 text-[0.98rem] text-white/60 tracking-wide leading-relaxed">
+          <p className="rev-fade mt-4 text-[0.94rem] text-white/60 tracking-wide leading-relaxed">
             体験は、言葉よりも“余韻”に残る。<br className="hidden md:block" />
             その余韻を、体験者の声で確かめる。
           </p>
@@ -455,7 +457,8 @@ export default function HowItFeels() {
                     <span
                       key={idx}
                       className={`
-                        text-[1.05rem]
+                        text-[1.01rem]
+
                         ${idx < r.stars ? "text-[rgba(255,185,205,0.75)]" : "text-white/14"}
                       `}
                     >
@@ -464,11 +467,12 @@ export default function HowItFeels() {
                   ))}
                 </div>
 
-                <p className="text-[1.0rem] text-white/72 leading-[1.95] whitespace-pre-line tracking-wide">
+            <p className="text-[0.96rem] text-white/72 leading-[1.95] whitespace-pre-line tracking-wide">
+
                   {r.text}
                 </p>
 
-                <div className="mt-7 text-[0.84rem] text-white/46 tracking-[0.14em]">{r.name}</div>
+               <div className="mt-7 text-[0.81rem] text-white/46 tracking-[0.14em]">{r.name}</div>
 
                 <div className="mt-7 w-[78px] h-[1px] bg-white/14" />
               </div>

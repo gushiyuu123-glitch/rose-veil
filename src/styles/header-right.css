@@ -3,9 +3,10 @@
 =========================================== */
 .vr-nav {
   position: absolute;
-  top: 57.5%;
-  right: 7vw;
-  transform: translateY(-50%);
+top: 59%;
+right: 6.6vw;
+transform: translateY(-50%);
+
   z-index: 50;
 
   display: flex;
@@ -57,7 +58,7 @@
   opacity: 0.90;
 
   /* ★ ここを追加 — ほんの少しだけ上げる */
-  transform: translateY(-9px);
+  transform: translateY(-19px);
 
   transition:
     opacity 0.25s ease,

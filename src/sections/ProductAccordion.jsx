@@ -39,13 +39,14 @@ const products = [
   {
     key: "white",
     title: "ROSE WHITE",
-    metaCopy: "揺れるたび、白い光がふわりとほどける。空気のように軽く、清潔な甘さだけを残す香り。",
+    metaCopy: "揺れるたび白い光がほどける、軽く清潔な甘さの香り。",
     sub: "透明感の甘さ × 軽い仕上がり",
     image: "rose-white.png",
-    detail: `ホワイトローズとホワイトムスクを合わせた
-軽質処方。根元はふわり、毛先はさらり。
+    detail: `ホワイトローズとホワイトムスクを合わせた軽質処方。
+    根元はふわり、毛先はさらり。
 
-“重さゼロ” のまま、静かにまとまるよう設計。
+“重さゼロ” のまま、
+静かにまとまるよう設計。
 
 ● 仕上がり：軽い・さらさら
 ● 香り持続：〜6時間
@@ -58,12 +59,14 @@ const products = [
   {
     key: "veil",
     title: "ROSE VEIL",
-    metaCopy: "体温でそっと開く深紅の甘さ。艶がゆっくり続き、夜まで上品な余韻を残す香り。",
+    metaCopy: "体温でそっと開く深紅の甘さ。艶が続き、夜まで上品な余韻。",
     sub: "深紅の甘さ × しっとり上品",
     image: "rose-veil.png",
-    detail: `ローズアブソリュートとホホバが深い艶膜をつくる処方。
+    detail: `ローズアブソリュートとホホバが
+    深い艶膜をつくる処方。
 
-体温でふわりと香りが開き、しっとりしたまとまりが続く。
+体温でふわりと香りが開き、
+しっとりしたまとまりが続く。
 
 ● 仕上がり：しっとり・上質な艶
 ● 香り持続：〜8時間
@@ -79,9 +82,11 @@ const products = [
     metaCopy: "揺れるたび、青の透明感がすっと立ちのぼる。静かな潤いが長く続く香り。",
     sub: "青の静けさ × 凛とした潤い",
     image: "rose-blue.png",
-    detail: `青みローズとベルガモットが夜の透明感をつくる処方。
+    detail: `青みローズとベルガモットが夜の
+    透明感をつくる処方。
 
-重くならず、静かに潤いだけを残す。
+重くならず、
+静かに潤いだけを残す。
 
 ● 仕上がり：潤い・みずみずしさ
 ● 香り持続：〜7時間
@@ -520,7 +525,7 @@ export default function ProductOverlayWide() {
       {products.map((p, i) => (
         <div key={p.key} id={`product-${p.key}`} className="relative w-full border-b border-white/10">
           {/* ===== PHOTO AREA ===== */}
-          <div className="relative w-full h-[112vh] overflow-hidden">
+          <div className="relative w-full h-[108vh] overflow-hidden">
             <div className="cinema-hover w-full h-full">
               <img src={p.image} alt={p.title} className="absolute inset-0 w-full h-full object-cover object-center" />
               <div className="cinema-shadow" />
@@ -546,7 +551,7 @@ export default function ProductOverlayWide() {
             </div>
 
             {/* right vertical grad veil */}
-            <div className="absolute inset-y-0 right-0 w-[30%] pointer-events-none backdrop-blur-[3px]" style={{ background: rightGrad[p.grad] }} />
+            <div className="absolute inset-y-0 right-0 w-[28%] pointer-events-none backdrop-blur-[3px]" style={{ background: rightGrad[p.grad] }} />
 
             {/* OVERLAY */}
             <div
@@ -562,8 +567,7 @@ export default function ProductOverlayWide() {
 {/* LEFT */}
 <Reveal delayMs={80 + i * 80} className="relative text-left translate-x-[1.5vw]">
 
-  {/* ★ タイトル色が100%反映される修正版 */}
-          <h3 className={`${titleColor[p.key]} text-[2.6rem] font-light tracking-[0.02em]`}>{p.title}</h3>
+          <h3 className={`${titleColor[p.key]} text-[2.45rem] font-light tracking-[0.02em]`}>{p.title}</h3>
   {/* WHITE専用の背景ボックス */}
   {p.key === "white" && (
     <div
@@ -581,11 +585,11 @@ export default function ProductOverlayWide() {
     />
   )}
 
-  <p className="text-white/75 text-[1.05rem] mt-4 leading-relaxed tracking-[0.02em]">
+  <p className="text-white/75 text-[1.00rem] mt-4 leading-relaxed tracking-[0.02em]">
     {p.metaCopy}
   </p>
 
-  <p className="text-white/80 text-[1.15rem] mt-3 tracking-[0.015em]">
+  <p className="text-white/80 text-[1.10rem] mt-3 tracking-[0.015em]">
     {p.sub}
   </p>
 
@@ -593,9 +597,9 @@ export default function ProductOverlayWide() {
 </Reveal>
 
               {/* RIGHT */}
-              <div className="relative text-left pl-[17vw] translate-x-[2vw]">
+              <div className="relative text-left pl-[15vw] translate-x-[2vw]">
                 <Reveal delayMs={160 + i * 80}>
-                  <p className="text-white/95 text-[1.08rem] leading-[1.95] whitespace-pre-line">{p.detail}</p>
+                  <p className="text-white/95 text-[1.02rem] leading-[1.95] whitespace-pre-line">{p.detail}</p>
                 </Reveal>
 
                 <Reveal delayMs={240 + i * 80}>

@@ -120,7 +120,7 @@ export default function ScentPalette() {
       ref={sectionRef}
       className="
         relative w-full bg-black text-white
-        pt-[18vh] pb-[16vh]
+        pt-[17.4vh] pb-[15.5vh]
         overflow-hidden
       "
     >
@@ -159,8 +159,8 @@ export default function ScentPalette() {
             absolute
             right-[-1%] top-[81%]
             w-[46vw] max-w-[540px]
-            opacity-[0.18]
-            blur-[48px]
+            opacity-[0.16]
+           blur-[46px]
             mix-blend-screen
           "
           style={{
@@ -203,8 +203,8 @@ export default function ScentPalette() {
             absolute
             right-[78%] top-[16%]
             w-[46vw] max-w-[540px]
-            opacity-[0.14]
-            blur-[46px]
+           opacity-[0.12]
+           blur-[44px]
             mix-blend-screen
           "
           style={{
@@ -222,7 +222,7 @@ export default function ScentPalette() {
         ref={conceptRef}
         className="
           relative z-10 opacity-0
-          pt-[8vh] pb-[14vh]
+          pt-[7.7vh] pb-[13.6vh]
           mx-auto w-[86%] max-w-[840px]
         "
       >
@@ -235,7 +235,7 @@ export default function ScentPalette() {
         <div
           className="
             leading-[2.08]
-            text-[1.18rem]
+            text-[1.14rem]
             tracking-[0.02em]
             text-white/88 font-light
             space-y-10 text-center
@@ -253,7 +253,7 @@ WHITE は軽やかさ、VEIL は深みの艶、BLUE は静かな透明感。
         </div>
 
         <div className="w-[48px] h-[1px] bg-white/25 mx-auto mt-16" />
-        <p className="mt-10 text-center text-white/45 text-[0.92rem] tracking-[0.20em]">
+        <p className="mt-10 text-center text-white/45 text-[0.89rem] tracking-[0.20em]">
           「香りは、生活の“輪郭”になる。」
         </p>
       </div>
@@ -266,10 +266,10 @@ WHITE は軽やかさ、VEIL は深みの艶、BLUE は静かな透明感。
           <div className="text-white/55 tracking-[0.22em] text-[0.78rem]">
             SCENT PALETTE
           </div>
-          <h2 className="mt-4 text-[2.1rem] font-light tracking-[0.06em] text-white/92">
+          <h2 className="mt-4 text-[2.02rem] font-light tracking-[0.06em] text-white/92">
             香りのサンプルを選ぶ
           </h2>
-          <p className="mt-5 text-white/60 text-[1.05rem] leading-[1.9]">
+          <p className="mt-5 text-white/60 text-[1.01rem] leading-[1.9]">
             香りはまず “空気の層” で伝わる。
             <br className="hidden md:block" />
             直感で、あなたに近い質感をお選びください。
@@ -338,8 +338,8 @@ WHITE は軽やかさ、VEIL は深みの艶、BLUE は静かな透明感。
                   alt={p.title}
                   className="
                     relative
-                    w-[70vw] md:w-[26vw]
-                    max-w-[420px]
+                    w-[70vw] md:w-[25.2vw]
+                    max-w-[406px]
                     opacity-[0.95]
                     mix-blend-lighten
                     transition-all
@@ -350,16 +350,16 @@ WHITE は軽やかさ、VEIL は深みの艶、BLUE は静かな透明感。
 
               {/* Title & copy */}
               <div className="mt-6 text-center">
-                <div className={`text-[1.14rem] font-light tracking-[0.22em] ${titleColor[p.key]}`}>
+                <div className={` text-[1.09rem] font-light tracking-[0.22em] ${titleColor[p.key]}`}>
                   {p.title}
                 </div>
-                <div className="mt-2 text-white/70 text-[1rem] leading-[1.85] whitespace-pre-line">
+                <div className="mt-2 text-white/70 text-[0.97rem] leading-[1.85] whitespace-pre-line">
                   {p.metaCopy}
                 </div>
               </div>
 
               {/* summary */}
-              <div className="mt-5 text-white/75 text-[1.02rem] leading-[1.88] italic px-4 whitespace-pre-line">
+              <div className="mt-5 text-white/75 text-[0.98rem] leading-[1.88] italic px-4 whitespace-pre-line">
                 {p.summary}
               </div>
 
@@ -388,7 +388,7 @@ WHITE は軽やかさ、VEIL は深みの艶、BLUE は静かな透明感。
           ref={productLineRef}
           className="
             product-line-block relative opacity-0 translate-y-[26px]
-            w-full mt-[22vh]
+            w-full mt-[21.2vh]
             flex flex-col items-center text-center
           "
         >
@@ -407,11 +407,11 @@ WHITE は軽やかさ、VEIL は深みの艶、BLUE は静かな透明感。
             PRODUCT LINE
           </p>
 
-          <h2 className="mt-3 text-[2.35rem] font-light tracking-[0.02em] text-[rgba(245,235,240,0.92)]">
+          <h2 className="mt-3 text-[2.26rem] font-light tracking-[0.02em] text-[rgba(245,235,240,0.92)]">
             The Rose Signature Collection
           </h2>
 
-          <p className="mt-3 text-[1.02rem] leading-relaxed tracking-wide text-[rgba(230,215,225,0.78)]">
+          <p className="mt-3 text-[0.99rem] leading-relaxed tracking-wide text-[rgba(230,215,225,0.78)]">
             香りの三つの方向性を、“質感” として再設計したコレクション。
           </p>
 

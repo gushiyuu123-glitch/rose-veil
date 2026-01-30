@@ -171,11 +171,11 @@ export default function Footer() {
 
       {/* === BRAND STATEMENT === */}
       <div className="relative z-10 text-center px-4 max-w-[720px] mx-auto">
-        <h2 className="ft-fade text-[1.22rem] tracking-[0.28em] text-white/82">
+        <h2 className="ft-fade text-[1.17rem] tracking-[0.28em] text-white/82">
           ROSE&nbsp;VEIL&nbsp;FRAGRANCE
         </h2>
 
-        <p className="ft-fade mt-6 text-[0.96rem] text-white/52 leading-[1.95]">
+        <p className="ft-fade mt-6 text-[0.92rem] text-white/52 leading-[1.95]">
           香りは “強さ” ではなく、距離で伝わる。
           <br className="hidden md:block" />
           動いた瞬間にだけ、そっとひらく静かな余韻。
@@ -190,15 +190,13 @@ export default function Footer() {
       <div
         className="
           ft-fade
-          mt-[12vh]
+          mt-[13vh]
           w-[92%] max-w-[980px] mx-auto
-          grid grid-cols-1 md:grid-cols-3
-          gap-12
-          text-center
+          grid grid-cols-1 md:grid-cols-3 gap-14 text-center
         "
       >
-        <div className="space-y-3">
-          <div className="text-[0.78rem] tracking-[0.22em] text-white/40">
+        <div className="space-y-2.5">
+          <div className="text-[0.72rem] tracking-[0.22em] text-white/40">
             PRODUCTS
           </div>
           <a className="text-white/70 hover:text-white transition">WHITE</a>
@@ -206,8 +204,8 @@ export default function Footer() {
           <a className="text-white/70 hover:text-white transition">BLUE</a>
         </div>
 
-        <div className="space-y-3">
-          <div className="text-[0.78rem] tracking-[0.22em] text-white/40">
+        <div className="space-y-2.5">
+          <div className="text-[0.72rem] tracking-[0.22em] text-white/40">
             INFORMATION
           </div>
           <a className="text-white/70 hover:text-white transition">ABOUT</a>
@@ -215,8 +213,8 @@ export default function Footer() {
           <a className="text-white/70 hover:text-white transition">Q&A</a>
         </div>
 
-        <div className="space-y-3">
-          <div className="text-[0.78rem] tracking-[0.22em] text-white/40">
+        <div className="space-y-2.5">
+          <div className="text-[0.72rem] tracking-[0.22em] text-white/40">
             SOCIAL
           </div>
           <a className="text-white/70 hover:text-white transition">INSTAGRAM</a>
@@ -226,7 +224,7 @@ export default function Footer() {
 
       {/* === COPYRIGHT === */}
       <div className="relative z-10 mt-[14vh] text-center">
-        <p className="ft-fade text-[0.75rem] text-white/36 tracking-[0.18em]">
+        <p className="ft-fade text-[0.70rem] text-white/36 tracking-[0.18em]">
           © {new Date().getFullYear()} GUSHIKEN DESIGN — ROSE SERIES
         </p>
 
@@ -240,7 +238,7 @@ export default function Footer() {
           rel="noopener noreferrer"
           className="
             ft-fade block mt-8
-            text-[0.78rem]
+            text-[0.70rem]
             text-white/32 hover:text-white/70
             tracking-[0.20em]
             transition-all
@@ -255,7 +253,7 @@ export default function Footer() {
           rel="noopener noreferrer"
           className="
             block mt-4
-            text-[0.78rem]
+            text-[0.70rem]
             text-white/40 hover:text-white/70
             tracking-[0.20em]
             transition

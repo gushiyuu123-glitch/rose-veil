@@ -52,7 +52,7 @@ export default function MinimalHeader() {
       ref={ref}
       className="
         fixed top-0 left-0 right-0 z-[99]
-        h-[72px]
+        h-[69px]
         px-10 flex items-center
         transition-all duration-500
 
@@ -71,8 +71,8 @@ export default function MinimalHeader() {
           transition-all duration-500
 
           /* Heroを離れたら淡い光膜に */
-          bg-active:bg-white/5
-          bg-active:backdrop-blur-[6px]
+         bg-active:bg-white/3
+          bg-active:backdrop-blur-[4px]
         "
       />
 
@@ -87,7 +87,7 @@ export default function MinimalHeader() {
           src="/roseveil-logo.png"
           alt="ROSE VEIL"
           className="
-            h-[82px]
+            h-[77px]
             opacity-80
             group-hover:opacity-100
             transition-all duration-700

@@ -153,7 +153,7 @@ ROSE シリーズの香りは “甘い/強い” ではなく
           Q & A
         </div>
 
-        <h2 className="mt-4 text-[2.0rem] md:text-[2.25rem] font-light tracking-[0.02em] text-black/74">
+        <h2 className="mt-4 text-[1.94rem] md:text-[2.18rem] font-light tracking-[0.02em] text-black/74">
           よくある質問と、静かな回答。
         </h2>
 
@@ -182,12 +182,12 @@ ROSE シリーズの香りは “甘い/強い” ではなく
               className="py-8 cursor-pointer select-none"
               onClick={() => setOpenIndex(isOpen ? null : i)}
             >
-              <div className="text-[1.06rem] tracking-[0.02em] text-black/74 flex justify-between items-center">
+              <div className="text-[1.02rem] tracking-[0.02em] text-black/74 flex justify-between  mr-[2px] pr-[6px] items-center">
                 <span>{qa.q}</span>
                 <span className="text-black/30 text-[1.5rem] leading-none font-light">
                   {isOpen ? "−" : "+"}
                 </span>
-              </div>
+              </div> 
 
               <div
                 className={`
@@ -196,7 +196,7 @@ ROSE シリーズの香りは “甘い/強い” ではなく
                   ${isOpen ? "max-h-[500px] mt-4" : "max-h-0"}
                 `}
               >
-                <p className="text-[0.95rem] text-black/50 leading-[1.95] whitespace-pre-line tracking-wide pb-4">
+                <p className="text-[0.92rem] text-black/50 leading-[1.95] whitespace-pre-line tracking-wide pb-4">
                   {qa.a}
                 </p>
               </div>
@@ -208,12 +208,12 @@ ROSE シリーズの香りは “甘い/強い” ではなく
       {/* ======================================================
           INQUIRY
       ====================================================== */}
-      <div ref={inquiryRef} className="relative z-10 mt-[14vh] text-center">
-        <h3 className="inq-fade text-[1.38rem] font-light tracking-[0.02em] text-black/74">
+      <div ref={inquiryRef} className="relative z-10 mt-[16vh] text-center">
+        <h3 className="inq-fade text-[1.34rem] font-light tracking-[0.02em] text-black/74">
           ご相談・お問い合わせ
         </h3>
 
-        <p className="inq-fade mt-4 text-[0.95rem] text-black/50 leading-[1.8]">
+        <p className="inq-fade mt-4 text-[0.92rem] text-black/50 leading-[1.8]">
           香り・質感・処方について、静かにご相談いただけます。<br />
           無理なご案内は一切ありません。
         </p>

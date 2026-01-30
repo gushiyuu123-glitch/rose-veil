@@ -160,7 +160,7 @@ export default function ConceptSection() {
       <div className="relative z-10 text-center mb-[14vh] mt-[5vh] px-6">
         <h2
           className="
-            text-[0.82rem]
+            text-[0.79rem]
             tracking-[0.34em]
             text-[rgba(60,50,55,0.45)]
           "
@@ -170,7 +170,8 @@ export default function ConceptSection() {
 
         <p
           className="
-            mt-3 text-[2.25rem]
+            mt-3 text-[2.14rem]
+
             font-light tracking-[0.015em]
             text-[rgba(60,50,55,0.82)]
           "
@@ -180,7 +181,7 @@ export default function ConceptSection() {
 
         <p
           className="
-            mt-3 text-[1rem]
+            mt-3 text-[0.96rem]
             leading-relaxed tracking-wide
             text-[rgba(60,50,55,0.55)]
           "
@@ -220,7 +221,8 @@ export default function ConceptSection() {
         <p
           className="
             relative
-            text-[1.02rem]
+           text-[0.94rem]
+
             text-black/65
             leading-[1.95]
             whitespace-pre-line
@@ -262,7 +264,7 @@ export default function ConceptSection() {
 
         <p
           className="
-            mt-6 text-[0.78rem]
+            mt-6  text-[0.75rem]
             tracking-[0.34em]
             text-[rgba(60,50,55,0.40)]
           "
@@ -272,7 +274,8 @@ export default function ConceptSection() {
 
         <h2
           className="
-            mt-3 text-[2.35rem]
+            mt-3 text-[2.20rem]
+
             font-light tracking-[0.02em]
             text-[rgba(60,50,55,0.85)]
           "
@@ -282,7 +285,7 @@ export default function ConceptSection() {
 
         <p
           className="
-            mt-3 text-[0.98rem]
+            mt-3 text-[0.94rem]
             leading-relaxed tracking-wide
             text-[rgba(60,50,55,0.55)]
           "
@@ -299,7 +302,7 @@ export default function ConceptSection() {
           href="#products"
           className="
             mt-10
-            text-[0.92rem]
+            text-[0.88rem]
             tracking-[0.20em]
             text-[rgba(90,80,90,0.60)]
             hover:text-[rgba(90,80,90,0.85)]

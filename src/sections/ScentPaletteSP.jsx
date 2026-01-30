@@ -10,71 +10,110 @@ export default function ScentPaletteSP() {
   const productLineRef = useRef(null);
   const panelRefs = useRef([]);
 
-  /* ===============================
-      GSAP（SP最適・最終版）
-  =============================== */
-  useEffect(() => {
-    if (!sectionRef.current) return;
+useEffect(() => {
+  const section = sectionRef.current;
+  if (!section) return;
 
-    gsap.set(conceptRef.current, { opacity: 0, y: 24 });
-    gsap.set(productLineRef.current, { opacity: 0, y: 28 });
+  // GSAP初期化（refがnullでも落ちないようにガード）
+  const safeSet = (target, vars) => target && gsap.set(target, vars);
 
-    panelRefs.current.forEach((p) => {
-      if (!p) return;
-      gsap.set(p, {
-        opacity: 0,
-        y: 22,
-        scale: 0.965,
-        filter: "blur(8px)",
-      });
+  safeSet(conceptRef.current, {
+    opacity: 0,
+    y: 24,
+    filter: "blur(6px)",
+    willChange: "transform,opacity,filter",
+  });
+
+  safeSet(productLineRef.current, {
+    opacity: 0,
+    y: 28,
+    filter: "blur(6px)",
+    willChange: "transform,opacity,filter",
+  });
+
+  panelRefs.current.forEach((p) => {
+    safeSet(p, {
+      opacity: 0,
+      y: 22,
+      scale: 0.965,
+      filter: "blur(8px)",
+      willChange: "transform,opacity,filter",
     });
+  });
 
-    const tl = gsap.timeline({
-      paused: true,
-      defaults: { ease: "power2.out" },
-    });
+  const tl = gsap.timeline({
+    paused: true,
+    defaults: { ease: "power2.out" },
+  });
 
-    tl.to(conceptRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 1.1,
-      filter: "blur(0px)",
-    })
-      .to(
-        panelRefs.current,
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          filter: "blur(0px)",
-          duration: 1.2,
-          stagger: 0.18,
-        },
-        "-=0.45"
-      )
-      .to(
-        productLineRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1.15,
-          filter: "blur(0px)",
-        },
-        "-=0.35"
-      );
-
-    const io = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) {
-          tl.play();
-          io.disconnect();
-        }
+  tl.to(conceptRef.current, {
+    opacity: 1,
+    y: 0,
+    duration: 1.1,
+    filter: "blur(0px)",
+  })
+    .to(
+      panelRefs.current.filter(Boolean), // ← null混入対策
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        filter: "blur(0px)",
+        duration: 1.2,
+        stagger: 0.18,
       },
-      { threshold: 0.18 }
+      "-=0.45"
+    )
+    .to(
+      productLineRef.current,
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1.15,
+        filter: "blur(0px)",
+      },
+      "-=0.35"
     );
 
-    io.observe(sectionRef.current);
-  }, []);
+  // iOS対策：IOを「少し早めに」発火させる + 初回描画ズレ対策
+  let io;
+  const playOnce = () => {
+    if (tl.isActive() || tl.progress() > 0) return;
+    tl.play();
+    io && io.disconnect();
+  };
+
+  // Reduce Motion 対策（ONの人はフェードさせず表示）
+  const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+  if (reduce) {
+    tl.progress(1);
+    return;
+  }
+
+  // requestAnimationFrameで1フレーム遅らせて監視開始（Safari安定化）
+  const raf = requestAnimationFrame(() => {
+    io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) playOnce();
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -18% 0px", // ← 少し手前で発火（スマホ安定）
+      }
+    );
+    io.observe(section);
+
+    // フォールバック：もし既に画面内なら即再生
+    const rect = section.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.85) playOnce();
+  });
+
+  return () => {
+    cancelAnimationFrame(raf);
+    io && io.disconnect();
+    tl.kill();
+  };
+}, []);
 
   return (
     <section

@@ -96,8 +96,9 @@ export default function Philosophy() {
         bg-black
         overflow-hidden
 
-        pt-[24vh] pb-[18vh]
-        lg:pt-[35vh] lg:pb-[20vh]
+       pt-[22.8vh] pb-[17.2vh]
+
+        lg:pt-[33.6vh] lg:pb-[19.2vh]
       "
     >
       {/* 左ローズ */}
@@ -106,8 +107,8 @@ export default function Philosophy() {
         alt=""
         className="
           rose-left
-          absolute left-[10%] top-[31%]
-          w-[360px]
+          absolute left-[10%]  top-[30.5%]
+         w-[348px]
           opacity-[0.26]
           blur-[10px]
           pointer-events-none select-none
@@ -120,9 +121,9 @@ export default function Philosophy() {
         alt=""
         className="
           rose-right
-          absolute right-[7%] top-[79%]
-          w-[360px]
-          opacity-[0.40]
+          absolute right-[7%]  top-[78%]
+         w-[344px]
+         opacity-[0.36]
           blur-[9px]
           pointer-events-none select-none
         "
@@ -133,20 +134,20 @@ export default function Philosophy() {
         className="
           philo-veil
           absolute top-[12%] left-[15%]
-          w-[430px] h-[430px]
+          w-[417px] h-[417px]
           bg-[radial-gradient(circle,rgba(255,210,230,0.15),rgba(255,210,230,0))]
           blur-[95px]
-          opacity-[0.42]
+          opacity-[0.38]
         "
       />
       <div
         className="
           philo-veil
           absolute bottom-[12%] right-[12%]
-          w-[380px] h-[380px]
+          w-[368px] h-[368px]
           bg-[radial-gradient(circle,rgba(255,185,215,0.12),rgba(255,185,215,0))]
           blur-[100px]
-          opacity-[0.36]
+          opacity-[0.32]
         "
       />
 
@@ -159,8 +160,8 @@ export default function Philosophy() {
             philo-text
             font-eng
             tracking-[0.22em]
-            text-[2.25rem]
-            mb-[3.4vh]
+           text-[2.18rem]
+            mb-[3.2vh]
             bg-clip-text text-transparent
           "
           style={{
@@ -176,7 +177,7 @@ export default function Philosophy() {
         <p
           className="
             philo-text
-            text-[1.32rem]
+           text-[1.28rem]
             tracking-[0.06em]
             mb-[8vh]
             text-[rgb(248,242,238)]
@@ -231,7 +232,7 @@ export default function Philosophy() {
                 </h3>
               </div>
 
-              <p className="text-[rgb(248,242,238)]/92 text-[1.08rem] whitespace-pre-line">
+              <p className="text-[rgb(248,242,238)]/92 text-[1.04rem] whitespace-pre-line">
                 {b.body}
               </p>
             </div>

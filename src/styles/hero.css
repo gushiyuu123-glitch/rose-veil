@@ -76,7 +76,7 @@
    小ラベル（補助）
 =========================================== */
 .hero-label {
-  font-size: 0.85rem;
+ font-size: 0.83rem;
  font-family: var(--eng);
   font-weight: 300; /* 300のまま使う */
   
@@ -104,7 +104,8 @@
     0 0 1.2px rgba(255, 244, 230, 0.40);
  letter-spacing: 0.11em;
   color: #eee8d4;
-  font-size: clamp(2.7rem, 4.6vw, 5rem);
+  font-size: clamp(2.6rem, 4.35vw, 4.8rem);
+
    -webkit-text-stroke: 0.3px rgba(255, 244, 230, 0.35);
 }
 

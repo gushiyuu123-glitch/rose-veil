@@ -141,7 +141,7 @@ export default function BrandLetter() {
         <p
           className="
             bl-fade mt-6
-            text-[2.15rem] md:text-[2.35rem]
+            text-[2.09rem] md:text-[2.28rem]
             font-light tracking-[0.02em]
             text-[rgba(40,30,35,0.86)]
           "
