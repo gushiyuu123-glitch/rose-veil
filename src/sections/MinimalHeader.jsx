@@ -79,23 +79,37 @@ export default function MinimalHeader() {
       {/* -------------------------------------------
           LOGO（PCは大きめ・静かな存在感）
       ------------------------------------------- */}
-      <a
-        href="#hero"
-        className="group block cursor-pointer transition-opacity"
-      >
-        <img
-          src="/roseveil-logo1.png"
-          alt="ROSE VEIL"
-          className="
-            h-[52px]
-            opacity-80
-            group-hover:opacity-100
-            transition-all duration-700
-            select-none
-            translate-y-[4px]   <!-- ★ ここ追加だけ -->
-          "
-        />
-      </a>
+   <a
+  href="#hero"
+  className="flex items-end gap-[6px] cursor-pointer group select-none"
+>
+  {/* Rose Veil 筆記体ロゴ（主役） */}
+  <img
+    src="/roseveil-logo1.png"
+    alt="ROSE VEIL"
+    className="
+      h-[42px]
+      opacity-85
+      translate-y-[3.5px]
+      transition-all duration-700
+      group-hover:opacity-100
+    "
+  />
+
+  {/* Rose Veil アイコン（従） */}
+  <img
+    src="/roseveil-logo2.png"
+    alt="ROSE VEIL ICON"
+    className="
+      h-[36px]
+      opacity-85
+      translate-y-[3px]
+      transition-all duration-700
+      group-hover:opacity-100
+    "
+  />
+</a>
+
     </header>
   );
 }

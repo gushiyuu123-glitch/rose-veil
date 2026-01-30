@@ -80,24 +80,37 @@ export default function MinimalHeader_sp() {
       {/* --------------------------------------------
           LOGO — 余白の中で“静かに光る”
       -------------------------------------------- */}
-      <a
-        href="#hero-sp"
-        className="group block cursor-pointer transition-opacity"
-      >
-<img
-  src="/roseveil-logo1.png"
-  alt="ROSE VEIL"
-  className="
-    h-[38px]
-    opacity-80
-    group-hover:opacity-100
-    transition-all duration-500
-    select-none
-    translate-y-[5px]   <!-- ★ ここ追加だけ -->
-  "
-/>
+<a
+  href="#hero-sp"
+  className="flex items-end gap-[4px] cursor-pointer group select-none"
+>
+  {/* 筆記体メインロゴ */}
+  <img
+    src="/roseveil-logo1.png"
+    alt="ROSE VEIL"
+    className="
+      h-[34px]
+      opacity-80
+      translate-y-[4px]
+      transition-all duration-500
+      group-hover:opacity-100
+    "
+  />
 
-      </a>
+  {/* シンボルロゴ（SPは小さめが高級に見える） */}
+  <img
+    src="/roseveil-logo2.png"
+    alt="ROSE VEIL ICON"
+    className="
+      h-[28px]
+      opacity-80
+      translate-y-[3px]
+      transition-all duration-500
+      group-hover:opacity-100
+    "
+  />
+</a>
+
     </header>
   );
 }
