@@ -383,15 +383,18 @@ WHITE は軽やかさ、VEIL は深みの艶、BLUE は静かな透明感。
           ))}
         </div>
 
-        {/* PRODUCT LINE */}
-        <div
-          ref={productLineRef}
-          className="
-            product-line-block relative opacity-0 translate-y-[26px]
-            w-full mt-[21.2vh]
-            flex flex-col items-center text-center
-          "
-        >
+  {/* PRODUCT LINE */}
+<div
+  ref={productLineRef}
+  className="
+    product-line-block relative opacity-0 translate-y-[26px]
+    w-full
+    mt-[25vh]        /* 上の余白を +3.8vh 拡張 */
+    mb-[5vh]         /* 下に +5vh の呼吸を追加 */
+    flex flex-col items-center text-center
+  "
+>
+
           <div
             className="
               absolute top-[-14vh] left-0 right-0 h-[32vh]
